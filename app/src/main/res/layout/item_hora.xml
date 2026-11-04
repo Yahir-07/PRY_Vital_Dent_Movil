@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Casilla de horario (rvHoras). Estados desde código:
+     isSelected = true → elegida · isEnabled = false → ocupada (agregar STRIKE_THRU_TEXT_FLAG) -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvHora"
+    style="@style/VitalDent.Hora"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/vd_espacio_xs"
+    android:clickable="true"
+    android:focusable="true"
+    tools:text="@string/ej_hora_corta" />

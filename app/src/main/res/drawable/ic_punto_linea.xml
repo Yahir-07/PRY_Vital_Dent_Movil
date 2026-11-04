@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="oval">
+    <solid android:color="@color/vd_placeholder" />
+    <stroke android:width="@dimen/vd_borde_fino" android:color="@color/vd_borde" />
+    <size android:width="@dimen/vd_espacio_l" android:height="@dimen/vd_espacio_l" />
+</shape>

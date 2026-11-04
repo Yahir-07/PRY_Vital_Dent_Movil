@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores base del proyecto (se conservan) -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- ===== Paleta Vital Dent (tomada de los wireframes) ===== -->
+    <!-- Acción principal: botones, elementos seleccionados, barras de progreso -->
+    <color name="vd_primario">#FF2F3437</color>
+    <color name="vd_sobre_primario">#FFFFFFFF</color>
+
+    <!-- Fondos y superficies -->
+    <color name="vd_fondo">#FFFFFFFF</color>
+    <color name="vd_superficie">#FFF1F2F4</color>
+    <color name="vd_placeholder">#FFE3E5E8</color>
+    <color name="vd_borde">#FFD5D8DC</color>
+    <color name="vd_divisor">#FFE6E8EB</color>
+
+    <!-- Texto -->
+    <color name="vd_texto_primario">#FF1F2328</color>
+    <color name="vd_texto_secundario">#FF6B7076</color>
+    <color name="vd_texto_terciario">#FF8A8F95</color>
+    <color name="vd_texto_deshabilitado">#FFA9ADB2</color>
+
+    <!-- Íconos -->
+    <color name="vd_icono">#FF6B7076</color>
+    <color name="vd_icono_inactivo">#FFC4C8CE</color>
+
+    <!-- Estados -->
+    <color name="vd_error">#FFD93025</color>
+    <color name="vd_exito">#FF2E7D32</color>
+
+    <!-- Fondo semitransparente para diálogos -->
+    <color name="vd_scrim">#99000000</color>
 </resources>

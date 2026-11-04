@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Espaciado -->
+    <dimen name="vd_espacio_xs">4dp</dimen>
+    <dimen name="vd_espacio_s">8dp</dimen>
+    <dimen name="vd_espacio_m">12dp</dimen>
+    <dimen name="vd_espacio_l">16dp</dimen>
+    <dimen name="vd_espacio_xl">24dp</dimen>
+    <dimen name="vd_espacio_xxl">32dp</dimen>
+    <dimen name="vd_margen_pantalla">16dp</dimen>
+
+    <!-- Radios -->
+    <dimen name="vd_radio_s">8dp</dimen>
+    <dimen name="vd_radio_m">12dp</dimen>
+    <dimen name="vd_radio_l">14dp</dimen>
+    <dimen name="vd_radio_pastilla">50dp</dimen>
+
+    <!-- Bordes -->
+    <dimen name="vd_borde_fino">1dp</dimen>
+    <dimen name="vd_borde_grueso">1.5dp</dimen>
+
+    <!-- Alturas de componentes -->
+    <dimen name="vd_alto_boton">52dp</dimen>
+    <dimen name="vd_alto_hora">44dp</dimen>
+    <dimen name="vd_alto_encabezado">88dp</dimen>
+    <dimen name="vd_alto_progreso">8dp</dimen>
+    <dimen name="vd_alto_calendario">320dp</dimen>
+
+    <!-- Tamaños de imagen / ícono -->
+    <dimen name="vd_icono_s">20dp</dimen>
+    <dimen name="vd_icono_m">24dp</dimen>
+    <dimen name="vd_icono_l">40dp</dimen>
+    <dimen name="vd_miniatura">56dp</dimen>
+    <dimen name="vd_ilustracion">96dp</dimen>
+    <dimen name="vd_logo">112dp</dimen>
+
+    <!-- Tamaños de texto -->
+    <dimen name="vd_texto_marca">30sp</dimen>
+    <dimen name="vd_texto_monto">30sp</dimen>
+    <dimen name="vd_texto_titulo">22sp</dimen>
+    <dimen name="vd_texto_encabezado">20sp</dimen>
+    <dimen name="vd_texto_subtitulo">16sp</dimen>
+    <dimen name="vd_texto_cuerpo">15sp</dimen>
+    <dimen name="vd_texto_etiqueta">14sp</dimen>
+    <dimen name="vd_texto_pequeno">13sp</dimen>
+    <dimen name="vd_texto_micro">12sp</dimen>
+</resources>

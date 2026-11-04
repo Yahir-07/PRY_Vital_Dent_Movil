@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Datos de EJEMPLO solo para la vista previa de Android Studio.
+     Se usan únicamente en atributos tools:text / tools:title, por eso no aparecen
+     en la app; el optimizador (R8) los elimina del APK de release.
+     Los datos reales llegan desde la API y se asignan en código. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="UnusedResources,MissingTranslation">
+    <string name="ej_saludo">Hola, Mariana López</string>
+    <string name="ej_nombre_completo">Mariana López Cruz</string>
+    <string name="ej_paciente_desde">Paciente desde feb 2026</string>
+    <string name="ej_telefono">771 234 5678</string>
+    <string name="ej_correo">mariana.lopez@correo.com</string>
+    <string name="ej_domicilio">Av. Juárez 120, Col. Centro</string>
+
+    <string name="ej_cita_motivo">Ajuste de brackets</string>
+    <string name="ej_cita_fecha">Jue 12 nov · 10:30 a. m.</string>
+    <string name="ej_cita_detalle_doctor">Jue 12 nov · 10:30 a. m. · Dr. Andrés Ruiz</string>
+    <string name="ej_doctor">Dr. Andrés Ruiz</string>
+    <string name="ej_fecha_larga">Jueves 12 de noviembre de 2026</string>
+    <string name="ej_hora_1030">10:30 a. m.</string>
+    <string name="ej_hora_corta">10:30</string>
+    <string name="ej_hora_disponible_fecha">Hora disponible * · jueves 12 de nov</string>
+
+    <string name="ej_tratamiento_ortodoncia">Ortodoncia</string>
+    <string name="ej_tratamiento_ortodoncia_fija">Ortodoncia fija</string>
+    <string name="ej_tratamiento_inicio">Inició 10 feb 2026 · Dr. Andrés Ruiz</string>
+    <string name="ej_doctor_sesiones">Dr. Andrés Ruiz · 15 sesiones</string>
+    <string name="ej_porcentaje_60">60 %</string>
+    <string name="ej_sesion_9_15">Sesión 9 de 15</string>
+    <string name="ej_sesiones_de">9 de 15 sesiones</string>
+    <string name="ej_sesion_ultimo_avance">Sesión 9 de 15 · Último avance: 24 oct</string>
+    <string name="ej_fin_estimado">Fin estimado: abril 2027</string>
+    <string name="ej_tratamientos_activos">2 activos</string>
+    <string name="ej_sesion_10">Sesión 10</string>
+    <string name="ej_fecha_corta">12 nov</string>
+    <string name="ej_avance_descripcion">Cambio de arco superior (programada).</string>
+
+    <string name="ej_alergia_penicilina">Penicilina</string>
+    <string name="ej_alergia_latex">Látex</string>
+    <string name="ej_historial_titulo">Cita atendida</string>
+    <string name="ej_historial_detalle">24 oct 2026 · Ajuste de brackets</string>
+
+    <string name="ej_monto_1800">$1,800.00</string>
+    <string name="ej_pagar_monto">Pagar $1,800.00</string>
+    <string name="ej_pagos_pendientes">1 pendiente</string>
+    <string name="ej_concepto_endodoncia_s2">Endodoncia pieza 36 · sesión 2</string>
+    <string name="ej_concepto_endodoncia_corto">Endodoncia · sesión 2</string>
+    <string name="ej_concepto_monto">Endodoncia pieza 36 · $1,800.00</string>
+    <string name="ej_pago_concepto">Ortodoncia · mensualidad</string>
+    <string name="ej_pago_detalle">24 oct 2026 · $950.00</string>
+    <string name="ej_tarjeta">Visa •••• 4821</string>
+    <string name="ej_vence">Vence 08/28</string>
+    <string name="ej_fecha_pago">31 oct 2026, 9:41</string>
+    <string name="ej_folio">VD-2026-10-00418</string>
+    <string name="ej_error_huella">Huella no reconocida. Te quedan 2 intentos.</string>
+</resources>

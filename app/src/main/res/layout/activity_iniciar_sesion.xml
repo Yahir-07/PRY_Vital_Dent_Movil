@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 3 · Iniciar sesión -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbIniciarSesion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:subtitle="@string/iniciar_sesion_subtitulo"
+        app:title="@string/iniciar_sesion_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svIniciarSesion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnIrCrearCuenta"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbIniciarSesion">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingTop="@dimen/vd_espacio_l"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_espacio_l">
+
+            <!-- Se muestra desde código cuando las credenciales son incorrectas -->
+            <TextView
+                android:id="@+id/tvErrorCredenciales"
+                style="@style/VitalDent.Aviso.Error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/error_credenciales"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etUsuario"
+                android:text="@string/etiqueta_usuario_o_correo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_correo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="username"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etContrasena"
+                android:text="@string/etiqueta_contrasena" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOlvidasteContrasena"
+                style="@style/VitalDent.Boton.Enlace"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="@string/accion_olvidaste_contrasena"
+                android:textColor="@color/vd_texto_primario" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIniciarSesion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                android:text="@string/accion_iniciar_sesion" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:layout_marginBottom="@dimen/vd_espacio_m"
+                android:text="@string/separador_o" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIngresarHuella"
+                style="@style/VitalDent.Boton.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/accion_ingresar_huella"
+                app:icon="@drawable/ic_huella"
+                app:iconGravity="textStart"
+                app:iconTint="@color/vd_texto_primario" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIrCrearCuenta"
+        style="@style/VitalDent.Boton.Enlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
+        android:text="@string/enlace_no_tienes_cuenta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

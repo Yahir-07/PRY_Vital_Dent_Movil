@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 18 · Cambiar contraseña -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbCambiarContrasena"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:title="@string/cambiar_contrasena_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svCambiarContrasena"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGuardarCambios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbCambiarContrasena">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingTop="@dimen/vd_espacio_l"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_espacio_l">
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/campos_obligatorios" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etContrasenaActual"
+                android:text="@string/etiqueta_contrasena_actual" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilContrasenaActual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etContrasenaActual"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionNext" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etContrasenaNueva"
+                android:text="@string/etiqueta_contrasena_nueva" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilContrasenaNueva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etContrasenaNueva"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="newPassword"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionNext" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Requisitos: el ícono cambia entre ic_check e ic_cerrar desde código -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvRequisitos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvRequisitoLongitud"
+                        style="@style/VitalDent.Texto.Requisito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_check"
+                        android:text="@string/requisito_longitud" />
+
+                    <TextView
+                        android:id="@+id/tvRequisitoMayuscula"
+                        style="@style/VitalDent.Texto.Requisito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_check"
+                        android:text="@string/requisito_mayuscula" />
+
+                    <TextView
+                        android:id="@+id/tvRequisitoNumero"
+                        style="@style/VitalDent.Texto.Requisito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_cerrar"
+                        android:text="@string/requisito_numero" />
+
+                    <TextView
+                        android:id="@+id/tvRequisitoDistinta"
+                        style="@style/VitalDent.Texto.Requisito"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_check"
+                        android:text="@string/requisito_distinta" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etConfirmarContrasenaNueva"
+                android:text="@string/etiqueta_confirmar_contrasena_nueva" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilConfirmarContrasenaNueva"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:endIconMode="password_toggle"
+                app:placeholderText="@string/placeholder_repite_contrasena">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etConfirmarContrasenaNueva"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="newPassword"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionDone" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelar"
+        style="@style/VitalDent.Boton.Secundario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_espacio_s"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnGuardarCambios"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_espacio_s"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_guardar_cambios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

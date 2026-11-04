@@ -1,3 +1,215 @@
 <resources>
     <string name="app_name">PRY_Vital_Dent_Movil</string>
+    <string name="app_marca">Vital Dent</string>
+
+    <!-- ===== Navegación inferior ===== -->
+    <string name="nav_inicio">Inicio</string>
+    <string name="nav_citas">Citas</string>
+    <string name="nav_tratamientos">Tratamientos</string>
+    <string name="nav_pagos">Pagos</string>
+    <string name="nav_perfil">Perfil</string>
+
+    <!-- ===== Accesibilidad (contentDescription) ===== -->
+    <string name="cd_regresar">Regresar</string>
+    <string name="cd_logo">Logotipo de Vital Dent</string>
+    <string name="cd_elegir_fecha">Elegir fecha</string>
+    <string name="cd_tarjeta_guardada">Usar tarjeta guardada</string>
+
+    <!-- ===== Acciones (botones) ===== -->
+    <string name="accion_iniciar_sesion">Iniciar sesión</string>
+    <string name="accion_crear_cuenta">Crear cuenta</string>
+    <string name="accion_olvidaste_contrasena">¿Olvidaste tu contraseña?</string>
+    <string name="accion_ingresar_huella">Ingresar con huella</string>
+    <string name="accion_enviar_enlace">Enviar enlace</string>
+    <string name="accion_volver_iniciar_sesion">Volver a iniciar sesión</string>
+    <string name="accion_continuar">Continuar</string>
+    <string name="accion_agendar_nueva_cita">Agendar nueva cita</string>
+    <string name="accion_confirmar_cita">Confirmar cita</string>
+    <string name="accion_ver_mis_citas">Ver mis citas</string>
+    <string name="accion_volver_inicio">Volver al inicio</string>
+    <string name="accion_pagar_ahora">Pagar ahora</string>
+    <string name="accion_pagar">Pagar</string>
+    <string name="accion_pagar_monto">Pagar %1$s</string>
+    <string name="accion_cancelar_pago">Cancelar pago</string>
+    <string name="accion_ver_mis_pagos">Ver mis pagos</string>
+    <string name="accion_editar">Editar</string>
+    <string name="accion_cerrar_sesion">Cerrar sesión</string>
+    <string name="accion_cancelar">Cancelar</string>
+    <string name="accion_guardar_cambios">Guardar cambios</string>
+    <string name="accion_usar_huella">Usar huella</string>
+
+    <!-- ===== Etiquetas de formulario ===== -->
+    <string name="campos_obligatorios">Los campos con * son obligatorios</string>
+    <string name="etiqueta_nombre_usuario">Nombre de usuario *</string>
+    <string name="etiqueta_correo">Correo electrónico *</string>
+    <string name="etiqueta_usuario_o_correo">Usuario o correo electrónico *</string>
+    <string name="etiqueta_contrasena">Contraseña *</string>
+    <string name="etiqueta_confirmar_contrasena">Confirmar contraseña *</string>
+    <string name="etiqueta_contrasena_actual">Contraseña actual *</string>
+    <string name="etiqueta_contrasena_nueva">Contraseña nueva *</string>
+    <string name="etiqueta_confirmar_contrasena_nueva">Confirmar contraseña nueva *</string>
+    <string name="etiqueta_nombre">Nombre(s) *</string>
+    <string name="etiqueta_apellido_paterno">Apellido paterno *</string>
+    <string name="etiqueta_apellido_materno">Apellido materno</string>
+    <string name="etiqueta_fecha_nacimiento">Fecha de nacimiento *</string>
+    <string name="etiqueta_sexo">Sexo *</string>
+    <string name="etiqueta_telefono">Teléfono *</string>
+    <string name="etiqueta_domicilio">Domicilio</string>
+    <string name="etiqueta_hora_disponible">Hora disponible *</string>
+    <string name="etiqueta_motivo_cita">Motivo de la cita *</string>
+    <string name="etiqueta_medio_pago">Medio de pago *</string>
+    <string name="etiqueta_concepto">Concepto</string>
+    <string name="etiqueta_total_pagar">Total a pagar</string>
+    <string name="etiqueta_fecha">Fecha</string>
+    <string name="etiqueta_medio">Medio</string>
+    <string name="etiqueta_autorizado_con">Autorizado con</string>
+    <string name="etiqueta_folio">Folio</string>
+    <string name="etiqueta_estado">Estado</string>
+
+    <string name="placeholder_correo">nombre@correo.com</string>
+    <string name="placeholder_fecha">dd/mm/aaaa</string>
+    <string name="placeholder_domicilio">Calle, número y colonia</string>
+    <string name="placeholder_motivo">Ej. limpieza, revisión, dolor de muela</string>
+    <string name="placeholder_repite_contrasena">Repite la contraseña nueva</string>
+    <string name="ayuda_contrasena">Mínimo 8 caracteres, una mayúscula y un número</string>
+    <string name="acepto_aviso_privacidad">Acepto el aviso de privacidad.</string>
+    <string name="separador_o">o</string>
+
+    <string-array name="opciones_sexo">
+        <item>Mujer</item>
+        <item>Hombre</item>
+        <item>Prefiero no decir</item>
+    </string-array>
+
+    <!-- ===== Validaciones (para TextInputLayout.error desde código) ===== -->
+    <string name="error_credenciales">Usuario o contraseña incorrectos.</string>
+    <string name="error_revisa_contrasena">Revisa tu contraseña</string>
+    <string name="error_contrasenas_no_coinciden">Las contraseñas no coinciden</string>
+    <string name="error_telefono_10_digitos">Ingresa un teléfono de 10 dígitos</string>
+    <string name="error_campo_obligatorio">Este campo es obligatorio</string>
+    <string name="error_correo_invalido">Ingresa un correo electrónico válido</string>
+    <plurals name="error_huella_intentos">
+        <item quantity="one">Huella no reconocida. Te queda %1$d intento.</item>
+        <item quantity="other">Huella no reconocida. Te quedan %1$d intentos.</item>
+    </plurals>
+
+    <!-- ===== 1 · Bienvenida ===== -->
+    <string name="bienvenida_lema">Tus citas, tratamientos e historial dental en un solo lugar.</string>
+    <string name="bienvenida_pie">Consultorio Vital Dent · Huejutla, Hgo.</string>
+
+    <!-- ===== 2 · Crear cuenta ===== -->
+    <string name="crear_cuenta_titulo">Crear cuenta</string>
+    <string name="crear_cuenta_subtitulo">Regístrate como paciente</string>
+    <string name="enlace_ya_tienes_cuenta">¿Ya tienes cuenta? Inicia sesión</string>
+
+    <!-- ===== 3 · Iniciar sesión ===== -->
+    <string name="iniciar_sesion_titulo">Iniciar sesión</string>
+    <string name="iniciar_sesion_subtitulo">Ingresa a tu cuenta de Vital Dent</string>
+    <string name="enlace_no_tienes_cuenta">¿No tienes cuenta? Crear cuenta</string>
+
+    <!-- ===== 4 · Recuperar contraseña ===== -->
+    <string name="recuperar_titulo">Recuperar contraseña</string>
+    <string name="recuperar_descripcion">Te enviaremos un enlace para crear una contraseña nueva.</string>
+    <string name="recuperar_aviso_enviado">Si el correo está registrado, recibirás el enlace en unos minutos.</string>
+
+    <!-- ===== 5 · Datos personales ===== -->
+    <string name="datos_personales_titulo">Cuéntanos sobre ti</string>
+    <string name="datos_personales_paso">Paso 1 de 3 · Datos personales</string>
+
+    <!-- ===== 6 · Inicio ===== -->
+    <string name="inicio_saludo">Hola, %1$s</string>
+    <string name="rol_paciente">Paciente</string>
+    <string name="inicio_tu_proxima_cita">Tu próxima cita</string>
+    <string name="inicio_agendar_cita">Agendar cita</string>
+    <string name="inicio_agendar_cita_detalle">Elige día y hora</string>
+    <string name="inicio_tratamientos">Tratamientos</string>
+    <plurals name="inicio_tratamientos_activos">
+        <item quantity="one">%1$d activo</item>
+        <item quantity="other">%1$d activos</item>
+    </plurals>
+    <plurals name="inicio_pagos_pendientes">
+        <item quantity="one">%1$d pendiente</item>
+        <item quantity="other">%1$d pendientes</item>
+    </plurals>
+    <string name="formato_porcentaje">%1$d %%</string>
+    <string name="formato_sesion_de">Sesión %1$d de %2$d</string>
+    <string name="formato_sesiones_de">%1$d de %2$d sesiones</string>
+
+    <!-- ===== 7–9 · Citas ===== -->
+    <string name="citas_titulo">Mis citas</string>
+    <string name="tab_proximas">Próximas</string>
+    <string name="tab_anteriores">Anteriores</string>
+    <string name="tab_proximas_conteo">Próximas (%1$d)</string>
+    <string name="tab_anteriores_conteo">Anteriores (%1$d)</string>
+    <string name="citas_anteriores_recientes">Anteriores recientes</string>
+    <string name="agendar_titulo">Agendar cita</string>
+    <string name="agendar_subtitulo">Elige fecha, hora y motivo</string>
+    <string name="hora_disponible_fecha">Hora disponible * · %1$s</string>
+    <string name="agendar_nota_horarios">Los horarios tachados ya están ocupados.</string>
+    <string name="cita_agendada_titulo">Cita agendada</string>
+    <string name="cita_agendada_subtitulo">El consultorio confirmará tu cita.</string>
+
+    <!-- ===== 10–12 · Tratamientos e historial ===== -->
+    <string name="tratamientos_titulo">Mis tratamientos</string>
+    <string name="tab_en_curso">En curso</string>
+    <string name="tab_finalizados">Finalizados</string>
+    <string name="tratamientos_aviso">Toca un tratamiento para ver su avance sesión por sesión.</string>
+    <string name="detalle_avances_registrados">Avances registrados</string>
+    <string name="formato_fin_estimado">Fin estimado: %1$s</string>
+    <string name="historial_titulo">Historial médico</string>
+    <string name="historial_subtitulo">Solo lectura</string>
+    <string name="historial_aviso_solo_lectura">Consulta de solo lectura. Para corregir un dato, coméntalo con tu doctor.</string>
+    <string name="historial_alergias">Alergias</string>
+    <string name="filtro_todo">Todo</string>
+    <string name="filtro_consultas">Consultas</string>
+    <string name="filtro_recetas">Recetas</string>
+    <string name="filtro_tratamientos">Tratamientos</string>
+
+    <!-- ===== 13–16 · Pagos ===== -->
+    <string name="pagos_titulo">Pagos</string>
+    <string name="pagos_saldo_pendiente">Saldo pendiente</string>
+    <string name="tab_realizados">Realizados</string>
+    <string name="tab_pendientes">Pendientes</string>
+    <string name="tab_pendientes_conteo">Pendientes (%1$d)</string>
+    <string name="realizar_pago_titulo">Realizar pago</string>
+    <string name="pago_agregar_tarjeta">Agregar tarjeta nueva</string>
+    <string name="pago_aviso_cifrado">Pago cifrado. No guardamos el número completo de tu tarjeta.</string>
+    <string name="pago_nota_huella">Se pedirá tu huella para autorizar el pago</string>
+    <string name="formato_vence">Vence %1$s</string>
+    <string name="confirmar_pago_titulo">Confirma tu pago</string>
+    <string name="confirmar_pago_instruccion">Coloca tu dedo en el sensor</string>
+    <string name="pago_aprobado_titulo">Pago aprobado</string>
+    <string name="metodo_huella_digital">Huella digital</string>
+
+    <!-- ===== 17–18 · Perfil ===== -->
+    <string name="perfil_datos_contacto">Datos de contacto</string>
+    <string name="perfil_telefono">Teléfono</string>
+    <string name="perfil_correo">Correo electrónico</string>
+    <string name="perfil_domicilio">Domicilio</string>
+    <string name="perfil_cuenta">Cuenta</string>
+    <string name="perfil_huella_pagos">Huella para pagos</string>
+    <string name="formato_paciente_desde">Paciente desde %1$s</string>
+    <string name="cambiar_contrasena_titulo">Cambiar contraseña</string>
+    <string name="requisito_longitud">Al menos 8 caracteres</string>
+    <string name="requisito_mayuscula">Una letra mayúscula</string>
+    <string name="requisito_numero">Un número</string>
+    <string name="requisito_distinta">Distinta a la actual</string>
+
+    <!-- ===== 19 · Estados del sistema ===== -->
+    <string name="aviso_sin_conexion">Sin conexión a internet. Mostramos la última información guardada.</string>
+    <string name="sesion_expirada_titulo">Tu sesión terminó</string>
+    <string name="sesion_expirada_mensaje">Por seguridad cerramos tu sesión por inactividad.</string>
+
+    <!-- ===== Estados (pastillas) ===== -->
+    <string name="estado_confirmada">Confirmada</string>
+    <string name="estado_pendiente">Pendiente</string>
+    <string name="estado_atendida">Atendida</string>
+    <string name="estado_cancelada">Cancelada</string>
+    <string name="estado_pendiente_confirmar">Pendiente de confirmar</string>
+    <string name="estado_en_curso">En curso</string>
+    <string name="estado_finalizado">Finalizado</string>
+    <string name="estado_aprobado">Aprobado</string>
+    <string name="estado_rechazado">Rechazado</string>
+    <string name="estado_activada">Activada</string>
+    <string name="estado_desactivada">Desactivada</string>
 </resources>
