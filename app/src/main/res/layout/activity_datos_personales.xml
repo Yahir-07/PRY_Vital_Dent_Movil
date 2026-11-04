@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 5 · Cuéntanos sobre ti (Paso 1 de 3 · Datos personales) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbDatosPersonales"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="@string/datos_personales_paso"
+        app:title="@string/datos_personales_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svDatosPersonales"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDatosPersonales">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingTop="@dimen/vd_espacio_l"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_espacio_l">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glMitad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/pbPasoRegistro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/datos_personales_paso"
+                android:max="3"
+                android:progress="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Nombre(s) -->
+            <TextView
+                android:id="@+id/lblNombre"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etNombre"
+                android:text="@string/etiqueta_nombre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pbPasoRegistro" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilNombre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblNombre">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="personGivenName"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Apellidos (dos columnas) -->
+            <TextView
+                android:id="@+id/lblApellidoPaterno"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:labelFor="@+id/etApellidoPaterno"
+                android:text="@string/etiqueta_apellido_paterno"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilNombre" />
+
+            <TextView
+                android:id="@+id/lblApellidoMaterno"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:labelFor="@+id/etApellidoMaterno"
+                android:text="@string/etiqueta_apellido_materno"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toBottomOf="@+id/tilNombre" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilApellidoPaterno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblApellidoPaterno">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etApellidoPaterno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="personFamilyName"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPersonName|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilApellidoMaterno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toBottomOf="@+id/lblApellidoMaterno">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etApellidoMaterno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Fecha de nacimiento y sexo (dos columnas) -->
+            <TextView
+                android:id="@+id/lblFechaNacimiento"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:labelFor="@+id/etFechaNacimiento"
+                android:text="@string/etiqueta_fecha_nacimiento"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilApellidoPaterno" />
+
+            <TextView
+                android:id="@+id/lblSexo"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:labelFor="@+id/actvSexo"
+                android:text="@string/etiqueta_sexo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toBottomOf="@+id/tilApellidoPaterno" />
+
+            <!-- Abre un MaterialDatePicker desde código -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilFechaNacimiento"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                app:endIconContentDescription="@string/cd_elegir_fecha"
+                app:endIconDrawable="@drawable/ic_citas"
+                app:endIconMode="custom"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblFechaNacimiento"
+                app:placeholderText="@string/placeholder_fecha">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etFechaNacimiento"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:importantForAutofill="no"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilSexo"
+                style="@style/VitalDent.Campo.Desplegable"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toBottomOf="@+id/lblSexo">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvSexo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    app:simpleItems="@array/opciones_sexo" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Teléfono -->
+            <TextView
+                android:id="@+id/lblTelefono"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etTelefono"
+                android:text="@string/etiqueta_telefono"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilFechaNacimiento" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTelefono"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblTelefono">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="phoneNational"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Domicilio -->
+            <TextView
+                android:id="@+id/lblDomicilio"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etDomicilio"
+                android:text="@string/etiqueta_domicilio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilTelefono" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDomicilio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblDomicilio"
+                app:placeholderText="@string/placeholder_domicilio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDomicilio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="postalAddress"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPostalAddress|textCapSentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContinuar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

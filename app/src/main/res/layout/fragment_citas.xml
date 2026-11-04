@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 7 · Mis citas (incluye el aviso "sin conexión" de la pantalla 19) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbCitas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/citas_titulo" />
+
+    <TextView
+        android:id="@+id/tvSinConexion"
+        style="@style/VitalDent.Aviso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:text="@string/aviso_sin_conexion"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbCitas" />
+
+    <!-- El conteo "(2)" se agrega desde código con R.string.tab_proximas_conteo -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlCitas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSinConexion">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_proximas" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_anteriores" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCitas"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/vd_margen_pantalla"
+        android:paddingTop="@dimen/vd_espacio_m"
+        android:paddingEnd="@dimen/vd_margen_pantalla"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/btnAgendarNuevaCita"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlCitas"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_cita" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAgendarNuevaCita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_agendar_nueva_cita"
+        app:icon="@drawable/ic_agregar"
+        app:iconGravity="textStart"
+        app:iconTint="@color/vd_sobre_primario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

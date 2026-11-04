@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 11 · Detalle de tratamiento (avance por sesión) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbDetalleTratamiento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        tools:subtitle="@string/ej_doctor_sesiones"
+        tools:title="@string/ej_tratamiento_ortodoncia_fija" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDetalleTratamiento">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <!-- ===== Resumen ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvResumenTratamiento"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvPorcentajeAvance"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="@dimen/vd_ilustracion"
+                        android:layout_height="@dimen/vd_ilustracion"
+                        android:background="@drawable/bg_placeholder"
+                        android:gravity="center"
+                        android:textSize="@dimen/vd_texto_cuerpo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/ej_porcentaje_60" />
+
+                    <TextView
+                        android:id="@+id/tvSesionesAvance"
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        app:layout_constraintBottom_toTopOf="@+id/tvFinEstimado"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvPorcentajeAvance"
+                        app:layout_constraintTop_toTopOf="@+id/tvPorcentajeAvance"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="@string/ej_sesiones_de" />
+
+                    <TextView
+                        android:id="@+id/tvFinEstimado"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        app:layout_constraintBottom_toTopOf="@+id/tvEstadoTratamiento"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvSesionesAvance"
+                        app:layout_constraintTop_toBottomOf="@+id/tvSesionesAvance"
+                        tools:text="@string/ej_fin_estimado" />
+
+                    <TextView
+                        android:id="@+id/tvEstadoTratamiento"
+                        style="@style/VitalDent.Estado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvPorcentajeAvance"
+                        app:layout_constraintStart_toStartOf="@+id/tvSesionesAvance"
+                        app:layout_constraintTop_toBottomOf="@+id/tvFinEstimado"
+                        tools:text="@string/estado_en_curso" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvAvancesTitulo"
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xl"
+                android:text="@string/detalle_avances_registrados"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvResumenTratamiento" />
+
+            <!-- ===== Avances por sesión ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvAvances"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAvancesTitulo">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAvances"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingTop="@dimen/vd_espacio_s"
+                    android:paddingBottom="@dimen/vd_espacio_s"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="4"
+                    tools:listitem="@layout/item_avance" />
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

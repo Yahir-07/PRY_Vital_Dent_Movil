@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Horario ocupado -->
+    <item android:state_enabled="false">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/vd_radio_s" />
+            <solid android:color="@color/vd_superficie" />
+        </shape>
+    </item>
+    <!-- Horario elegido -->
+    <item android:state_selected="true">
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/vd_radio_s" />
+            <solid android:color="@color/vd_primario" />
+        </shape>
+    </item>
+    <!-- Horario libre -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="@dimen/vd_radio_s" />
+            <solid android:color="@color/vd_fondo" />
+            <stroke android:width="@dimen/vd_borde_fino" android:color="@color/vd_borde" />
+        </shape>
+    </item>
+</selector>

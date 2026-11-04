@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Elemento de lista · avance por sesión (rvAvances) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/vd_espacio_l"
+    android:paddingTop="@dimen/vd_espacio_s"
+    android:paddingEnd="@dimen/vd_espacio_l"
+    android:paddingBottom="@dimen/vd_espacio_s">
+
+    <ImageView
+        android:id="@+id/ivAvancePunto"
+        android:layout_width="@dimen/vd_espacio_l"
+        android:layout_height="@dimen/vd_espacio_l"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_punto_linea"
+        app:layout_constraintBottom_toBottomOf="@+id/tvAvanceSesion"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvAvanceSesion" />
+
+    <TextView
+        android:id="@+id/tvAvanceSesion"
+        style="@style/VitalDent.Texto.TituloTarjeta"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_espacio_s"
+        app:layout_constraintEnd_toStartOf="@+id/tvAvanceFecha"
+        app:layout_constraintStart_toEndOf="@+id/ivAvancePunto"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/ej_sesion_10" />
+
+    <TextView
+        android:id="@+id/tvAvanceFecha"
+        style="@style/VitalDent.Texto.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBaseline_toBaselineOf="@+id/tvAvanceSesion"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/ej_fecha_corta" />
+
+    <TextView
+        android:id="@+id/tvAvanceDescripcion"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_xs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tvAvanceSesion"
+        app:layout_constraintTop_toBottomOf="@+id/tvAvanceSesion"
+        tools:text="@string/ej_avance_descripcion" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

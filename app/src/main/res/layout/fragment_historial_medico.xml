@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 12 · Historial médico (solo lectura) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbHistorialMedico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:subtitle="@string/historial_subtitulo"
+        app:title="@string/historial_titulo" />
+
+    <TextView
+        android:id="@+id/tvAvisoSoloLectura"
+        style="@style/VitalDent.Aviso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:text="@string/historial_aviso_solo_lectura"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbHistorialMedico" />
+
+    <!-- ===== Alergias ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvAlergias"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAvisoSoloLectura">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/vd_espacio_l">
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/historial_alergias" />
+
+            <!-- Chips de ejemplo para la vista previa: en código usar
+                 cgAlergias.removeAllViews() y agregar un Chip por alergia -->
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgAlergias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/ej_alergia_penicilina" />
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="@string/ej_alergia_latex" />
+            </com.google.android.material.chip.ChipGroup>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ===== Filtros ===== -->
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/cgFiltrosHistorial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:checkedChip="@+id/chipFiltroTodo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvAlergias"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFiltroTodo"
+            style="@style/VitalDent.Chip.Filtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_todo" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFiltroConsultas"
+            style="@style/VitalDent.Chip.Filtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_consultas" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFiltroRecetas"
+            style="@style/VitalDent.Chip.Filtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_recetas" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipFiltroTratamientos"
+            style="@style/VitalDent.Chip.Filtro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_tratamientos" />
+    </com.google.android.material.chip.ChipGroup>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvHistorial"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/vd_margen_pantalla"
+        android:paddingTop="@dimen/vd_espacio_s"
+        android:paddingEnd="@dimen/vd_margen_pantalla"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cgFiltrosHistorial"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_historial" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

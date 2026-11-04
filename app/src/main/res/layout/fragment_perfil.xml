@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 17 · Perfil del paciente -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbPerfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:subtitle="@string/ej_paciente_desde"
+        tools:title="@string/ej_nombre_completo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbPerfil">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <!-- ===== Datos de contacto ===== -->
+            <TextView
+                android:id="@+id/tvDatosContacto"
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/perfil_datos_contacto"
+                app:layout_constraintBottom_toBottomOf="@+id/btnEditarContacto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnEditarContacto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditarContacto"
+                style="@style/VitalDent.Boton.Texto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="0dp"
+                android:text="@string/accion_editar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDatosContacto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnEditarContacto">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <!-- Teléfono -->
+                    <ImageView
+                        android:id="@+id/ivTelefono"
+                        android:layout_width="@dimen/vd_icono_m"
+                        android:layout_height="@dimen/vd_icono_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_telefono"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvTelefonoEtiqueta"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvTelefono" />
+
+                    <TextView
+                        android:id="@+id/tvTelefono"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivTelefono"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/ej_telefono" />
+
+                    <TextView
+                        android:id="@+id/tvTelefonoEtiqueta"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perfil_telefono"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvTelefono"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTelefono" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divContacto1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTelefonoEtiqueta" />
+
+                    <!-- Correo -->
+                    <ImageView
+                        android:id="@+id/ivCorreo"
+                        android:layout_width="@dimen/vd_icono_m"
+                        android:layout_height="@dimen/vd_icono_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_correo"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvCorreoEtiqueta"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvCorreo" />
+
+                    <TextView
+                        android:id="@+id/tvCorreo"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivCorreo"
+                        app:layout_constraintTop_toBottomOf="@+id/divContacto1"
+                        tools:text="@string/ej_correo" />
+
+                    <TextView
+                        android:id="@+id/tvCorreoEtiqueta"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perfil_correo"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvCorreo"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCorreo" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divContacto2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCorreoEtiqueta" />
+
+                    <!-- Domicilio -->
+                    <ImageView
+                        android:id="@+id/ivDomicilio"
+                        android:layout_width="@dimen/vd_icono_m"
+                        android:layout_height="@dimen/vd_icono_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_ubicacion"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvDomicilioEtiqueta"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvDomicilio" />
+
+                    <TextView
+                        android:id="@+id/tvDomicilio"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivDomicilio"
+                        app:layout_constraintTop_toBottomOf="@+id/divContacto2"
+                        tools:text="@string/ej_domicilio" />
+
+                    <TextView
+                        android:id="@+id/tvDomicilioEtiqueta"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/perfil_domicilio"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvDomicilio"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDomicilio" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Cuenta ===== -->
+            <TextView
+                android:id="@+id/tvCuenta"
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xl"
+                android:text="@string/perfil_cuenta"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvDatosContacto" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvCuenta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCuenta">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/vd_espacio_l"
+                    android:paddingEnd="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvCambiarContrasena"
+                        style="@style/VitalDent.Texto.FilaMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cambiar_contrasena_titulo"
+                        android:drawableEnd="@drawable/ic_chevron_derecha"
+                        android:drawableStart="@drawable/ic_candado"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divCuenta1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCambiarContrasena" />
+
+                    <ImageView
+                        android:id="@+id/ivHuellaPagos"
+                        android:layout_width="@dimen/vd_icono_m"
+                        android:layout_height="@dimen/vd_icono_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_huella"
+                        app:layout_constraintBottom_toBottomOf="@+id/swHuellaPagos"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/swHuellaPagos" />
+
+                    <TextView
+                        android:id="@+id/tvHuellaPagos"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_m"
+                        android:text="@string/perfil_huella_pagos"
+                        app:layout_constraintBottom_toTopOf="@+id/tvHuellaPagosEstado"
+                        app:layout_constraintEnd_toStartOf="@+id/swHuellaPagos"
+                        app:layout_constraintStart_toEndOf="@+id/ivHuellaPagos"
+                        app:layout_constraintTop_toTopOf="@+id/swHuellaPagos"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/tvHuellaPagosEstado"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="@+id/swHuellaPagos"
+                        app:layout_constraintEnd_toEndOf="@+id/tvHuellaPagos"
+                        app:layout_constraintStart_toStartOf="@+id/tvHuellaPagos"
+                        app:layout_constraintTop_toBottomOf="@+id/tvHuellaPagos"
+                        tools:text="@string/estado_activada" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/swHuellaPagos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:contentDescription="@string/perfil_huella_pagos"
+                        android:minHeight="@dimen/vd_alto_boton"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divCuenta1"
+                        tools:checked="true" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divCuenta2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/swHuellaPagos" />
+
+                    <TextView
+                        android:id="@+id/tvCerrarSesion"
+                        style="@style/VitalDent.Texto.FilaMenu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:drawableTint="@color/vd_error"
+                        android:text="@string/accion_cerrar_sesion"
+                        android:textColor="@color/vd_error"
+                        android:drawableStart="@drawable/ic_salir"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divCuenta2" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

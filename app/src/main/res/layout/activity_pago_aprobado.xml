@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 16 · Pago aprobado -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true"
+    android:paddingStart="@dimen/vd_margen_pantalla"
+    android:paddingEnd="@dimen/vd_margen_pantalla">
+
+    <ImageView
+        android:id="@+id/ivExito"
+        style="@style/VitalDent.Ilustracion"
+        android:layout_width="@dimen/vd_ilustracion"
+        android:layout_height="@dimen/vd_ilustracion"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_exito"
+        app:layout_constraintBottom_toTopOf="@+id/tvTituloExito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvTituloExito"
+        style="@style/VitalDent.Texto.Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:text="@string/pago_aprobado_titulo"
+        app:layout_constraintBottom_toTopOf="@+id/tvMontoPagado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivExito" />
+
+    <TextView
+        android:id="@+id/tvMontoPagado"
+        style="@style/VitalDent.Texto.Monto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_s"
+        app:layout_constraintBottom_toTopOf="@+id/cvComprobante"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloExito"
+        tools:text="@string/ej_monto_1800" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvComprobante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        app:layout_constraintBottom_toTopOf="@+id/btnVerMisPagos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMontoPagado">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/vd_espacio_l"
+            android:paddingEnd="@dimen/vd_espacio_l"
+            android:paddingBottom="@dimen/vd_espacio_l">
+
+            <TextView
+                android:id="@+id/tvConceptoEtiqueta"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/etiqueta_concepto"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvConceptoValor"
+                style="@style/VitalDent.Texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_l"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvConceptoEtiqueta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvConceptoEtiqueta"
+                tools:text="@string/ej_concepto_endodoncia_corto" />
+
+            <TextView
+                android:id="@+id/tvFechaEtiqueta"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/etiqueta_fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConceptoEtiqueta" />
+
+            <TextView
+                android:id="@+id/tvFechaValor"
+                style="@style/VitalDent.Texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_l"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvFechaEtiqueta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvFechaEtiqueta"
+                tools:text="@string/ej_fecha_pago" />
+
+            <TextView
+                android:id="@+id/tvMedioEtiqueta"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/etiqueta_medio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvFechaEtiqueta" />
+
+            <TextView
+                android:id="@+id/tvMedioValor"
+                style="@style/VitalDent.Texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_l"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvMedioEtiqueta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvMedioEtiqueta"
+                tools:text="@string/ej_tarjeta" />
+
+            <TextView
+                android:id="@+id/tvAutorizadoEtiqueta"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/etiqueta_autorizado_con"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvMedioEtiqueta" />
+
+            <TextView
+                android:id="@+id/tvAutorizadoValor"
+                style="@style/VitalDent.Texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_l"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvAutorizadoEtiqueta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvAutorizadoEtiqueta"
+                tools:text="@string/metodo_huella_digital" />
+
+            <TextView
+                android:id="@+id/tvFolioEtiqueta"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/etiqueta_folio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAutorizadoEtiqueta" />
+
+            <TextView
+                android:id="@+id/tvFolioValor"
+                style="@style/VitalDent.Texto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/vd_espacio_l"
+                android:gravity="end"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvFolioEtiqueta"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvFolioEtiqueta"
+                tools:text="@string/ej_folio" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerMisPagos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
+        android:text="@string/accion_ver_mis_pagos"
+        app:layout_constraintBottom_toTopOf="@+id/btnVolverInicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVolverInicio"
+        style="@style/VitalDent.Boton.Texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
+        android:text="@string/accion_volver_inicio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

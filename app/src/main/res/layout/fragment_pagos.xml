@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 13 · Pagos -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbPagos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/pagos_titulo" />
+
+    <!-- ===== Saldo pendiente ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvSaldoPendiente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbPagos">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/vd_espacio_l">
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pagos_saldo_pendiente" />
+
+            <TextView
+                android:id="@+id/tvSaldoMonto"
+                style="@style/VitalDent.Texto.Monto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                tools:text="@string/ej_monto_1800" />
+
+            <TextView
+                android:id="@+id/tvSaldoConcepto"
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                tools:text="@string/ej_concepto_endodoncia_s2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPagarAhora"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/accion_pagar_ahora" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlPagos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvSaldoPendiente">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_realizados" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tab_pendientes" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPagos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/vd_margen_pantalla"
+        android:paddingTop="@dimen/vd_espacio_m"
+        android:paddingEnd="@dimen/vd_margen_pantalla"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlPagos"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_pago" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

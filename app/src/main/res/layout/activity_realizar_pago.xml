@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 14 · Realizar pago (la pantalla 15 es bottom_sheet_confirmar_pago.xml) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbRealizarPago"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:title="@string/realizar_pago_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svRealizarPago"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnPagar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRealizarPago">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvConcepto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvConceptoEtiqueta"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/etiqueta_concepto"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvConcepto"
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvConceptoEtiqueta"
+                        tools:text="@string/ej_concepto_endodoncia_s2" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:id="@+id/divConcepto"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvConcepto" />
+
+                    <TextView
+                        android:id="@+id/tvTotalEtiqueta"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/etiqueta_total_pagar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/divConcepto" />
+
+                    <TextView
+                        android:id="@+id/tvTotal"
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTotalEtiqueta"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="@string/ej_monto_1800" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/lblMedioPago"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/etiqueta_medio_pago"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvConcepto" />
+
+            <!-- Tarjeta guardada (el RadioButton se sincroniza con el de "Agregar tarjeta" desde código) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTarjetaGuardada"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMedioPago">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_m">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/rbTarjetaGuardada"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:contentDescription="@string/cd_tarjeta_guardada"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/ivMarcaTarjeta"
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_l"
+                        android:layout_height="@dimen/vd_icono_l"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_s"
+                        android:src="@drawable/ic_pagos"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/rbTarjetaGuardada"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvTarjetaGuardada"
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_m"
+                        app:layout_constraintBottom_toTopOf="@+id/tvVenceTarjeta"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivMarcaTarjeta"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="@string/ej_tarjeta" />
+
+                    <TextView
+                        android:id="@+id/tvVenceTarjeta"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/tvTarjetaGuardada"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTarjetaGuardada"
+                        tools:text="@string/ej_vence" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvAgregarTarjeta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvTarjetaGuardada">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbAgregarTarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/vd_alto_boton"
+                    android:paddingStart="@dimen/vd_espacio_m"
+                    android:paddingEnd="@dimen/vd_espacio_m"
+                    android:layout_marginStart="@dimen/vd_espacio_m"
+                    android:text="@string/pago_agregar_tarjeta"
+                    android:textColor="@color/vd_texto_primario" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvAvisoCifrado"
+                style="@style/VitalDent.Aviso"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/pago_aviso_cifrado"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAgregarTarjeta" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Desde código: getString(R.string.accion_pagar_monto, "$1,800.00") -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPagar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:text="@string/accion_pagar"
+        app:layout_constraintBottom_toTopOf="@+id/tvNotaHuella"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/ej_pagar_monto" />
+
+    <TextView
+        android:id="@+id/tvNotaHuella"
+        style="@style/VitalDent.Texto.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_s"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/pago_nota_huella"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

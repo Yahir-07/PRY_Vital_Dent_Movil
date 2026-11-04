@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 6 · Inicio del paciente (va dentro de activity_principal) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <!-- El título "Hola, <nombre>" se asigna desde código con R.string.inicio_saludo -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbInicio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="@string/rol_paciente"
+        tools:title="@string/ej_saludo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbInicio">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glMitad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <!-- ===== Tarjeta: próxima cita ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvProximaCita"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvProximaCitaEtiqueta"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inicio_tu_proxima_cita"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvProximaCitaEstado"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/tvProximaCitaEstado" />
+
+                    <TextView
+                        android:id="@+id/tvProximaCitaEstado"
+                        style="@style/VitalDent.Estado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/estado_confirmada" />
+
+                    <ImageView
+                        android:id="@+id/ivProximaCita"
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_miniatura"
+                        android:layout_height="@dimen/vd_miniatura"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_citas"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvProximaCitaEstado" />
+
+                    <TextView
+                        android:id="@+id/tvProximaCitaTitulo"
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        app:layout_constraintBottom_toTopOf="@+id/tvProximaCitaDetalle"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivProximaCita"
+                        app:layout_constraintTop_toTopOf="@+id/ivProximaCita"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        tools:text="@string/ej_cita_motivo" />
+
+                    <TextView
+                        android:id="@+id/tvProximaCitaDetalle"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivProximaCita"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/ivProximaCita"
+                        app:layout_constraintTop_toBottomOf="@+id/tvProximaCitaTitulo"
+                        tools:text="@string/ej_cita_detalle_doctor" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Tarjeta: tratamiento activo ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTratamientoActivo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvProximaCita">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvTratamientoActivoNombre"
+                        style="@style/VitalDent.Texto.Seccion"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/tvTratamientoActivoPorcentaje"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="@string/ej_tratamiento_ortodoncia" />
+
+                    <TextView
+                        android:id="@+id/tvTratamientoActivoPorcentaje"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTratamientoActivoNombre"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        tools:text="@string/ej_porcentaje_60" />
+
+                    <com.google.android.material.progressindicator.LinearProgressIndicator
+                        android:id="@+id/pbTratamientoActivo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTratamientoActivoNombre"
+                        tools:progress="60" />
+
+                    <TextView
+                        android:id="@+id/tvTratamientoActivoDetalle"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/pbTratamientoActivo"
+                        tools:text="@string/ej_sesion_ultimo_avance" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Accesos rápidos (cuadrícula 2 x 2) ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvAgendarCita"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvTratamientoActivo">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <ImageView
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_l"
+                        android:layout_height="@dimen/vd_icono_l"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_s"
+                        android:src="@drawable/ic_citas" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:text="@string/inicio_agendar_cita" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/inicio_agendar_cita_detalle" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTratamientos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/cvAgendarCita"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toTopOf="@+id/cvAgendarCita">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <ImageView
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_l"
+                        android:layout_height="@dimen/vd_icono_l"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_s"
+                        android:src="@drawable/ic_tratamientos" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:text="@string/inicio_tratamientos" />
+
+                    <TextView
+                        android:id="@+id/tvTratamientosActivos"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        tools:text="@string/ej_tratamientos_activos" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvHistorialMedico"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvAgendarCita">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <ImageView
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_l"
+                        android:layout_height="@dimen/vd_icono_l"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_s"
+                        android:src="@drawable/ic_documento" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:text="@string/historial_titulo" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/historial_subtitulo" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvPagos"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/cvHistorialMedico"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                app:layout_constraintTop_toTopOf="@+id/cvHistorialMedico">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <ImageView
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_l"
+                        android:layout_height="@dimen/vd_icono_l"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_s"
+                        android:src="@drawable/ic_pagos" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:text="@string/pagos_titulo" />
+
+                    <TextView
+                        android:id="@+id/tvPagosPendientes"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        tools:text="@string/ej_pagos_pendientes" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

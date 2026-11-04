@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Elemento de lista · pago (rvPagos) -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vd_espacio_m"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/vd_espacio_l">
+
+        <ImageView
+            android:id="@+id/ivPagoIcono"
+            style="@style/VitalDent.Miniatura"
+            android:layout_width="@dimen/vd_miniatura"
+            android:layout_height="@dimen/vd_miniatura"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_pagos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPagoTitulo"
+            style="@style/VitalDent.Texto.TituloTarjeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vd_espacio_l"
+            android:layout_marginEnd="@dimen/vd_espacio_s"
+            app:layout_constraintBottom_toTopOf="@+id/tvPagoDetalle"
+            app:layout_constraintEnd_toStartOf="@+id/tvPagoEstado"
+            app:layout_constraintStart_toEndOf="@+id/ivPagoIcono"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="@string/ej_pago_concepto" />
+
+        <TextView
+            android:id="@+id/tvPagoDetalle"
+            style="@style/VitalDent.Texto.Secundario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvPagoTitulo"
+            app:layout_constraintStart_toStartOf="@+id/tvPagoTitulo"
+            app:layout_constraintTop_toBottomOf="@+id/tvPagoTitulo"
+            tools:text="@string/ej_pago_detalle" />
+
+        <TextView
+            android:id="@+id/tvPagoEstado"
+            style="@style/VitalDent.Estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/estado_aprobado" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 9 · Cita agendada -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true"
+    android:paddingStart="@dimen/vd_margen_pantalla"
+    android:paddingEnd="@dimen/vd_margen_pantalla">
+
+    <ImageView
+        android:id="@+id/ivExito"
+        style="@style/VitalDent.Ilustracion"
+        android:layout_width="@dimen/vd_ilustracion"
+        android:layout_height="@dimen/vd_ilustracion"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_exito"
+        app:layout_constraintBottom_toTopOf="@+id/tvTituloExito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvTituloExito"
+        style="@style/VitalDent.Texto.Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:text="@string/cita_agendada_titulo"
+        app:layout_constraintBottom_toTopOf="@+id/tvSubtituloExito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivExito" />
+
+    <TextView
+        android:id="@+id/tvSubtituloExito"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_s"
+        android:text="@string/cita_agendada_subtitulo"
+        app:layout_constraintBottom_toTopOf="@+id/cvResumenCita"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloExito" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvResumenCita"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        app:layout_constraintBottom_toTopOf="@+id/btnVerMisCitas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtituloExito">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_espacio_l">
+
+            <TextView
+                android:id="@+id/tvResumenFecha"
+                style="@style/VitalDent.Texto.FilaIcono"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_citas"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/ej_fecha_larga" />
+
+            <TextView
+                android:id="@+id/tvResumenHora"
+                style="@style/VitalDent.Texto.FilaIcono"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_reloj"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvResumenFecha"
+                tools:text="@string/ej_hora_1030" />
+
+            <TextView
+                android:id="@+id/tvResumenMotivo"
+                style="@style/VitalDent.Texto.FilaIcono"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_tratamientos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvResumenHora"
+                tools:text="@string/ej_cita_motivo" />
+
+            <TextView
+                android:id="@+id/tvResumenDoctor"
+                style="@style/VitalDent.Texto.FilaIcono"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_perfil"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvResumenMotivo"
+                tools:text="@string/ej_doctor" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divResumenCita"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvResumenDoctor" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/etiqueta_estado"
+                app:layout_constraintBottom_toBottomOf="@+id/tvResumenEstado"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvResumenEstado" />
+
+            <TextView
+                android:id="@+id/tvResumenEstado"
+                style="@style/VitalDent.Estado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divResumenCita"
+                tools:text="@string/estado_pendiente_confirmar" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVerMisCitas"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
+        android:text="@string/accion_ver_mis_citas"
+        app:layout_constraintBottom_toTopOf="@+id/btnVolverInicio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnVolverInicio"
+        style="@style/VitalDent.Boton.Texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
+        android:text="@string/accion_volver_inicio"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

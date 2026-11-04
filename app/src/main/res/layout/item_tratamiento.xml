@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Elemento de lista · tratamiento (rvTratamientos) -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vd_espacio_m"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/vd_espacio_l">
+
+        <TextView
+            android:id="@+id/tvTratamientoNombre"
+            style="@style/VitalDent.Texto.TituloTarjeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/vd_espacio_s"
+            app:layout_constraintEnd_toStartOf="@+id/tvTratamientoEstado"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/ej_tratamiento_ortodoncia_fija" />
+
+        <TextView
+            android:id="@+id/tvTratamientoDetalle"
+            style="@style/VitalDent.Texto.Secundario"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_xs"
+            app:layout_constraintEnd_toEndOf="@+id/tvTratamientoNombre"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTratamientoNombre"
+            tools:text="@string/ej_tratamiento_inicio" />
+
+        <TextView
+            android:id="@+id/tvTratamientoEstado"
+            style="@style/VitalDent.Estado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/estado_en_curso" />
+
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:id="@+id/pbTratamiento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_m"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTratamientoDetalle"
+            tools:progress="60" />
+
+        <TextView
+            android:id="@+id/tvTratamientoSesion"
+            style="@style/VitalDent.Texto.Secundario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_m"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pbTratamiento"
+            tools:text="@string/ej_sesion_9_15" />
+
+        <TextView
+            android:id="@+id/tvTratamientoPorcentaje"
+            style="@style/VitalDent.Texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@+id/tvTratamientoSesion"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/ej_porcentaje_60" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

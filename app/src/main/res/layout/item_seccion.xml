@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Encabezado de sección dentro de una lista ("Anteriores recientes") -->
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvSeccion"
+    style="@style/VitalDent.Texto.Secundario"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/vd_espacio_xs"
+    android:paddingBottom="@dimen/vd_espacio_s"
+    tools:text="@string/citas_anteriores_recientes" />
