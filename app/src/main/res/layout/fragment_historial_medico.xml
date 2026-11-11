@@ -14,8 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationContentDescription="@string/cd_regresar"
-        app:navigationIcon="@drawable/ic_atras"
+        app:logo="@drawable/logo_encabezado"
+        app:logoDescription="@string/cd_logo"
         app:subtitle="@string/historial_subtitulo"
         app:title="@string/historial_titulo" />
 

@@ -17,6 +17,19 @@
         app:subtitle="@string/datos_personales_paso"
         app:title="@string/datos_personales_titulo" />
 
+    <!-- Barra de avance del cuestionario, pegada al encabezado como en Figma -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/pbPasoRegistro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/datos_personales_paso"
+        android:max="3"
+        android:progress="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDatosPersonales"
+        app:trackCornerRadius="0dp" />
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/svDatosPersonales"
         android:layout_width="0dp"
@@ -24,13 +37,12 @@
         app:layout_constraintBottom_toTopOf="@+id/btnContinuar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbDatosPersonales">
+        app:layout_constraintTop_toBottomOf="@+id/pbPasoRegistro">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/vd_margen_pantalla"
-            android:paddingTop="@dimen/vd_espacio_l"
             android:paddingEnd="@dimen/vd_margen_pantalla"
             android:paddingBottom="@dimen/vd_espacio_l">
 
@@ -41,17 +53,6 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.5" />
 
-            <com.google.android.material.progressindicator.LinearProgressIndicator
-                android:id="@+id/pbPasoRegistro"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/datos_personales_paso"
-                android:max="3"
-                android:progress="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <!-- Nombre(s) -->
             <TextView
                 android:id="@+id/lblNombre"
@@ -61,7 +62,7 @@
                 android:labelFor="@+id/etNombre"
                 android:text="@string/etiqueta_nombre"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pbPasoRegistro" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilNombre"
@@ -236,33 +237,147 @@
                     android:maxLength="10" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Domicilio -->
+            <!-- ===== Domicilio (Figma: Código postal, Datos de domicilio, Localidad, Calle, Referencia) ===== -->
             <TextView
-                android:id="@+id/lblDomicilio"
+                android:id="@+id/lblCodigoPostal"
                 style="@style/VitalDent.Texto.Etiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:labelFor="@+id/etDomicilio"
-                android:text="@string/etiqueta_domicilio"
+                android:labelFor="@+id/etCodigoPostal"
+                android:text="@string/etiqueta_codigo_postal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilTelefono" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilDomicilio"
+                android:id="@+id/tilCodigoPostal"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lblDomicilio"
-                app:placeholderText="@string/placeholder_domicilio">
+                app:layout_constraintTop_toBottomOf="@+id/lblCodigoPostal"
+                app:placeholderText="@string/placeholder_codigo_postal">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etDomicilio"
+                    android:id="@+id/etCodigoPostal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="postalAddress"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPostalAddress|textCapSentences" />
+                    android:autofillHints="postalCode"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblDatosDomicilio"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etDatosDomicilio"
+                android:text="@string/etiqueta_datos_domicilio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilCodigoPostal" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDatosDomicilio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblDatosDomicilio"
+                app:placeholderText="@string/placeholder_datos_domicilio">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDatosDomicilio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textPostalAddress|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblLocalidad"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etLocalidad"
+                android:text="@string/etiqueta_localidad"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilDatosDomicilio" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilLocalidad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblLocalidad"
+                app:placeholderText="@string/placeholder_localidad">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etLocalidad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="postalAddressLocality"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblCalle"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etCalle"
+                android:text="@string/etiqueta_calle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilLocalidad" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCalle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblCalle"
+                app:placeholderText="@string/placeholder_calle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="postalAddressStreetAddress"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPostalAddress|textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblReferencia"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etReferencia"
+                android:text="@string/etiqueta_referencia"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilCalle" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilReferencia"
+                style="@style/VitalDent.Campo.Multilinea"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblReferencia">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etReferencia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="3" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
@@ -273,8 +388,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/vd_margen_pantalla"
         android:layout_marginEnd="@dimen/vd_margen_pantalla"
-        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:layout_marginBottom="@dimen/vd_espacio_s"
         android:text="@string/accion_continuar"
+        app:layout_constraintBottom_toTopOf="@+id/tvNotaObligatorios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvNotaObligatorios"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/vd_espacio_m"
+        android:text="@string/nota_datos_obligatorios"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

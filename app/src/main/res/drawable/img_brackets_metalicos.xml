@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MARCADOR TEMPORAL de la ilustración de brackets (metalicos) de la pantalla 10b.
+     Exporta la imagen desde Figma como PNG, guárdala como res/drawable/img_brackets_metalicos.png
+     y BORRA este archivo .xml. -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="@dimen/vd_radio_s" />
+    <solid android:color="@color/vd_superficie" />
+</shape>

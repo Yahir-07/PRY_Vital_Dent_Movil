@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Figma: los íconos de la barra inferior son azul marino en todos los estados;
+     la pestaña activa se distingue por el texto en negritas. -->
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_checked="true" android:color="@color/vd_primario" />
-    <item android:color="@color/vd_icono_inactivo" />
+    <item android:state_checked="true" android:color="@color/vd_icono" />
+    <item android:color="@color/vd_icono" />
 </selector>

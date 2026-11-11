@@ -2,17 +2,21 @@
 <resources>
     <!-- Espaciado -->
     <dimen name="vd_espacio_xs">4dp</dimen>
+    <dimen name="vd_espacio_xs2">6dp</dimen>
     <dimen name="vd_espacio_s">8dp</dimen>
     <dimen name="vd_espacio_m">12dp</dimen>
     <dimen name="vd_espacio_l">16dp</dimen>
     <dimen name="vd_espacio_xl">24dp</dimen>
     <dimen name="vd_espacio_xxl">32dp</dimen>
     <dimen name="vd_margen_pantalla">16dp</dimen>
+    <!-- Relleno interno de tarjetas (Figma: 14) -->
+    <dimen name="vd_relleno_tarjeta">14dp</dimen>
 
-    <!-- Radios -->
+    <!-- Radios (Figma: botones 10, tarjetas 12, casillas 8) -->
     <dimen name="vd_radio_s">8dp</dimen>
-    <dimen name="vd_radio_m">12dp</dimen>
-    <dimen name="vd_radio_l">14dp</dimen>
+    <dimen name="vd_radio_m">10dp</dimen>
+    <dimen name="vd_radio_l">12dp</dimen>
+    <dimen name="vd_radio_xl">16dp</dimen>
     <dimen name="vd_radio_pastilla">50dp</dimen>
 
     <!-- Bordes -->
@@ -20,28 +24,36 @@
     <dimen name="vd_borde_grueso">1.5dp</dimen>
 
     <!-- Alturas de componentes -->
-    <dimen name="vd_alto_boton">52dp</dimen>
-    <dimen name="vd_alto_hora">44dp</dimen>
-    <dimen name="vd_alto_encabezado">88dp</dimen>
-    <dimen name="vd_alto_progreso">8dp</dimen>
+    <dimen name="vd_alto_boton">48dp</dimen>
+    <dimen name="vd_alto_hora">40dp</dimen>
+    <dimen name="vd_alto_encabezado">64dp</dimen>
+    <dimen name="vd_alto_progreso">6dp</dimen>
     <dimen name="vd_alto_calendario">320dp</dimen>
+    <dimen name="vd_alto_foto_bienvenida">170dp</dimen>
+    <dimen name="vd_alto_ilustracion_brackets">72dp</dimen>
+    <dimen name="vd_alto_multilinea">88dp</dimen>
 
     <!-- Tamaños de imagen / ícono -->
-    <dimen name="vd_icono_s">20dp</dimen>
+    <dimen name="vd_icono_s">16dp</dimen>
     <dimen name="vd_icono_m">24dp</dimen>
     <dimen name="vd_icono_l">40dp</dimen>
-    <dimen name="vd_miniatura">56dp</dimen>
-    <dimen name="vd_ilustracion">96dp</dimen>
-    <dimen name="vd_logo">112dp</dimen>
+    <dimen name="vd_icono_tarjeta">32dp</dimen>
+    <dimen name="vd_miniatura">52dp</dimen>
+    <dimen name="vd_ilustracion">88dp</dimen>
+    <dimen name="vd_logo">132dp</dimen>
+    <dimen name="vd_logo_encabezado">36dp</dimen>
+    <dimen name="vd_avatar_doctor">60dp</dimen>
+    <dimen name="vd_avatar_doctor_grande">88dp</dimen>
 
-    <!-- Tamaños de texto -->
-    <dimen name="vd_texto_marca">30sp</dimen>
-    <dimen name="vd_texto_monto">30sp</dimen>
-    <dimen name="vd_texto_titulo">22sp</dimen>
-    <dimen name="vd_texto_encabezado">20sp</dimen>
-    <dimen name="vd_texto_subtitulo">16sp</dimen>
-    <dimen name="vd_texto_cuerpo">15sp</dimen>
-    <dimen name="vd_texto_etiqueta">14sp</dimen>
+    <!-- Tamaños de texto (Figma usa Inter 13 de base y 17 en encabezados) -->
+    <dimen name="vd_texto_marca">26sp</dimen>
+    <dimen name="vd_texto_monto">26sp</dimen>
+    <dimen name="vd_texto_titulo">20sp</dimen>
+    <dimen name="vd_texto_encabezado">17sp</dimen>
+    <dimen name="vd_texto_subtitulo">15sp</dimen>
+    <dimen name="vd_texto_cuerpo">14sp</dimen>
+    <dimen name="vd_texto_etiqueta">13sp</dimen>
     <dimen name="vd_texto_pequeno">13sp</dimen>
     <dimen name="vd_texto_micro">12sp</dimen>
+    <dimen name="vd_texto_avatar">22sp</dimen>
 </resources>

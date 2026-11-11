@@ -15,8 +15,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationContentDescription="@string/cd_regresar"
-        app:navigationIcon="@drawable/ic_atras"
+        app:logo="@drawable/logo_encabezado"
+        app:logoDescription="@string/cd_logo"
         app:subtitle="@string/iniciar_sesion_subtitulo"
         app:title="@string/iniciar_sesion_titulo" />
 
@@ -99,7 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:text="@string/accion_olvidaste_contrasena"
-                android:textColor="@color/vd_texto_primario" />
+                android:textColor="@color/vd_texto_primario"
+                android:textStyle="bold" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnIniciarSesion"

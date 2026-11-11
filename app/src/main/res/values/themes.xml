@@ -15,12 +15,17 @@
         <item name="colorOnPrimary">@color/vd_sobre_primario</item>
         <item name="colorPrimaryContainer">@color/vd_superficie</item>
         <item name="colorOnPrimaryContainer">@color/vd_primario</item>
-        <item name="colorSecondary">@color/vd_primario</item>
+        <item name="colorSecondary">@color/vd_acento</item>
         <item name="colorOnSecondary">@color/vd_sobre_primario</item>
         <item name="colorSecondaryContainer">@color/vd_superficie</item>
         <item name="colorOnSecondaryContainer">@color/vd_primario</item>
         <item name="android:colorBackground">@color/vd_fondo</item>
-        <item name="colorSurface">@color/vd_fondo</item>
+        <item name="colorSurface">@color/vd_lienzo</item>
+        <item name="colorSurfaceContainerLow">@color/vd_lienzo</item>
+        <item name="colorSurfaceContainer">@color/vd_lienzo</item>
+        <item name="colorSurfaceContainerHigh">@color/vd_lienzo</item>
+        <item name="colorTertiary">@color/vd_acento</item>
+        <item name="colorControlNormal">@color/vd_texto_secundario</item>
         <item name="colorOnSurface">@color/vd_texto_primario</item>
         <item name="colorSurfaceVariant">@color/vd_superficie</item>
         <item name="colorOnSurfaceVariant">@color/vd_texto_secundario</item>
@@ -29,6 +34,8 @@
         <item name="colorError">@color/vd_error</item>
         <item name="colorOnError">@color/vd_sobre_primario</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@color/vd_fondo</item>
+        <item name="android:textColorLink">@color/vd_acento</item>
 
         <!-- Estilos por defecto de los componentes (evita repetir style="" en cada vista) -->
         <item name="materialButtonStyle">@style/VitalDent.Boton.Primario</item>
@@ -47,18 +54,18 @@
          APARIENCIAS DE TEXTO
          ===================================================================== -->
     <style name="TextAppearance.VitalDent.Encabezado" parent="TextAppearance.Material3.TitleLarge">
-        <item name="android:textSize">@dimen/vd_texto_titulo</item>
+        <item name="android:textSize">@dimen/vd_texto_encabezado</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/vd_texto_primario</item>
     </style>
 
     <style name="TextAppearance.VitalDent.EncabezadoSubtitulo" parent="TextAppearance.Material3.BodyMedium">
-        <item name="android:textSize">@dimen/vd_texto_cuerpo</item>
+        <item name="android:textSize">@dimen/vd_texto_etiqueta</item>
         <item name="android:textColor">@color/vd_texto_secundario</item>
     </style>
 
     <style name="TextAppearance.VitalDent.Boton" parent="TextAppearance.Material3.LabelLarge">
-        <item name="android:textSize">@dimen/vd_texto_subtitulo</item>
+        <item name="android:textSize">@dimen/vd_texto_cuerpo</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textAllCaps">false</item>
         <item name="android:letterSpacing">0</item>
@@ -71,6 +78,11 @@
 
     <style name="TextAppearance.VitalDent.Nav" parent="TextAppearance.Material3.LabelSmall">
         <item name="android:textSize">@dimen/vd_texto_micro</item>
+    </style>
+
+    <!-- Pestaña activa de la barra inferior: mismo tamaño, en negritas (Figma: Semi Bold) -->
+    <style name="TextAppearance.VitalDent.Nav.Activo" parent="TextAppearance.VitalDent.Nav">
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="TextAppearance.VitalDent.Chip" parent="TextAppearance.Material3.LabelLarge">
@@ -133,6 +145,35 @@
         <item name="android:textSize">@dimen/vd_texto_pequeno</item>
     </style>
 
+    <!-- Texto azul de acción ("Ver características", especialidad del doctor) -->
+    <style name="VitalDent.Texto.Enlace" parent="VitalDent.Texto">
+        <item name="android:textColor">@color/vd_acento</item>
+        <item name="android:textSize">@dimen/vd_texto_etiqueta</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Sobretítulo en mayúsculas ("EQUIPO MÉDICO", "OPCIÓN CLÁSICA") -->
+    <style name="VitalDent.Texto.Sobretitulo" parent="VitalDent.Texto">
+        <item name="android:textSize">@dimen/vd_texto_micro</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+    </style>
+
+    <style name="VitalDent.Texto.Sobretitulo.Acento" parent="VitalDent.Texto.Sobretitulo">
+        <item name="android:textColor">@color/vd_acento</item>
+    </style>
+
+    <!-- Iniciales del doctor dentro de un recuadro azul claro -->
+    <style name="VitalDent.Avatar" parent="VitalDent.Texto">
+        <item name="android:background">@drawable/bg_placeholder</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/vd_primario</item>
+        <item name="android:textSize">@dimen/vd_texto_avatar</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:importantForAccessibility">no</item>
+    </style>
+
     <!-- Fila con ícono a la izquierda (perfil, resumen de cita, requisitos) -->
     <style name="VitalDent.Texto.FilaIcono" parent="VitalDent.Texto">
         <item name="android:gravity">center_vertical</item>
@@ -170,6 +211,15 @@
         <item name="android:paddingBottom">@dimen/vd_espacio_xs</item>
     </style>
 
+    <!-- Pastilla verde (Aprobado) y roja (Rechazado) de la pantalla de pagos -->
+    <style name="VitalDent.Estado.Exito" parent="VitalDent.Estado">
+        <item name="android:background">@drawable/bg_estado_exito</item>
+    </style>
+
+    <style name="VitalDent.Estado.Error" parent="VitalDent.Estado">
+        <item name="android:background">@drawable/bg_estado_error</item>
+    </style>
+
     <!-- Avisos informativos y de error (un solo TextView con punto a la izquierda) -->
     <style name="VitalDent.Aviso" parent="VitalDent.Texto">
         <item name="android:background">@drawable/bg_aviso</item>
@@ -198,7 +248,7 @@
     <style name="VitalDent.Miniatura" parent="">
         <item name="android:background">@drawable/bg_placeholder</item>
         <item name="android:scaleType">centerInside</item>
-        <item name="android:padding">@dimen/vd_espacio_l</item>
+        <item name="android:padding">@dimen/vd_espacio_m</item>
         <item name="android:tint">@color/vd_icono</item>
         <item name="android:importantForAccessibility">no</item>
     </style>
@@ -221,15 +271,32 @@
         <item name="cornerRadius">@dimen/vd_radio_m</item>
     </style>
 
+    <!-- Botón relleno azul claro: "Crear cuenta" -->
+    <style name="VitalDent.Boton.Acento" parent="VitalDent.Boton.Primario">
+        <item name="backgroundTint">@color/vd_acento</item>
+    </style>
+
+    <!-- Botón rojo: "Cancelar" en Cambiar contraseña -->
+    <style name="VitalDent.Boton.Peligro" parent="VitalDent.Boton.Primario">
+        <item name="backgroundTint">@color/vd_error</item>
+        <item name="android:textColor">@color/vd_texto_primario</item>
+    </style>
+
     <style name="VitalDent.Boton.Secundario" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:minHeight">@dimen/vd_alto_boton</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="strokeColor">@color/vd_primario</item>
         <item name="strokeWidth">@dimen/vd_borde_grueso</item>
+        <item name="backgroundTint">@color/vd_lienzo</item>
         <item name="android:textColor">@color/vd_texto_primario</item>
         <item name="android:textAppearance">@style/TextAppearance.VitalDent.Boton</item>
         <item name="cornerRadius">@dimen/vd_radio_m</item>
+    </style>
+
+    <!-- Contorno con texto azul: "Atrás", "Cerrar sesión", "Cómo llegar" -->
+    <style name="VitalDent.Boton.Secundario.Primario" parent="VitalDent.Boton.Secundario">
+        <item name="android:textColor">@color/vd_primario</item>
     </style>
 
     <style name="VitalDent.Boton.Texto" parent="Widget.Material3.Button.TextButton">
@@ -251,7 +318,7 @@
          ===================================================================== -->
     <style name="VitalDent.Campo" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="hintEnabled">false</item>
-        <item name="boxBackgroundColor">@color/vd_fondo</item>
+        <item name="boxBackgroundColor">@color/vd_lienzo</item>
         <item name="boxStrokeColor">@color/campo_borde</item>
         <item name="boxStrokeErrorColor">@color/vd_error</item>
         <item name="boxStrokeWidth">@dimen/vd_borde_fino</item>
@@ -265,9 +332,14 @@
         <item name="placeholderTextColor">@color/vd_texto_terciario</item>
     </style>
 
+    <!-- Campo de varias líneas (Referencia, Motivo de la consulta) -->
+    <style name="VitalDent.Campo.Multilinea" parent="VitalDent.Campo">
+        <item name="android:minHeight">@dimen/vd_alto_multilinea</item>
+    </style>
+
     <style name="VitalDent.Campo.Desplegable" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="hintEnabled">false</item>
-        <item name="boxBackgroundColor">@color/vd_fondo</item>
+        <item name="boxBackgroundColor">@color/vd_lienzo</item>
         <item name="boxStrokeColor">@color/campo_borde</item>
         <item name="boxStrokeErrorColor">@color/vd_error</item>
         <item name="boxStrokeWidth">@dimen/vd_borde_fino</item>
@@ -283,7 +355,7 @@
          CONTENEDORES Y NAVEGACIÓN
          ===================================================================== -->
     <style name="VitalDent.Tarjeta" parent="Widget.Material3.CardView.Outlined">
-        <item name="cardBackgroundColor">@color/vd_fondo</item>
+        <item name="cardBackgroundColor">@color/vd_lienzo</item>
         <item name="strokeColor">@color/vd_borde</item>
         <item name="strokeWidth">@dimen/vd_borde_fino</item>
         <item name="cardCornerRadius">@dimen/vd_radio_l</item>
@@ -299,13 +371,15 @@
         <item name="titleTextColor">@color/vd_texto_primario</item>
         <item name="subtitleTextColor">@color/vd_texto_secundario</item>
         <item name="contentInsetStartWithNavigation">0dp</item>
+        <!-- Separación entre el logo pequeño y el título -->
+        <item name="titleMarginStart">@dimen/vd_espacio_m</item>
     </style>
 
     <!-- Control segmentado (Próximas / Anteriores, En curso / Finalizados...) -->
     <style name="VitalDent.Segmentado" parent="Widget.Material3.TabLayout">
         <item name="android:background">@drawable/bg_segmentado</item>
         <item name="tabIndicator">@drawable/bg_segmento_indicador</item>
-        <item name="tabIndicatorColor">@color/vd_fondo</item>
+        <item name="tabIndicatorColor">@color/vd_lienzo</item>
         <item name="tabIndicatorGravity">stretch</item>
         <item name="tabIndicatorFullWidth">true</item>
         <item name="tabSelectedTextColor">@color/vd_texto_primario</item>
@@ -317,17 +391,17 @@
     </style>
 
     <style name="VitalDent.NavInferior" parent="Widget.Material3.BottomNavigationView">
-        <item name="android:background">@color/vd_fondo</item>
+        <item name="android:background">@color/vd_lienzo</item>
         <item name="itemIconTint">@color/nav_icono</item>
         <item name="itemTextColor">@color/nav_texto</item>
-        <item name="itemTextAppearanceActive">@style/TextAppearance.VitalDent.Nav</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.VitalDent.Nav.Activo</item>
         <item name="itemTextAppearanceInactive">@style/TextAppearance.VitalDent.Nav</item>
         <item name="itemActiveIndicatorStyle">@style/VitalDent.NavInferior.Indicador</item>
         <item name="labelVisibilityMode">labeled</item>
     </style>
 
     <style name="VitalDent.NavInferior.Indicador" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-        <item name="android:color">@color/vd_superficie</item>
+        <item name="android:color">@android:color/transparent</item>
     </style>
 
     <style name="VitalDent.Progreso" parent="Widget.Material3.LinearProgressIndicator">
@@ -368,5 +442,34 @@
         <item name="android:textColor">@color/chip_filtro_texto</item>
         <item name="android:textAppearance">@style/TextAppearance.VitalDent.Chip</item>
         <item name="checkedIconVisible">false</item>
+    </style>
+
+    <!-- =====================================================================
+         FORMAS
+         ===================================================================== -->
+    <style name="ShapeAppearance.VitalDent.Redondeado" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">@dimen/vd_radio_l</item>
+    </style>
+
+    <!-- =====================================================================
+         OPCIONES EN RECUADRO (cuestionario inicial)
+         ===================================================================== -->
+    <style name="VitalDent.Opcion.Radio" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:background">@drawable/bg_opcion</item>
+        <item name="android:minHeight">@dimen/vd_alto_boton</item>
+        <item name="android:paddingEnd">@dimen/vd_espacio_s</item>
+        <item name="android:textColor">@color/vd_texto_primario</item>
+        <item name="android:textSize">@dimen/vd_texto_etiqueta</item>
+        <item name="buttonTint">@color/vd_primario</item>
+    </style>
+
+    <style name="VitalDent.Opcion.Casilla" parent="Widget.Material3.CompoundButton.CheckBox">
+        <item name="android:background">@drawable/bg_opcion</item>
+        <item name="android:minHeight">@dimen/vd_alto_boton</item>
+        <item name="android:paddingEnd">@dimen/vd_espacio_s</item>
+        <item name="android:textColor">@color/vd_texto_primario</item>
+        <item name="android:textSize">@dimen/vd_texto_etiqueta</item>
+        <item name="buttonTint">@color/vd_primario</item>
     </style>
 </resources>

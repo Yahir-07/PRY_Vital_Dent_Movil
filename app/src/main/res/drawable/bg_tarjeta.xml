@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tarjeta blanca con borde, para vistas que no son MaterialCardView (diálogos, opciones) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="@dimen/vd_radio_l" />
+    <solid android:color="@color/vd_lienzo" />
+    <stroke android:width="@dimen/vd_borde_fino" android:color="@color/vd_borde" />
+</shape>

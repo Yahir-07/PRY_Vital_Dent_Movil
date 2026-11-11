@@ -17,10 +17,11 @@
         <ImageView
             android:id="@+id/ivPagoIcono"
             style="@style/VitalDent.Miniatura"
-            android:layout_width="@dimen/vd_miniatura"
-            android:layout_height="@dimen/vd_miniatura"
+            android:layout_width="@dimen/vd_icono_l"
+            android:layout_height="@dimen/vd_icono_l"
+            android:padding="@dimen/vd_espacio_s"
             android:contentDescription="@null"
-            android:src="@drawable/ic_pagos"
+            android:src="@drawable/ic_tratamientos"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -51,9 +52,13 @@
             app:layout_constraintTop_toBottomOf="@+id/tvPagoTitulo"
             tools:text="@string/ej_pago_detalle" />
 
+        <!-- Figma: "Aprobado" en verde y "Rechazado" en rojo. Desde código:
+             tvPagoEstado.setBackgroundResource(R.drawable.bg_estado_exito)  // aprobado
+             tvPagoEstado.setBackgroundResource(R.drawable.bg_estado_error)  // rechazado
+             tvPagoEstado.setBackgroundResource(R.drawable.bg_estado)        // pendiente -->
         <TextView
             android:id="@+id/tvPagoEstado"
-            style="@style/VitalDent.Estado"
+            style="@style/VitalDent.Estado.Exito"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fila corta de "Otros doctores" (pantalla 21 · Perfil del doctor) -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vd_espacio_m"
+    android:clickable="true"
+    android:contentDescription="@string/cd_ver_doctor"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/vd_espacio_m">
+
+        <TextView
+            android:id="@+id/tvDoctorIniciales"
+            style="@style/VitalDent.Avatar"
+            android:layout_width="@dimen/vd_icono_l"
+            android:layout_height="@dimen/vd_icono_l"
+            android:textSize="@dimen/vd_texto_cuerpo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/ej_doctor_2_iniciales" />
+
+        <TextView
+            android:id="@+id/tvDoctorNombre"
+            style="@style/VitalDent.Texto.TituloTarjeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vd_espacio_m"
+            android:layout_marginEnd="@dimen/vd_espacio_s"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvDoctorEspecialidad"
+            app:layout_constraintEnd_toStartOf="@+id/ivDoctorIr"
+            app:layout_constraintStart_toEndOf="@+id/tvDoctorIniciales"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="@string/ej_doctor_2_nombre" />
+
+        <TextView
+            android:id="@+id/tvDoctorEspecialidad"
+            style="@style/VitalDent.Texto.Enlace"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_xs"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tvDoctorNombre"
+            app:layout_constraintStart_toStartOf="@+id/tvDoctorNombre"
+            app:layout_constraintTop_toBottomOf="@+id/tvDoctorNombre"
+            tools:text="@string/ej_doctor_2_especialidad" />
+
+        <ImageView
+            android:id="@+id/ivDoctorIr"
+            android:layout_width="@dimen/vd_icono_m"
+            android:layout_height="@dimen/vd_icono_m"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_chevron_derecha"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
