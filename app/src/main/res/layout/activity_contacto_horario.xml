@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 22 · Contacto y horario (se abre desde Perfil > Consultorio) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbContactoHorario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:subtitle="@string/contacto_subtitulo"
+        app:title="@string/contacto_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbContactoHorario">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vd_espacio_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_relleno_tarjeta">
+
+                    <TextView
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_ubicacion"
+                        android:drawablePadding="@dimen/vd_espacio_s"
+                        android:drawableTint="@color/vd_primario"
+                        android:gravity="center_vertical"
+                        android:text="@string/contacto_direccion"
+                        android:textSize="@dimen/vd_texto_etiqueta"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvDireccionValor"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:textSize="@dimen/vd_texto_etiqueta"
+                        android:textStyle="bold"
+                        tools:text="@string/ej_direccion_consultorio" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnComoLlegar"
+                        style="@style/VitalDent.Boton.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/accion_como_llegar" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vd_espacio_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_relleno_tarjeta">
+
+                    <TextView
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_telefono"
+                        android:drawablePadding="@dimen/vd_espacio_s"
+                        android:drawableTint="@color/vd_primario"
+                        android:gravity="center_vertical"
+                        android:text="@string/contacto_telefono"
+                        android:textSize="@dimen/vd_texto_etiqueta"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvTelefonoValor"
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:textSize="@dimen/vd_texto_etiqueta"
+                        android:textStyle="bold"
+                        tools:text="@string/ej_telefono_consultorio" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLlamarConsultorio"
+                        style="@style/VitalDent.Boton.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/accion_llamar_consultorio" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvHorario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_relleno_tarjeta">
+
+                    <TextView
+                        style="@style/VitalDent.Texto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:drawableStart="@drawable/ic_reloj"
+                        android:drawablePadding="@dimen/vd_espacio_s"
+                        android:drawableTint="@color/vd_primario"
+                        android:gravity="center_vertical"
+                        android:text="@string/contacto_horario"
+                        android:textSize="@dimen/vd_texto_etiqueta"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/dia_lunes_viernes" />
+
+                        <TextView
+                            android:id="@+id/tvHorarioSemana"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            android:textStyle="bold"
+                            tools:text="@string/ej_horario_semana" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/dia_sabado" />
+
+                        <TextView
+                            android:id="@+id/tvHorarioSabado"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            android:textStyle="bold"
+                            tools:text="@string/ej_horario_sabado" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/dia_domingo" />
+
+                        <TextView
+                            android:id="@+id/tvHorarioDomingo"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            android:textStyle="bold"
+                            android:text="@string/horario_cerrado" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

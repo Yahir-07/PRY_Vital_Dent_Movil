@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/vd_fondo"
+    android:background="@color/vd_lienzo"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="@dimen/vd_espacio_xl">
@@ -27,8 +27,8 @@
     <ImageView
         android:id="@+id/ivHuella"
         style="@style/VitalDent.Ilustracion"
-        android:layout_width="@dimen/vd_logo"
-        android:layout_height="@dimen/vd_logo"
+        android:layout_width="@dimen/vd_ilustracion"
+        android:layout_height="@dimen/vd_ilustracion"
         android:layout_marginTop="@dimen/vd_espacio_l"
         android:contentDescription="@null"
         android:src="@drawable/ic_huella" />

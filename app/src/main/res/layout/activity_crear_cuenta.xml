@@ -14,8 +14,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationContentDescription="@string/cd_regresar"
-        app:navigationIcon="@drawable/ic_atras"
+        app:logo="@drawable/logo_encabezado"
+        app:logoDescription="@string/cd_logo"
         app:subtitle="@string/crear_cuenta_subtitulo"
         app:title="@string/crear_cuenta_titulo" />
 
@@ -137,6 +137,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vd_espacio_m"
+                android:drawableEnd="@drawable/ic_escudo"
+                android:drawablePadding="@dimen/vd_espacio_s"
+                android:drawableTint="@color/vd_texto_secundario"
                 android:text="@string/acepto_aviso_privacidad"
                 android:textColor="@color/vd_texto_secundario" />
         </LinearLayout>
@@ -144,6 +147,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnCrearCuenta"
+        style="@style/VitalDent.Boton.Acento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/vd_margen_pantalla"

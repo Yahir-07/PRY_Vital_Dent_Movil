@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 19b · Sesión por terminar (vista de MaterialAlertDialogBuilder.setView).
+     El mensaje se arma desde código: getString(R.string.sesion_por_terminar_mensaje, "1:45") -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_hoja"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/vd_espacio_xl">
+
+    <ImageView
+        android:layout_width="@dimen/vd_miniatura"
+        android:layout_height="@dimen/vd_miniatura"
+        android:background="@drawable/bg_icono_circulo"
+        android:contentDescription="@null"
+        android:padding="@dimen/vd_espacio_m"
+        android:src="@drawable/ic_reloj"
+        android:tint="@color/vd_primario" />
+
+    <TextView
+        style="@style/VitalDent.Texto.Titulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:gravity="center"
+        android:text="@string/sesion_por_terminar_titulo" />
+
+    <TextView
+        android:id="@+id/tvSesionPorTerminarMensaje"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_s"
+        android:gravity="center"
+        tools:text="@string/ej_sesion_por_terminar" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSeguirConectado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:text="@string/accion_seguir_conectado" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCerrarSesionInactividad"
+        style="@style/VitalDent.Boton.Secundario.Primario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:text="@string/accion_cerrar_sesion" />
+
+</LinearLayout>

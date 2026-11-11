@@ -52,7 +52,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <TextView
                         android:id="@+id/tvProximaCitaEtiqueta"
@@ -80,7 +80,7 @@
                         android:layout_height="@dimen/vd_miniatura"
                         android:layout_marginTop="@dimen/vd_espacio_m"
                         android:contentDescription="@null"
-                        android:src="@drawable/ic_citas"
+                        android:src="@drawable/ic_tratamientos"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tvProximaCitaEstado" />
 
@@ -117,7 +117,7 @@
                 android:id="@+id/cvTratamientoActivo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:layout_marginTop="@dimen/vd_espacio_m"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -127,26 +127,28 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <TextView
                         android:id="@+id/tvTratamientoActivoNombre"
                         style="@style/VitalDent.Texto.Seccion"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        app:layout_constraintEnd_toStartOf="@+id/tvTratamientoActivoPorcentaje"
+                        app:layout_constraintEnd_toStartOf="@+id/tvTratamientoActivoEstado"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/ej_tratamiento_ortodoncia" />
 
+                    <!-- Figma: el porcentaje se cambió por la pastilla de estado ("En curso") -->
                     <TextView
-                        android:id="@+id/tvTratamientoActivoPorcentaje"
-                        style="@style/VitalDent.Texto"
+                        android:id="@+id/tvTratamientoActivoEstado"
+                        style="@style/VitalDent.Estado"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTratamientoActivoNombre"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvTratamientoActivoNombre"
                         app:layout_constraintEnd_toEndOf="parent"
-                        tools:text="@string/ej_porcentaje_60" />
+                        app:layout_constraintTop_toTopOf="@+id/tvTratamientoActivoNombre"
+                        tools:text="@string/estado_en_curso" />
 
                     <com.google.android.material.progressindicator.LinearProgressIndicator
                         android:id="@+id/pbTratamientoActivo"
@@ -167,7 +169,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/pbTratamientoActivo"
-                        tools:text="@string/ej_sesion_ultimo_avance" />
+                        tools:text="@string/ej_sesion_ultimo_avance_corto" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -176,8 +178,8 @@
                 android:id="@+id/cvAgendarCita"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/vd_espacio_l"
-                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:layout_marginEnd="@dimen/vd_espacio_xs2"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintEnd_toStartOf="@+id/glMitad"
@@ -188,21 +190,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <ImageView
                         style="@style/VitalDent.Miniatura"
-                        android:layout_width="@dimen/vd_icono_l"
-                        android:layout_height="@dimen/vd_icono_l"
+                        android:layout_width="@dimen/vd_icono_tarjeta"
+                        android:layout_height="@dimen/vd_icono_tarjeta"
                         android:contentDescription="@null"
-                        android:padding="@dimen/vd_espacio_s"
+                        android:padding="@dimen/vd_espacio_xs2"
                         android:src="@drawable/ic_citas" />
 
                     <TextView
                         style="@style/VitalDent.Texto.TituloTarjeta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
                         android:text="@string/inicio_agendar_cita" />
 
                     <TextView
@@ -218,7 +220,7 @@
                 android:id="@+id/cvTratamientos"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:layout_marginStart="@dimen/vd_espacio_xs2"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/cvAgendarCita"
@@ -230,21 +232,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <ImageView
                         style="@style/VitalDent.Miniatura"
-                        android:layout_width="@dimen/vd_icono_l"
-                        android:layout_height="@dimen/vd_icono_l"
+                        android:layout_width="@dimen/vd_icono_tarjeta"
+                        android:layout_height="@dimen/vd_icono_tarjeta"
                         android:contentDescription="@null"
-                        android:padding="@dimen/vd_espacio_s"
+                        android:padding="@dimen/vd_espacio_xs2"
                         android:src="@drawable/ic_tratamientos" />
 
                     <TextView
                         style="@style/VitalDent.Texto.TituloTarjeta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
                         android:text="@string/inicio_tratamientos" />
 
                     <TextView
@@ -261,8 +263,8 @@
                 android:id="@+id/cvHistorialMedico"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/vd_espacio_l"
-                android:layout_marginEnd="@dimen/vd_espacio_s"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:layout_marginEnd="@dimen/vd_espacio_xs2"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintEnd_toStartOf="@+id/glMitad"
@@ -273,21 +275,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <ImageView
                         style="@style/VitalDent.Miniatura"
-                        android:layout_width="@dimen/vd_icono_l"
-                        android:layout_height="@dimen/vd_icono_l"
+                        android:layout_width="@dimen/vd_icono_tarjeta"
+                        android:layout_height="@dimen/vd_icono_tarjeta"
                         android:contentDescription="@null"
-                        android:padding="@dimen/vd_espacio_s"
+                        android:padding="@dimen/vd_espacio_xs2"
                         android:src="@drawable/ic_documento" />
 
                     <TextView
                         style="@style/VitalDent.Texto.TituloTarjeta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
                         android:text="@string/historial_titulo" />
 
                     <TextView
@@ -303,7 +305,7 @@
                 android:id="@+id/cvPagos"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_marginStart="@dimen/vd_espacio_s"
+                android:layout_marginStart="@dimen/vd_espacio_xs2"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/cvHistorialMedico"
@@ -315,21 +317,21 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="@dimen/vd_espacio_l">
+                    android:padding="@dimen/vd_relleno_tarjeta">
 
                     <ImageView
                         style="@style/VitalDent.Miniatura"
-                        android:layout_width="@dimen/vd_icono_l"
-                        android:layout_height="@dimen/vd_icono_l"
+                        android:layout_width="@dimen/vd_icono_tarjeta"
+                        android:layout_height="@dimen/vd_icono_tarjeta"
                         android:contentDescription="@null"
-                        android:padding="@dimen/vd_espacio_s"
+                        android:padding="@dimen/vd_espacio_xs2"
                         android:src="@drawable/ic_pagos" />
 
                     <TextView
                         style="@style/VitalDent.Texto.TituloTarjeta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
                         android:text="@string/pagos_titulo" />
 
                     <TextView

@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 5b · Tu salud y antecedentes (Paso 2 de 3 · Datos clínicos) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbDatosClinicos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="@string/datos_clinicos_paso"
+        app:title="@string/datos_clinicos_titulo" />
+
+    <!-- Barra de avance del cuestionario, pegada al encabezado como en Figma -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/pbPasoRegistro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/datos_clinicos_paso"
+        android:max="3"
+        android:progress="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDatosClinicos"
+        app:trackCornerRadius="0dp" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svDatosClinicos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnContinuar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pbPasoRegistro">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_espacio_l">
+            <TextView
+                android:id="@+id/lblTipoSangre"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/actvTipoSangre"
+                android:text="@string/etiqueta_tipo_sangre" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTipoSangre"
+                style="@style/VitalDent.Campo.Desplegable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvTipoSangre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    app:simpleItems="@array/opciones_tipo_sangre" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblTieneAlergia"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/rgTieneAlergia"
+                android:text="@string/etiqueta_tiene_alergia" />
+
+            <RadioGroup
+                android:id="@+id/rgTieneAlergia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbAlergiaSi"
+                    style="@style/VitalDent.Opcion.Radio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/opcion_si"
+                    tools:checked="true" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbAlergiaNo"
+                    style="@style/VitalDent.Opcion.Radio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/opcion_no" />
+            </RadioGroup>
+
+            <!-- Visible solo cuando el paciente responde "Sí" -->
+            <TextView
+                android:id="@+id/lblAlergia"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etAlergia"
+                android:text="@string/etiqueta_alergico_a" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilAlergia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:helperText="@string/ayuda_alergias">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAlergia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/etiqueta_antecedentes_odontologicos" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbOrtodonciaPrevia"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_ortodoncia_previa" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbExtracciones"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_extracciones" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbEndodoncia"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_endodoncia" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbSangradoEncias"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_sangrado_encias" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                android:orientation="horizontal">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbBruxismo"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_bruxismo" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/cbNinguno"
+                    style="@style/VitalDent.Opcion.Casilla"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/vd_espacio_s"
+                    android:layout_weight="1"
+                    android:text="@string/antecedente_ninguno" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/lblEnfermedades"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etEnfermedades"
+                android:text="@string/etiqueta_enfermedades" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEnfermedades"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_enfermedades">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEnfermedades"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblMedicamentos"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etMedicamentos"
+                android:text="@string/etiqueta_medicamentos" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMedicamentos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_medicamentos">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMedicamentos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/lblMotivoConsulta"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etMotivoConsulta"
+                android:text="@string/etiqueta_motivo_consulta" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMotivoConsulta"
+                style="@style/VitalDent.Campo.Multilinea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMotivoConsulta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="3"
+                    tools:text="@string/ej_motivo_consulta" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAtras"
+        style="@style/VitalDent.Boton.Secundario.Primario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_espacio_s"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_atras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnContinuar"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContinuar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_espacio_s"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_continuar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnAtras" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,6 @@
     android:inset="@dimen/vd_espacio_xs">
     <shape android:shape="rectangle">
         <corners android:radius="@dimen/vd_radio_s" />
-        <solid android:color="@color/vd_fondo" />
+        <solid android:color="@color/vd_lienzo" />
     </shape>
 </inset>

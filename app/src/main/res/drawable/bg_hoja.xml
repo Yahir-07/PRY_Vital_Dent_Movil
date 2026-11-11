@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fondo de diálogos (Sesión terminó / Sesión por terminar) -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="@dimen/vd_radio_xl" />
+    <solid android:color="@color/vd_lienzo" />
+</shape>

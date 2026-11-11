@@ -17,8 +17,9 @@
         <ImageView
             android:id="@+id/ivHistorialIcono"
             style="@style/VitalDent.Miniatura"
-            android:layout_width="@dimen/vd_miniatura"
-            android:layout_height="@dimen/vd_miniatura"
+            android:layout_width="@dimen/vd_icono_l"
+            android:layout_height="@dimen/vd_icono_l"
+            android:padding="@dimen/vd_espacio_s"
             android:contentDescription="@null"
             android:src="@drawable/ic_documento"
             app:layout_constraintBottom_toBottomOf="parent"

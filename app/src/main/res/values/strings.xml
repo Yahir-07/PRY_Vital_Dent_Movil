@@ -14,6 +14,8 @@
     <string name="cd_logo">Logotipo de Vital Dent</string>
     <string name="cd_elegir_fecha">Elegir fecha</string>
     <string name="cd_tarjeta_guardada">Usar tarjeta guardada</string>
+    <string name="cd_foto_bienvenida">Dentista atendiendo a una paciente en el consultorio</string>
+    <string name="cd_ver_doctor">Ver perfil del doctor</string>
 
     <!-- ===== Acciones (botones) ===== -->
     <string name="accion_iniciar_sesion">Iniciar sesión</string>
@@ -95,17 +97,19 @@
 
     <!-- ===== 1 · Bienvenida ===== -->
     <string name="bienvenida_lema">Tus citas, tratamientos e historial dental en un solo lugar.</string>
+    <string name="bienvenida_sin_cuenta">¿No tienes cuenta?</string>
     <string name="bienvenida_pie">Consultorio Vital Dent · Huejutla, Hgo.</string>
 
     <!-- ===== 2 · Crear cuenta ===== -->
     <string name="crear_cuenta_titulo">Crear cuenta</string>
     <string name="crear_cuenta_subtitulo">Regístrate como paciente</string>
-    <string name="enlace_ya_tienes_cuenta">¿Ya tienes cuenta? Inicia sesión</string>
+    <!-- La parte de acción va en azul Acento (#22749E) como en Figma -->
+    <string name="enlace_ya_tienes_cuenta">¿Ya tienes cuenta? <font color="#22749E">Inicia sesión</font></string>
 
     <!-- ===== 3 · Iniciar sesión ===== -->
     <string name="iniciar_sesion_titulo">Iniciar sesión</string>
     <string name="iniciar_sesion_subtitulo">Ingresa a tu cuenta de Vital Dent</string>
-    <string name="enlace_no_tienes_cuenta">¿No tienes cuenta? Crear cuenta</string>
+    <string name="enlace_no_tienes_cuenta">¿No tienes cuenta? <font color="#22749E">Crear cuenta</font></string>
 
     <!-- ===== 4 · Recuperar contraseña ===== -->
     <string name="recuperar_titulo">Recuperar contraseña</string>
@@ -212,4 +216,119 @@
     <string name="estado_rechazado">Rechazado</string>
     <string name="estado_activada">Activada</string>
     <string name="estado_desactivada">Desactivada</string>
+
+    <!-- ===== 5 · Cuestionario inicial: domicilio (paso 1) ===== -->
+    <string name="etiqueta_codigo_postal">Código postal</string>
+    <string name="etiqueta_datos_domicilio">Datos de domicilio</string>
+    <string name="etiqueta_localidad">Localidad o Colonia</string>
+    <string name="etiqueta_calle">Calle</string>
+    <string name="etiqueta_referencia">Referencia</string>
+    <string name="placeholder_codigo_postal">43000</string>
+    <string name="placeholder_datos_domicilio">Estado, municipio</string>
+    <string name="placeholder_localidad">Ej. Centro</string>
+    <string name="placeholder_calle">Calle y número</string>
+    <string name="nota_datos_obligatorios">(*) Datos obligatorios</string>
+
+    <!-- ===== 5b · Cuestionario inicial: datos clínicos (paso 2) ===== -->
+    <string name="datos_clinicos_titulo">Tu salud y antecedentes</string>
+    <string name="datos_clinicos_paso">Paso 2 de 3 · Datos clínicos</string>
+    <string name="etiqueta_tipo_sangre">Tipo de sangre *</string>
+    <string name="etiqueta_tiene_alergia">¿Tienes alguna alergia? *</string>
+    <string name="etiqueta_alergico_a">¿A qué eres alérgico(a)?</string>
+    <string name="ayuda_alergias">Medicamentos, látex, anestesia o alimentos</string>
+    <string name="etiqueta_antecedentes_odontologicos">Antecedentes odontológicos</string>
+    <string name="etiqueta_enfermedades">Enfermedades o condiciones médicas</string>
+    <string name="placeholder_enfermedades">Ej. diabetes, hipertensión</string>
+    <string name="etiqueta_medicamentos">Medicamentos actuales</string>
+    <string name="placeholder_medicamentos">Nombre y frecuencia</string>
+    <string name="etiqueta_motivo_consulta">Motivo de la consulta *</string>
+    <string name="opcion_si">Sí</string>
+    <string name="opcion_no">No</string>
+    <string name="antecedente_ortodoncia_previa">Ortodoncia previa</string>
+    <string name="antecedente_extracciones">Extracciones</string>
+    <string name="antecedente_endodoncia">Endodoncia</string>
+    <string name="antecedente_sangrado_encias">Sangrado de encías</string>
+    <string name="antecedente_bruxismo">Bruxismo</string>
+    <string name="antecedente_ninguno">Ninguno</string>
+    <string name="accion_atras">Atrás</string>
+    <string-array name="opciones_tipo_sangre">
+        <item>O+</item>
+        <item>O−</item>
+        <item>A+</item>
+        <item>A−</item>
+        <item>B+</item>
+        <item>B−</item>
+        <item>AB+</item>
+        <item>AB−</item>
+        <item>No lo sé</item>
+    </string-array>
+
+    <!-- ===== 5c · Cuestionario inicial: contacto de emergencia (paso 3) ===== -->
+    <string name="emergencia_titulo">¿A quién avisamos?</string>
+    <string name="emergencia_paso">Paso 3 de 3 · Contacto de emergencia</string>
+    <string name="etiqueta_nombre_completo">Nombre completo *</string>
+    <string name="etiqueta_parentesco">Parentesco *</string>
+    <string name="etiqueta_telefono_alternativo">Teléfono alternativo</string>
+    <string name="placeholder_opcional">Opcional</string>
+    <string name="emergencia_aviso">Solo lo usaremos si surge una emergencia durante tu atención.</string>
+    <string name="accion_finalizar">Finalizar</string>
+    <string-array name="opciones_parentesco">
+        <item>Madre</item>
+        <item>Padre</item>
+        <item>Pareja</item>
+        <item>Hijo(a)</item>
+        <item>Hermano(a)</item>
+        <item>Otro</item>
+    </string-array>
+
+    <!-- ===== 10b · Tipos de brackets ===== -->
+    <string name="brackets_titulo">Tipos de brackets</string>
+    <string name="brackets_subtitulo">Conoce las opciones y solicita una valoración</string>
+    <string name="filtro_todos">Todos</string>
+    <string name="filtro_esteticos">Estéticos</string>
+    <string name="filtro_clasicos">Clásicos</string>
+    <string name="accion_ver_caracteristicas">▸ Ver características</string>
+    <string name="accion_solicitar_valoracion">Solicitar valoración</string>
+    <string name="brackets_metalicos_etiqueta">Opción clásica</string>
+    <string name="brackets_metalicos_nombre">Brackets metálicos</string>
+    <string name="brackets_metalicos_descripcion">Piezas metálicas colocadas en la parte externa de los dientes.</string>
+    <string name="brackets_metalicos_caracteristicas">• Acero inoxidable de alta resistencia\n• Admiten ligaduras de colores</string>
+    <string name="brackets_ceramicos_etiqueta">Apariencia discreta</string>
+    <string name="brackets_ceramicos_nombre">Brackets cerámicos</string>
+    <string name="brackets_ceramicos_descripcion">Piezas de tono similar al dental en la parte externa.</string>
+    <string name="brackets_zafiro_etiqueta">Piezas transparentes</string>
+    <string name="brackets_zafiro_nombre">Brackets de zafiro</string>
+    <string name="brackets_zafiro_descripcion">Piezas transparentes fijadas en la superficie del diente.</string>
+    <string name="brackets_autoligables_etiqueta">Mecanismo integrado</string>
+    <string name="brackets_autoligables_nombre">Brackets autoligables</string>
+    <string name="brackets_autoligables_descripcion">Un mecanismo sujeta el arco sin ligaduras elásticas.</string>
+
+    <!-- ===== 19b · Sesión por terminar ===== -->
+    <string name="sesion_por_terminar_titulo">Tu sesión está por terminar</string>
+    <string name="sesion_por_terminar_mensaje">Por seguridad cerraremos tu sesión en %1$s por inactividad.</string>
+    <string name="accion_seguir_conectado">Seguir conectado</string>
+
+    <!-- ===== 20–22 · Consultorio ===== -->
+    <string name="perfil_consultorio">Consultorio</string>
+    <string name="doctores_titulo">Nuestros doctores</string>
+    <string name="doctores_subtitulo">Equipo médico de Vital Dent</string>
+    <string name="doctores_equipo_medico">Equipo médico</string>
+    <string name="doctores_descripcion">Conoce a los especialistas que cuidan tu sonrisa. Toca un doctor para ver su perfil.</string>
+    <string name="formato_cedula">Cédula profesional %1$s</string>
+    <string name="perfil_doctor_titulo">Perfil del doctor</string>
+    <string name="perfil_doctor_subtitulo">Nuestros doctores / %1$s</string>
+    <string name="perfil_doctor_sobretitulo">Perfil del doctor</string>
+    <string name="perfil_doctor_otros">Otros doctores</string>
+    <string name="accion_agendar_cita">Agendar una cita</string>
+    <string name="accion_llamar_consultorio">Llamar al consultorio</string>
+    <string name="accion_como_llegar">Cómo llegar</string>
+    <string name="contacto_titulo">Contacto y horario</string>
+    <string name="contacto_subtitulo">Consultorio Vital Dent</string>
+    <string name="contacto_direccion">Dirección</string>
+    <string name="contacto_telefono">Teléfono</string>
+    <string name="contacto_horario">Horario de atención</string>
+    <string name="dia_lunes_viernes">Lunes a viernes</string>
+    <string name="dia_sabado">Sábado</string>
+    <string name="dia_domingo">Domingo</string>
+    <string name="horario_cerrado">Cerrado</string>
 </resources>

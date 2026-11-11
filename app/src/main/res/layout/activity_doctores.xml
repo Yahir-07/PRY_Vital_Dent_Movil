@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 20 · Nuestros doctores (se abre desde Perfil > Consultorio) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbDoctores"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:subtitle="@string/doctores_subtitulo"
+        app:title="@string/doctores_titulo" />
+
+    <TextView
+        android:id="@+id/tvEquipoMedico"
+        style="@style/VitalDent.Texto.Sobretitulo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_xl"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:text="@string/doctores_equipo_medico"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDoctores" />
+
+    <TextView
+        android:id="@+id/tvDoctoresDescripcion"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_s"
+        android:text="@string/doctores_descripcion"
+        app:layout_constraintEnd_toEndOf="@+id/tvEquipoMedico"
+        app:layout_constraintStart_toStartOf="@+id/tvEquipoMedico"
+        app:layout_constraintTop_toBottomOf="@+id/tvEquipoMedico" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvDoctores"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/vd_margen_pantalla"
+        android:paddingEnd="@dimen/vd_margen_pantalla"
+        android:paddingBottom="@dimen/vd_espacio_l"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDoctoresDescripcion"
+        tools:itemCount="3"
+        tools:listitem="@layout/item_doctor" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

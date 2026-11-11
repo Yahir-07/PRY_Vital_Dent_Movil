@@ -183,6 +183,57 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- ===== Consultorio (nuevo en Figma: Nuestros doctores / Contacto y horario) ===== -->
+            <TextView
+                android:id="@+id/tvConsultorio"
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xl"
+                android:text="@string/perfil_consultorio"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvDatosContacto" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvConsultorio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvConsultorio">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/vd_espacio_l"
+                    android:paddingEnd="@dimen/vd_espacio_l">
+
+                    <TextView
+                        android:id="@+id/tvNuestrosDoctores"
+                        style="@style/VitalDent.Texto.FilaMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_perfil"
+                        android:drawableEnd="@drawable/ic_chevron_derecha"
+                        android:text="@string/doctores_titulo" />
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+                        android:id="@+id/tvContactoHorario"
+                        style="@style/VitalDent.Texto.FilaMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_reloj"
+                        android:drawableEnd="@drawable/ic_chevron_derecha"
+                        android:text="@string/contacto_titulo" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- ===== Cuenta ===== -->
             <TextView
                 android:id="@+id/tvCuenta"
@@ -192,7 +243,7 @@
                 android:layout_marginTop="@dimen/vd_espacio_xl"
                 android:text="@string/perfil_cuenta"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvDatosContacto" />
+                app:layout_constraintTop_toBottomOf="@+id/cvConsultorio" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvCuenta"

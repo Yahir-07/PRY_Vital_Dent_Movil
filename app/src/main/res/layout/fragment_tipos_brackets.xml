@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 10b · Tratamientos · Tipos de brackets (va dentro de activity_principal) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbTiposBrackets"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:subtitle="@string/brackets_subtitulo"
+        app:title="@string/brackets_titulo" />
+
+    <!-- Filtro: Todos / Estéticos / Clásicos -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlFiltroBrackets"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbTiposBrackets">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_todos" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_esteticos" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filtro_clasicos" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlFiltroBrackets">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_margen_pantalla">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/glMitad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBracketsMetalicos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="@dimen/vd_espacio_xs2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_m">
+
+                    <!-- Ilustración exportada de Figma: img_brackets_metalicos -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vd_alto_ilustracion_brackets"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_brackets_metalicos"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.VitalDent.Redondeado" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/brackets_metalicos_etiqueta" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/brackets_metalicos_nombre"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:text="@string/brackets_metalicos_descripcion" />
+
+                    <TextView
+                        android:id="@+id/tvVerCaracteristicasMetalicos"
+                        style="@style/VitalDent.Texto.Enlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:background="?attr/selectableItemBackground"
+                        android:paddingTop="@dimen/vd_espacio_xs"
+                        android:paddingBottom="@dimen/vd_espacio_xs"
+                        android:text="@string/accion_ver_caracteristicas" />
+
+                    <!-- Lista de características: se muestra/oculta al tocar "Ver características" -->
+                    <TextView
+                        android:id="@+id/tvCaracteristicasMetalicos"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:lineSpacingExtra="@dimen/vd_espacio_xs"
+                        android:text="@string/brackets_metalicos_caracteristicas"
+                        android:textColor="@color/vd_texto_primario" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSolicitarValoracionMetalicos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:paddingStart="@dimen/vd_espacio_s"
+                        android:paddingEnd="@dimen/vd_espacio_s"
+                        android:text="@string/accion_solicitar_valoracion" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBracketsCeramicos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                android:layout_marginStart="@dimen/vd_espacio_xs2"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_m">
+
+                    <!-- Ilustración exportada de Figma: img_brackets_ceramicos -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vd_alto_ilustracion_brackets"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_brackets_ceramicos"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.VitalDent.Redondeado" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/brackets_ceramicos_etiqueta" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/brackets_ceramicos_nombre"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:text="@string/brackets_ceramicos_descripcion" />
+
+                    <TextView
+                        android:id="@+id/tvVerCaracteristicasCeramicos"
+                        style="@style/VitalDent.Texto.Enlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:background="?attr/selectableItemBackground"
+                        android:paddingTop="@dimen/vd_espacio_xs"
+                        android:paddingBottom="@dimen/vd_espacio_xs"
+                        android:text="@string/accion_ver_caracteristicas" />
+
+                    <TextView
+                        android:id="@+id/tvCaracteristicasCeramicos"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSolicitarValoracionCeramicos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:paddingStart="@dimen/vd_espacio_s"
+                        android:paddingEnd="@dimen/vd_espacio_s"
+                        android:text="@string/accion_solicitar_valoracion" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/brFila1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="cvBracketsMetalicos,cvBracketsCeramicos" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBracketsZafiro"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/glMitad"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginEnd="@dimen/vd_espacio_xs2"
+                app:layout_constraintTop_toBottomOf="@+id/brFila1"
+                android:layout_marginTop="@dimen/vd_espacio_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_m">
+
+                    <!-- Ilustración exportada de Figma: img_brackets_zafiro -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vd_alto_ilustracion_brackets"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_brackets_zafiro"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.VitalDent.Redondeado" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/brackets_zafiro_etiqueta" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/brackets_zafiro_nombre"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:text="@string/brackets_zafiro_descripcion" />
+
+                    <TextView
+                        android:id="@+id/tvVerCaracteristicasZafiro"
+                        style="@style/VitalDent.Texto.Enlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:background="?attr/selectableItemBackground"
+                        android:paddingTop="@dimen/vd_espacio_xs"
+                        android:paddingBottom="@dimen/vd_espacio_xs"
+                        android:text="@string/accion_ver_caracteristicas" />
+
+                    <TextView
+                        android:id="@+id/tvCaracteristicasZafiro"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSolicitarValoracionZafiro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:paddingStart="@dimen/vd_espacio_s"
+                        android:paddingEnd="@dimen/vd_espacio_s"
+                        android:text="@string/accion_solicitar_valoracion" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvBracketsAutoligables"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/glMitad"
+                android:layout_marginStart="@dimen/vd_espacio_xs2"
+                app:layout_constraintTop_toBottomOf="@+id/brFila1"
+                android:layout_marginTop="@dimen/vd_espacio_m">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_m">
+
+                    <!-- Ilustración exportada de Figma: img_brackets_autoligables -->
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/vd_alto_ilustracion_brackets"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_brackets_autoligables"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearance.VitalDent.Redondeado" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:text="@string/brackets_autoligables_etiqueta" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.TituloTarjeta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/brackets_autoligables_nombre"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:text="@string/brackets_autoligables_descripcion" />
+
+                    <TextView
+                        android:id="@+id/tvVerCaracteristicasAutoligables"
+                        style="@style/VitalDent.Texto.Enlace"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:background="?attr/selectableItemBackground"
+                        android:paddingTop="@dimen/vd_espacio_xs"
+                        android:paddingBottom="@dimen/vd_espacio_xs"
+                        android:text="@string/accion_ver_caracteristicas" />
+
+                    <TextView
+                        android:id="@+id/tvCaracteristicasAutoligables"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSolicitarValoracionAutoligables"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_s"
+                        android:paddingStart="@dimen/vd_espacio_s"
+                        android:paddingEnd="@dimen/vd_espacio_s"
+                        android:text="@string/accion_solicitar_valoracion" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

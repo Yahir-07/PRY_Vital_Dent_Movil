@@ -4,32 +4,48 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <!-- ===== Paleta Vital Dent (tomada de los wireframes) ===== -->
+    <!-- ===== Paleta Vital Dent (variables del diseño a color en Figma) =====
+         Figma → Android
+         Primario   #01579B → vd_primario
+         Acento     #22749E → vd_acento
+         Fondo      #F2F7F8 → vd_fondo
+         Lienzo     #FFFFFF → vd_lienzo
+         Superficie #E8F3F8 → vd_superficie
+         Marcador   #CFE6F1 → vd_placeholder / vd_marcador
+         Borde      #D3E3EA → vd_borde
+         Texto      #13293D → vd_texto_primario
+         Texto2     #5B6B78 → vd_texto_secundario -->
+
     <!-- Acción principal: botones, elementos seleccionados, barras de progreso -->
-    <color name="vd_primario">#FF2F3437</color>
+    <color name="vd_primario">#FF01579B</color>
     <color name="vd_sobre_primario">#FFFFFFFF</color>
+    <!-- Acción secundaria rellena ("Crear cuenta"), enlaces y avisos informativos -->
+    <color name="vd_acento">#FF22749E</color>
 
     <!-- Fondos y superficies -->
-    <color name="vd_fondo">#FFFFFFFF</color>
-    <color name="vd_superficie">#FFF1F2F4</color>
-    <color name="vd_placeholder">#FFE3E5E8</color>
-    <color name="vd_borde">#FFD5D8DC</color>
-    <color name="vd_divisor">#FFE6E8EB</color>
+    <color name="vd_fondo">#FFF2F7F8</color>
+    <color name="vd_lienzo">#FFFFFFFF</color>
+    <color name="vd_superficie">#FFE8F3F8</color>
+    <color name="vd_marcador">#FFCFE6F1</color>
+    <color name="vd_placeholder">@color/vd_marcador</color>
+    <color name="vd_borde">#FFD3E3EA</color>
+    <color name="vd_divisor">#FFDDEAF0</color>
 
     <!-- Texto -->
-    <color name="vd_texto_primario">#FF1F2328</color>
-    <color name="vd_texto_secundario">#FF6B7076</color>
-    <color name="vd_texto_terciario">#FF8A8F95</color>
-    <color name="vd_texto_deshabilitado">#FFA9ADB2</color>
+    <color name="vd_texto_primario">#FF13293D</color>
+    <color name="vd_texto_secundario">#FF5B6B78</color>
+    <color name="vd_texto_terciario">#FF7D8B96</color>
+    <color name="vd_texto_deshabilitado">#FFA3B1BB</color>
 
     <!-- Íconos -->
-    <color name="vd_icono">#FF6B7076</color>
-    <color name="vd_icono_inactivo">#FFC4C8CE</color>
+    <color name="vd_icono">#FF13293D</color>
+    <color name="vd_icono_inactivo">#FF5B6B78</color>
 
     <!-- Estados -->
-    <color name="vd_error">#FFD93025</color>
-    <color name="vd_exito">#FF2E7D32</color>
+    <color name="vd_error">#FFB83232</color>
+    <color name="vd_error_fondo">#FFFBEAEA</color>
+    <color name="vd_exito">#FF2E9E5B</color>
 
     <!-- Fondo semitransparente para diálogos -->
-    <color name="vd_scrim">#99000000</color>
+    <color name="vd_scrim">#9913293D</color>
 </resources>
