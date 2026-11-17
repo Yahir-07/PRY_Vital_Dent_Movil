@@ -5,21 +5,22 @@ import android.content.Context
 class clsPagosModelo(private val contexto: Context) {
 
     fun ObtenerSaldoPendiente(alTerminar: (String, String) -> Unit) {
-        // Aquí conectarás tu API con Retrofit
+        // TOD0: Aquí conectarás tu API con Retrofit para traer el saldo pendiente real
         val monto = "$1,800.00"
         val concepto = "Endodoncia pieza 36 - sesión 2"
         alTerminar(monto, concepto)
     }
 
-    fun ObtenerListaPagos(pestana: Int, alTerminar: (List<String>) -> Unit) {
+    fun ObtenerListaPagos(pestana: Int, alTerminar: (List<DataPago>) -> Unit) {
+        // TOD0: Aquí conectarás tu API con Retrofit y MySQL para traer el historial de pagos
         val pagosRealizados = listOf(
-            "Ortodoncia - mensualidad | 24 oct 2026 - $950.00 (Aprobado)",
-            "Endodoncia - sesión 1 | 2 oct 2026 - $1,000.00 (Aprobado)",
-            "Ortodoncia - mensualidad | 26 sep 2026 - $950.00 (Rechazado)"
+            DataPago("1", "Ortodoncia · mensualidad", "24 oct 2026 · $950.00", "Aprobado"),
+            DataPago("2", "Endodoncia · sesión 1", "2 oct 2026 · $1,000.00", "Aprobado"),
+            DataPago("3", "Ortodoncia · mensualidad", "26 sep 2026 · $950.00", "Rechazado")
         )
 
         val pagosPendientes = listOf(
-            "Endodoncia - sesión 2 | Vence 15 nov 2026 - $1,800.00"
+            DataPago("4", "Endodoncia · sesión 2", "Vence 15 nov 2026 · $1,800.00", "Pendiente")
         )
 
         // Pestaña 0 = Realizados, Pestaña 1 = Pendientes

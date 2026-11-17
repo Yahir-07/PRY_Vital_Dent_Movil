@@ -1,5 +1,6 @@
 package com.example.pry_vital_dent_movil.Presentador
 
+import com.example.pry_vital_dent_movil.Modelo.DataPago
 import com.example.pry_vital_dent_movil.Modelo.clsPagosModelo
 import com.example.pry_vital_dent_movil.Vista.clsPagosVista
 
@@ -18,6 +19,10 @@ class clsPagosPresentador(private val vista: clsPagosVista) {
         modelo.ObtenerListaPagos(posicionTab) { listaPagos ->
             vista.MostrarListaPagos(listaPagos)
         }
+    }
+
+    fun SeleccionarPago(pago: DataPago) {
+        vista.MostrarMensaje("Pago seleccionado: ${pago.concepto} (${pago.estado})")
     }
 
     fun ClickPagarAhora() {

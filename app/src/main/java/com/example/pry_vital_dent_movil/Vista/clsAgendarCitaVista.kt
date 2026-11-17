@@ -7,9 +7,12 @@ import android.widget.CalendarView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
+import com.example.pry_vital_dent_movil.Adaptador.HoraAdaptador
+import com.example.pry_vital_dent_movil.Modelo.DataHora
 import com.example.pry_vital_dent_movil.Presentador.clsAgendarCitaPresentador
 import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
@@ -25,6 +28,7 @@ class clsAgendarCitaVista : AppCompatActivity() {
     private lateinit var rvHoras: RecyclerView
     private lateinit var etMotivo: TextInputEditText
     private lateinit var btnConfirmarCita: Button
+    private lateinit var horaAdaptador: HoraAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,14 @@ class clsAgendarCitaVista : AppCompatActivity() {
         etMotivo = findViewById(R.id.etMotivo)
         btnConfirmarCita = findViewById(R.id.btnConfirmarCita)
 
+        // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView (ej. en cuadrícula de 3 o 4 columnas)
+        horaAdaptador = HoraAdaptador(emptyList()) { horaSeleccionada ->
+            presentador.SeleccionarHora(horaSeleccionada)
+        }
+        rvHoras.layoutManager = GridLayoutManager(this, 3) // O LinearLayoutManager si prefieres lista
+        rvHoras.adapter = horaAdaptador
+
+        // 2. HASTA DESPUÉS inicializamos el presentador y cargamos las fechas/horas
         presentador = clsAgendarCitaPresentador(this)
 
         // Obtener la fecha actual por defecto al abrir
@@ -56,9 +68,8 @@ class clsAgendarCitaVista : AppCompatActivity() {
         }
     }
 
-    fun MostrarHorariosDisponibles(listaHoras: List<String>) {
-        // Aquí conectarás tu Adapter para el RecyclerView usando item_hora en 4 columnas
-        Toast.makeText(this, "Horarios cargados para la fecha seleccionada", Toast.LENGTH_SHORT).show()
+    fun MostrarHorariosDisponibles(listaHoras: List<DataHora>) {
+        horaAdaptador.actualizarLista(listaHoras)
     }
 
     fun MostrarMensaje(mensaje: String) {
@@ -66,7 +77,6 @@ class clsAgendarCitaVista : AppCompatActivity() {
     }
 
     fun IrACofirmacionCita() {
-        // Redirigir a la pantalla de confirmación o regresar al listado de citas
         val intent = Intent(this, clsMisCitasVista::class.java)
         startActivity(intent)
         finish()
