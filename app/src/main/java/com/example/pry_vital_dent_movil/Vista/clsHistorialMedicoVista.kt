@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.example.pry_vital_dent_movil.R
+import com.example.pry_vital_dent_movil.Adaptador.HistorialAdaptador
+import com.example.pry_vital_dent_movil.Modelo.DataHistorial
 import com.example.pry_vital_dent_movil.Presentador.clsHistorialMedicoPresentador
 import com.google.android.material.appbar.MaterialToolbar
 
@@ -22,6 +25,7 @@ class clsHistorialMedicoVista : AppCompatActivity() {
     private lateinit var chipFiltroRecetas: Chip
     private lateinit var chipFiltroTratamientos: Chip
     private lateinit var rvHistorial: RecyclerView
+    private lateinit var historialAdaptador: HistorialAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +40,19 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         chipFiltroTratamientos = findViewById(R.id.chipFiltroTratamientos)
         rvHistorial = findViewById(R.id.rvHistorial)
 
+        // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView
+        historialAdaptador = HistorialAdaptador(emptyList()) { itemSeleccionado ->
+            presentador.SeleccionarHistorial(itemSeleccionado)
+        }
+        rvHistorial.layoutManager = LinearLayoutManager(this)
+        rvHistorial.adapter = historialAdaptador
+
+        // 2. HASTA DESPUÉS inicializamos el presentador y cargamos los datos
         presentador = clsHistorialMedicoPresentador(this)
         presentador.CargarDatosIniciales()
 
         // Configuración de los filtros por ChipGroup
-        cgFiltrosHistorial.setOnCheckedChangeListener { group, checkedId ->
+        cgFiltrosHistorial.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.chipFiltroTodo -> presentador.FiltrarHistorial("Todo")
                 R.id.chipFiltroConsultas -> presentador.FiltrarHistorial("Consultas")
@@ -51,11 +63,14 @@ class clsHistorialMedicoVista : AppCompatActivity() {
     }
 
     fun MostrarAlergias(alergias: List<String>) {
-        // Aquí puedes configurar los chips del cgAlergias o mostrar la información
+        // Aquí puedes configurar los chips de alergias si lo requieres
     }
 
-    fun MostrarListaHistorial(lista: List<String>) {
-        // Aquí conectarás tu Adapter para el RecyclerView de historial
-        Toast.makeText(this, "Mostrando ${lista.size} registros", Toast.LENGTH_SHORT).show()
+    fun MostrarListaHistorial(lista: List<DataHistorial>) {
+        historialAdaptador.actualizarLista(lista)
+    }
+
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }

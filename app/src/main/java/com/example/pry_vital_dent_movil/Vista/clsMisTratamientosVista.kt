@@ -2,12 +2,16 @@ package com.example.pry_vital_dent_movil.Vista
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayout
 import com.example.pry_vital_dent_movil.R
+import com.example.pry_vital_dent_movil.Adaptador.TratamientoAdaptador
+import com.example.pry_vital_dent_movil.Modelo.DataTratamiento
 import com.example.pry_vital_dent_movil.Presentador.clsMisTratamientosPresentador
 import com.google.android.material.appbar.MaterialToolbar
 
@@ -18,6 +22,7 @@ class clsMisTratamientosVista : AppCompatActivity() {
     private lateinit var tlTratamientos: TabLayout
     private lateinit var rvTratamientos: RecyclerView
     private lateinit var tvAvisoTratamientos: TextView
+    private lateinit var tratamientoAdaptador: TratamientoAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,10 +33,15 @@ class clsMisTratamientosVista : AppCompatActivity() {
         rvTratamientos = findViewById(R.id.rvTratamientos)
         tvAvisoTratamientos = findViewById(R.id.tvAvisoTratamientos)
 
+        // 1. PRIMERO inicializamos el adaptador y lo configuramos en el RecyclerView
+        tratamientoAdaptador = TratamientoAdaptador(emptyList()) { tratamientoSeleccionado ->
+            presentador.ClickTratamiento(tratamientoSeleccionado)
+        }
+        rvTratamientos.layoutManager = LinearLayoutManager(this)
+        rvTratamientos.adapter = tratamientoAdaptador
 
+        // 2. HASTA DESPUÉS inicializamos el presentador y cargamos los datos
         presentador = clsMisTratamientosPresentador(this)
-
-        // Cargar tratamientos en curso por defecto
         presentador.CargarTratamientosEnCurso()
 
         // Listener para las pestañas (En curso / Finalizados)
@@ -46,12 +56,11 @@ class clsMisTratamientosVista : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        configurarBarraInferior(2)
+        // configurarBarraInferior(2) // Descomenta si ya lo tienes implementado
     }
 
-    fun MostrarListaTratamientos(lista: List<String>) {
-        // Aquí conectarás tu Adapter para el RecyclerView usando item_tratamiento
-        Toast.makeText(this, "Cargando ${lista.size} tratamientos", Toast.LENGTH_SHORT).show()
+    fun MostrarListaTratamientos(lista: List<DataTratamiento>) {
+        tratamientoAdaptador.actualizarLista(lista)
     }
 
     fun MostrarAviso(mensaje: String) {

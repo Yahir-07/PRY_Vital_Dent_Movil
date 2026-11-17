@@ -1,5 +1,6 @@
 package com.example.pry_vital_dent_movil.Presentador
 
+import com.example.pry_vital_dent_movil.Modelo.DataTratamiento
 import com.example.pry_vital_dent_movil.Modelo.clsMisTratamientosModelo
 import com.example.pry_vital_dent_movil.Vista.clsMisTratamientosVista
 
@@ -21,7 +22,7 @@ class clsMisTratamientosPresentador(private val vista: clsMisTratamientosVista) 
         }
     }
 
-    fun ClickTratamiento(nombreTratamiento: String) {
-        vista.IrADetalleTratamiento(nombreTratamiento)
+    fun ClickTratamiento(tratamiento: DataTratamiento) {
+        vista.IrADetalleTratamiento(tratamiento.nombre)
     }
 }
