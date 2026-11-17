@@ -11,16 +11,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PRY_Vital_Dent_Movil">
+
+        <!-- 01. Pantalla de Bienvenida / Principal (Launcher) -->
         <activity
             android:name=".Vista.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- 02. Autenticación y Cuentas -->
+        <activity android:name=".Vista.clsLoginVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsRegistroVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsRecuperarContrasenaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsCambiarContrasenaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsValidacionBiometricaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 03. Cuestionarios Iniciales -->
+        <activity android:name=".Vista.clsCuestionario1Vista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsCuestionario2Vista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsCuestionario3Vista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 04. Dashboard y Navegación Principal -->
+        <activity android:name=".Vista.clsInicioVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsHistorialMedicoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsPerfilPacienteVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 05. Citas -->
+        <activity android:name=".Vista.clsMisCitasVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsAgendarCitaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsCitaAgendadaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 06. Tratamientos -->
+        <activity android:name=".Vista.clsMisTratamientosVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsAvanceTratamientoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsTipoBracketsVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 07. Doctores y Contacto -->
+        <activity android:name=".Vista.clsPerfilDoctorVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsContactoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsNuestrosDoctoresVista" />
+
+        <!-- 08. Pagos y Finanzas -->
+        <activity android:name=".Vista.clsPagosVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsRealizarPagoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsPagoAprobadoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 09. Sesión / Diálogos de Seguridad -->
+        <activity android:name=".Vista.clsSesionPorTerminarVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsSesionVencidaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
     </application>
 
 </manifest>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Contenedor principal del paciente: aloja los fragments Inicio, Citas,
+<!-- Contenedor principal del paciente: aloja las vistas del panel, Citas,
      Tratamientos, Pagos y Perfil con la barra de navegación inferior. -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +8,7 @@
     android:background="@color/vd_fondo"
     android:fitsSystemWindows="true">
 
-    <androidx.fragment.app.FragmentContainerView
+    <FrameLayout
         android:id="@+id/contenedorFragmentos"
         android:layout_width="0dp"
         android:layout_height="0dp"
