@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pantalla 10 · Mis tratamientos -->
+<!-- Pantalla 10 · Mis tratamientos (con barra de navegación inferior integrada) -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -42,7 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTratamientos"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingStart="@dimen/vd_margen_pantalla"
         android:paddingTop="@dimen/vd_espacio_m"
@@ -65,11 +65,29 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/vd_margen_pantalla"
         android:layout_marginEnd="@dimen/vd_margen_pantalla"
-        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:layout_marginBottom="@dimen/vd_espacio_m"
         android:text="@string/tratamientos_aviso"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/divNavegacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rvTratamientos" />
+
+    <!-- Barra de navegación inferior -->
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/divNavegacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/bnvNavegacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bnvNavegacion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu_navegacion_inferior" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
