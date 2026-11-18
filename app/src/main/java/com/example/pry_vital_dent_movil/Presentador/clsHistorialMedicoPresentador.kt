@@ -15,8 +15,11 @@ class clsHistorialMedicoPresentador(private val vista: clsHistorialMedicoVista) 
     }
 
     fun FiltrarHistorial(filtro: String) {
-        modelo.ObtenerHistorial(filtro) { lista ->
+        modelo.ObtenerHistorial(filtro) { exito, mensaje, lista ->
             vista.MostrarListaHistorial(lista)
+            if (!exito) {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 }

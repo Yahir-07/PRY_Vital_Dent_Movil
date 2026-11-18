@@ -54,6 +54,10 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         // Aquí puedes configurar los chips del cgAlergias o mostrar la información
     }
 
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
     fun MostrarListaHistorial(lista: List<String>) {
         // Aquí conectarás tu Adapter para el RecyclerView de historial
         Toast.makeText(this, "Mostrando ${lista.size} registros", Toast.LENGTH_SHORT).show()

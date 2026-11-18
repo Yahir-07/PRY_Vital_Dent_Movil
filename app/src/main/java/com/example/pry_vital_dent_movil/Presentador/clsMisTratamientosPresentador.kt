@@ -8,16 +8,28 @@ class clsMisTratamientosPresentador(private val vista: clsMisTratamientosVista) 
     private val modelo = clsMisTratamientosModelo(vista)
 
     fun CargarTratamientosEnCurso() {
-        modelo.ObtenerTratamientosEnCurso { lista ->
+        modelo.ObtenerTratamientosEnCurso { exito, mensaje, lista ->
             vista.MostrarListaTratamientos(lista)
-            vista.MostrarAviso("Toca un tratamiento para ver su avance sesión por sesión.")
+            vista.MostrarAviso(
+                when {
+                    !exito -> mensaje
+                    lista.isEmpty() -> "No tienes tratamientos en curso."
+                    else -> "Toca un tratamiento para ver su avance sesión por sesión."
+                }
+            )
         }
     }
 
     fun CargarTratamientosFinalizados() {
-        modelo.ObtenerTratamientosFinalizados { lista ->
+        modelo.ObtenerTratamientosFinalizados { exito, mensaje, lista ->
             vista.MostrarListaTratamientos(lista)
-            vista.MostrarAviso("Tratamientos completados con éxito.")
+            vista.MostrarAviso(
+                when {
+                    !exito -> mensaje
+                    lista.isEmpty() -> "Aún no tienes tratamientos finalizados."
+                    else -> "Tratamientos completados con éxito."
+                }
+            )
         }
     }
 

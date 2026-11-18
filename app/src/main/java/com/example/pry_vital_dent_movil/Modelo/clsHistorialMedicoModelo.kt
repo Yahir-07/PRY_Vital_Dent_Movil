@@ -4,28 +4,21 @@ import android.content.Context
 
 class clsHistorialMedicoModelo(private val contexto: Context) {
 
+    // GET historial.php: alergias registradas del paciente
     fun ObtenerAlergias(alTerminar: (List<String>) -> Unit) {
-        // Aquí conectarás tu API con Retrofit
-        val alergias = listOf("Penicilina", "Látex")
-        alTerminar(alergias)
+        val llamada = RetrofitClient.api.ObtenerHistorial(clsSesion.ObtenerToken(contexto), "Todo")
+
+        RetrofitClient.Ejecutar(contexto, llamada) { _, _, datos ->
+            alTerminar(datos?.alergias ?: emptyList())
+        }
     }
 
-    fun ObtenerHistorial(filtro: String, alTerminar: (List<String>) -> Unit) {
-        val listaCompleta = listOf(
-            "Cita atendida - 24 oct 2026 - Ajuste de brackets",
-            "Consulta - 24 oct 2026 - Dic caries profunda pieza 36",
-            "Receta - 24 oct 2026 - Ibuprofeno 400 mg c/8 h x 3 días",
-            "Tratamiento iniciado - 2 oct 2026 - Endodoncia pieza 36"
-        )
+    // GET historial.php?filtro=Todo | Consultas | Recetas | Tratamientos
+    fun ObtenerHistorial(filtro: String, alTerminar: (Boolean, String, List<String>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerHistorial(clsSesion.ObtenerToken(contexto), filtro)
 
-        // Lógica sencilla de filtrado de ejemplo
-        val listaFiltrada = when (filtro) {
-            "Consultas" -> listaCompleta.filter { it.contains("Consulta") }
-            "Recetas" -> listaCompleta.filter { it.contains("Receta") }
-            "Tratamientos" -> listaCompleta.filter { it.contains("Tratamiento") }
-            else -> listaCompleta
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos?.historial ?: emptyList())
         }
-
-        alTerminar(listaFiltrada)
     }
 }

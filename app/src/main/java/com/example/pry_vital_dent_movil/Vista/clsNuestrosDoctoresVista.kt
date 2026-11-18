@@ -2,6 +2,7 @@ package com.example.pry_vital_dent_movil.Vista
 
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +49,10 @@ class clsNuestrosDoctoresVista : AppCompatActivity() {
 
     fun MostrarListaDoctores(lista: List<DataDoctor>) {
         adaptador.actualizarLista(lista)
+    }
+
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
     fun IrAPerfilDoctor(doctorNombre: String) {

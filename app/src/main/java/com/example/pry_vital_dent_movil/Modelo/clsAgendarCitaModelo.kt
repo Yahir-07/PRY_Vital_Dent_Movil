@@ -4,18 +4,29 @@ import android.content.Context
 
 class clsAgendarCitaModelo(private val contexto: Context) {
 
-    fun ObtenerHorariosDisponibles(fecha: String, alTerminar: (List<String>) -> Unit) {
-        // Aquí harás la consulta a tu API mediante Retrofit para obtener las horas libres de ese día
-        val horasEjemplo = listOf("09:00 a. m.", "10:30 a. m.", "12:00 p. m.", "04:00 p. m.")
-        alTerminar(horasEjemplo)
+    // GET horarios.php?fecha=dd/MM/yyyy: horas del día y si están libres
+    fun ObtenerHorariosDisponibles(fecha: String, alTerminar: (Boolean, String, List<DataHora>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerHorarios(clsSesion.ObtenerToken(contexto), fecha)
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos ?: emptyList())
+        }
     }
 
+    // POST agendar_cita.php: guarda la cita en la tabla citas (el servidor asigna un doctor libre)
     fun RegistrarCita(fecha: String, hora: String, motivo: String, alTerminar: (Boolean, String) -> Unit) {
-        if (fecha.isNotEmpty() && hora.isNotEmpty() && motivo.isNotEmpty()) {
-            // Aquí enviarás los datos de la cita a tu base de datos PHP
-            alTerminar(true, "¡Cita agendada con éxito!")
-        } else {
+        if (fecha.isEmpty() || hora.isEmpty() || motivo.isEmpty()) {
             alTerminar(false, "Por favor selecciona fecha, hora y motivo")
+            return
+        }
+
+        val llamada = RetrofitClient.api.AgendarCita(
+            clsSesion.ObtenerToken(contexto),
+            SolicitudCita(fecha, hora, motivo)
+        )
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, _ ->
+            alTerminar(exito, mensaje)
         }
     }
 }

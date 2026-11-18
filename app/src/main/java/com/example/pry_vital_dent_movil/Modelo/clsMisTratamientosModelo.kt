@@ -4,14 +4,21 @@ import android.content.Context
 
 class clsMisTratamientosModelo(private val contexto: Context) {
 
-    fun ObtenerTratamientosEnCurso(alTerminar: (List<String>) -> Unit) {
-        // Aquí conectarás tu API con Retrofit
-        val listaEnCurso = listOf("Ortodoncia fija - Sesión 9", "Endodoncia pieza 36 - Sesión 1")
-        alTerminar(listaEnCurso)
+    // GET tratamientos.php?estado=en_curso
+    fun ObtenerTratamientosEnCurso(alTerminar: (Boolean, String, List<String>) -> Unit) {
+        ObtenerTratamientos("en_curso", alTerminar)
     }
 
-    fun ObtenerTratamientosFinalizados(alTerminar: (List<String>) -> Unit) {
-        val listaFinalizados = listOf("Limpieza y profilaxis - Sesión 10")
-        alTerminar(listaFinalizados)
+    // GET tratamientos.php?estado=finalizado
+    fun ObtenerTratamientosFinalizados(alTerminar: (Boolean, String, List<String>) -> Unit) {
+        ObtenerTratamientos("finalizado", alTerminar)
+    }
+
+    private fun ObtenerTratamientos(estado: String, alTerminar: (Boolean, String, List<String>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerTratamientos(clsSesion.ObtenerToken(contexto), estado)
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos ?: emptyList())
+        }
     }
 }

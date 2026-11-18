@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
+import com.example.pry_vital_dent_movil.Adaptador.HorasAdaptador
+import com.example.pry_vital_dent_movil.Modelo.DataHora
 import com.example.pry_vital_dent_movil.Presentador.clsAgendarCitaPresentador
 import com.google.android.material.appbar.MaterialToolbar
 import java.text.SimpleDateFormat
@@ -25,6 +27,7 @@ class clsAgendarCitaVista : AppCompatActivity() {
     private lateinit var rvHoras: RecyclerView
     private lateinit var etMotivo: TextInputEditText
     private lateinit var btnConfirmarCita: Button
+    private lateinit var adaptadorHoras: HorasAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,7 +40,16 @@ class clsAgendarCitaVista : AppCompatActivity() {
         etMotivo = findViewById(R.id.etMotivo)
         btnConfirmarCita = findViewById(R.id.btnConfirmarCita)
 
+        // No se pueden elegir días pasados
+        calCita.minDate = System.currentTimeMillis() - 1000
+
         presentador = clsAgendarCitaPresentador(this)
+
+        // Casillas de horario en 4 columnas (el GridLayoutManager viene del XML)
+        adaptadorHoras = HorasAdaptador(emptyList()) { horaElegida ->
+            presentador.SeleccionarHora(horaElegida)
+        }
+        rvHoras.adapter = adaptadorHoras
 
         // Obtener la fecha actual por defecto al abrir
         val fechaActual = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(calCita.date))
@@ -56,9 +68,9 @@ class clsAgendarCitaVista : AppCompatActivity() {
         }
     }
 
-    fun MostrarHorariosDisponibles(listaHoras: List<String>) {
-        // Aquí conectarás tu Adapter para el RecyclerView usando item_hora en 4 columnas
-        Toast.makeText(this, "Horarios cargados para la fecha seleccionada", Toast.LENGTH_SHORT).show()
+    fun MostrarHorariosDisponibles(fecha: String, listaHoras: List<DataHora>) {
+        tvHoraDisponible.text = getString(R.string.hora_disponible_fecha, fecha)
+        adaptadorHoras.actualizarLista(listaHoras)
     }
 
     fun MostrarMensaje(mensaje: String) {

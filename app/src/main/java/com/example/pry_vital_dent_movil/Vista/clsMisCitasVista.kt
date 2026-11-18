@@ -69,6 +69,10 @@ class clsMisCitasVista : AppCompatActivity() {
         MisCitasAdaptador.actualizarLista(lista)
     }
 
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
     fun MostrarAvisoSinConexion(mostrar: Boolean) {
         tvSinConexion.visibility = if (mostrar) View.VISIBLE else View.GONE
     }

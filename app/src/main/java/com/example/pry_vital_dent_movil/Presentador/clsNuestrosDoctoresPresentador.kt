@@ -8,8 +8,11 @@ class clsNuestrosDoctoresPresentador(private val vista: clsNuestrosDoctoresVista
     private val modelo = clsNuestrosDoctoresModelo(vista)
 
     fun CargarDoctores() {
-        modelo.ObtenerListaDoctores { lista ->
+        modelo.ObtenerListaDoctores { exito, mensaje, lista ->
             vista.MostrarListaDoctores(lista)
+            if (!exito) {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 
