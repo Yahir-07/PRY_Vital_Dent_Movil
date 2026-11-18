@@ -4,8 +4,8 @@ import android.content.Context
 
 class clsBienvenidoModelo(private val contexto: Context) {
 
+    // Token guardado al iniciar sesión (si ya expiró, la primera API que responda 401 regresa al login)
     fun ObtenerTokenGuardado(): String {
-        val sharedPreferences = contexto.getSharedPreferences("VitalDentPreferencias", Context.MODE_PRIVATE)
-        return sharedPreferences.getString("TOKEN_USUARIO", "") ?: ""
+        return clsSesion.ObtenerToken(contexto)
     }
 }

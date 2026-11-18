@@ -20,6 +20,7 @@ class clsHistorialMedicoVista : AppCompatActivity() {
     private lateinit var tbHistorialMedico: MaterialToolbar
     private lateinit var tvAvisoSoloLectura: TextView
     private lateinit var cgFiltrosHistorial: ChipGroup
+    private lateinit var cgAlergias: ChipGroup
     private lateinit var chipFiltroTodo: Chip
     private lateinit var chipFiltroConsultas: Chip
     private lateinit var chipFiltroRecetas: Chip
@@ -34,6 +35,7 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         tbHistorialMedico = findViewById(R.id.tbHistorialMedico)
         tvAvisoSoloLectura = findViewById(R.id.tvAvisoSoloLectura)
         cgFiltrosHistorial = findViewById(R.id.cgFiltrosHistorial)
+        cgAlergias = findViewById(R.id.cgAlergias)
         chipFiltroTodo = findViewById(R.id.chipFiltroTodo)
         chipFiltroConsultas = findViewById(R.id.chipFiltroConsultas)
         chipFiltroRecetas = findViewById(R.id.chipFiltroRecetas)
@@ -63,7 +65,14 @@ class clsHistorialMedicoVista : AppCompatActivity() {
     }
 
     fun MostrarAlergias(alergias: List<String>) {
-        // Aquí puedes configurar los chips de alergias si lo requieres
+        cgAlergias.removeAllViews()
+        val textos = if (alergias.isEmpty()) listOf("Sin alergias registradas") else alergias
+        for (texto in textos) {
+            val chip = Chip(this)
+            chip.text = texto
+            chip.isClickable = false
+            cgAlergias.addView(chip)
+        }
     }
 
     fun MostrarListaHistorial(lista: List<DataHistorial>) {

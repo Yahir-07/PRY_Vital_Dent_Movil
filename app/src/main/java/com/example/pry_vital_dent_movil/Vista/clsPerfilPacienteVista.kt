@@ -41,6 +41,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
     private lateinit var tvHuellaPagosEstado: TextView
     private lateinit var swHuellaPagos: MaterialSwitch
     private lateinit var tvCerrarSesion: TextView
+    private var cargandoHuella = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,7 +78,10 @@ class clsPerfilPacienteVista : AppCompatActivity() {
 
         // Listeners de interacciones
         swHuellaPagos.setOnCheckedChangeListener { _, isChecked ->
-            presentador.CambiarEstadoHuella(isChecked)
+            if (!cargandoHuella) {
+                tvHuellaPagosEstado.text = if (isChecked) "Activada" else "Desactivada"
+                presentador.CambiarEstadoHuella(isChecked)
+            }
         }
 
         tvCambiarContrasena.setOnClickListener {
@@ -103,7 +107,9 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         tvTelefono.text = telefono
         tvCorreo.text = correo
         tvDomicilio.text = domicilio
+        cargandoHuella = true
         swHuellaPagos.isChecked = huellaActiva
+        cargandoHuella = false
         tvHuellaPagosEstado.text = if (huellaActiva) "Activada" else "Desactivada"
     }
 

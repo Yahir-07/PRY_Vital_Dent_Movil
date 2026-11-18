@@ -1,7 +1,9 @@
 package com.example.pry_vital_dent_movil.Vista
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -37,7 +39,7 @@ class clsNuestrosDoctoresVista : AppCompatActivity() {
 
         // Configurar RecyclerView con su adaptador
         adaptador = DoctorAdaptador(emptyList()) { doctorSeleccionado ->
-            presentador.SeleccionarDoctor(doctorSeleccionado.nombre)
+            presentador.SeleccionarDoctor(doctorSeleccionado.idDoctor)
         }
         rvDoctores.layoutManager = LinearLayoutManager(this)
         rvDoctores.adapter = adaptador
@@ -50,7 +52,13 @@ class clsNuestrosDoctoresVista : AppCompatActivity() {
         adaptador.actualizarLista(lista)
     }
 
-    fun IrAPerfilDoctor(doctorNombre: String) {
-        // Aquí abrirás la pantalla de perfil del doctor en el futuro
+    fun IrAPerfilDoctor(idDoctor: String) {
+        val intent = Intent(this, clsPerfilDoctorVista::class.java)
+        intent.putExtra(clsPerfilDoctorVista.EXTRA_ID_DOCTOR, idDoctor)
+        startActivity(intent)
+    }
+
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 }

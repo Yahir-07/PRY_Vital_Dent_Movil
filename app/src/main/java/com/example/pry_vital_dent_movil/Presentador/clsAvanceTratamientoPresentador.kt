@@ -8,13 +8,16 @@ class clsAvanceTratamientoPresentador(private val vista: clsAvanceTratamientoVis
 
     private val modelo = clsAvanceTratamientoModelo(vista)
 
-    fun CargarDatosDetalle() {
-        modelo.ObtenerResumenTratamiento { porcentaje, sesiones, finEstimado, estado ->
-            vista.MostrarResumen(porcentaje, sesiones, finEstimado, estado)
-        }
-
-        modelo.ObtenerHistorialAvances { listaAvances ->
-            vista.MostrarListaAvances(listaAvances)
+    // idTratamiento vacío = el tratamiento en curso más reciente
+    fun CargarDatosDetalle(idTratamiento: String) {
+        modelo.ObtenerDetalleTratamiento(idTratamiento) { exito, mensaje, datos ->
+            if (exito && datos != null) {
+                vista.MostrarNombreTratamiento(datos.nombre)
+                vista.MostrarResumen(datos.porcentaje, datos.sesiones, datos.finEstimado, datos.estado)
+                vista.MostrarListaAvances(datos.avances ?: emptyList())
+            } else {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 

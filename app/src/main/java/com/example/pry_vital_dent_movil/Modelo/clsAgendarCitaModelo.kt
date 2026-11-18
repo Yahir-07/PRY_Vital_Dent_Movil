@@ -4,30 +4,25 @@ import android.content.Context
 
 class clsAgendarCitaModelo(private val contexto: Context) {
 
-    fun ObtenerHorasDisponibles(alTerminar: (List<DataHora>) -> Unit) {
-            val listaHoras = listOf(
-                DataHora("09:00 AM", isDisponible = true),
-                DataHora("10:00 AM", isDisponible = false), // Ocupada (se tachará)
-                DataHora("11:30 AM", isDisponible = true),
-                DataHora("01:00 PM", isDisponible = true),
-                DataHora("04:00 PM", isDisponible = false), // Ocupada (se tachará)
-                DataHora("05:30 PM", isDisponible = true)
-            )
-            alTerminar(listaHoras)
+    // GET horarios.php?fecha=dd/MM/yyyy&idDoctor=: horas del día y si están libres
+    fun ObtenerHorasDisponibles(fecha: String, idDoctor: String, alTerminar: (Boolean, String, List<DataHora>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerHorarios(clsSesion.ObtenerToken(contexto), fecha, idDoctor)
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos ?: emptyList())
+        }
     }
 
-    fun ObtenerHorariosDisponibles(fecha: String, alTerminar: (List<String>) -> Unit) {
-        // Aquí harás la consulta a tu API mediante Retrofit para obtener las horas libres de ese día
-        val horasEjemplo = listOf("09:00 a. m.", "10:30 a. m.", "12:00 p. m.", "04:00 p. m.")
-        alTerminar(horasEjemplo)
-    }
+    // POST agendar_cita.php: guarda la cita en la tabla citas
+    // (si idDoctor está vacío, el servidor asigna un doctor libre)
+    fun RegistrarCita(fecha: String, hora: String, motivo: String, idDoctor: String, alTerminar: (Boolean, String) -> Unit) {
+        val llamada = RetrofitClient.api.AgendarCita(
+            clsSesion.ObtenerToken(contexto),
+            SolicitudCita(fecha, hora, motivo, idDoctor)
+        )
 
-    fun RegistrarCita(fecha: String, hora: String, motivo: String, alTerminar: (Boolean, String) -> Unit) {
-        if (fecha.isNotEmpty() && hora.isNotEmpty() && motivo.isNotEmpty()) {
-            // Aquí enviarás los datos de la cita a tu base de datos PHP
-            alTerminar(true, "¡Cita agendada con éxito!")
-        } else {
-            alTerminar(false, "Por favor selecciona fecha, hora y motivo")
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, _ ->
+            alTerminar(exito, mensaje)
         }
     }
 }

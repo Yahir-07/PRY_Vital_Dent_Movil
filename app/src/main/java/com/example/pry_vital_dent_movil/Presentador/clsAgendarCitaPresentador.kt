@@ -11,19 +11,32 @@ class clsAgendarCitaPresentador(private val vista: clsAgendarCitaVista) {
 
     private var fechaSeleccionada: String = ""
     private var horaSeleccionada: String = ""
+    private var idDoctor: String = "" // vacío = cualquier doctor libre
+
+    // Cuando se llega desde el perfil de un doctor ("Agendar con este doctor")
+    fun AsignarDoctor(idDoctorElegido: String) {
+        idDoctor = idDoctorElegido
+    }
 
     fun SeleccionarFecha(fecha: String) {
         fechaSeleccionada = fecha
+        horaSeleccionada = "" // al cambiar de día hay que volver a elegir hora
+        vista.MostrarFechaSeleccionada(fecha)
 
-        // Usamos el métod0 de tu modelo que ya regresa directamente los objetos DataHora
-        modelo.ObtenerHorasDisponibles { listaHoras ->
+        modelo.ObtenerHorasDisponibles(fecha, idDoctor) { exito, mensaje, listaHoras ->
             vista.MostrarHorariosDisponibles(listaHoras)
+            if (!exito || listaHoras.isEmpty()) {
+                vista.MostrarMensaje(mensaje) // ej. "El consultorio está cerrado ese día"
+            } else if (listaHoras.none { it.isDisponible }) {
+                vista.MostrarMensaje("Ya no hay horarios libres ese día, elige otra fecha")
+            }
         }
     }
 
     fun SeleccionarHora(hora: DataHora) {
         if (hora.isDisponible) {
-            horaSeleccionada = hora.hora
+            // "valor" es la hora en formato 24 h ("16:00") que espera la API
+            horaSeleccionada = hora.valor.ifEmpty { hora.hora }
             vista.MostrarMensaje("Hora seleccionada: ${hora.hora}")
         } else {
             vista.MostrarMensaje("Este horario no está disponible")
@@ -31,13 +44,26 @@ class clsAgendarCitaPresentador(private val vista: clsAgendarCitaVista) {
     }
 
     fun ClickConfirmarCita(motivo: String) {
-        // Aquí le ordenas al modelo que registre la cita usando los datos que ya tiene el presentador
-        modelo.RegistrarCita(fechaSeleccionada, horaSeleccionada, motivo) { exito, mensaje ->
+        if (fechaSeleccionada.isEmpty()) {
+            vista.MostrarMensaje("Selecciona una fecha en el calendario")
+            return
+        }
+        if (horaSeleccionada.isEmpty()) {
+            vista.MostrarMensaje("Selecciona un horario disponible")
+            return
+        }
+        if (motivo.isEmpty()) {
+            vista.MostrarMensaje("Escribe el motivo de la cita")
+            return
+        }
+
+        modelo.RegistrarCita(fechaSeleccionada, horaSeleccionada, motivo, idDoctor) { exito, mensaje ->
+            vista.MostrarMensaje(mensaje)
             if (exito) {
-                vista.MostrarMensaje(mensaje)
-                vista.IrACofirmacionCita() // O el nombre de la función que tengas en tu vista para avanzar
+                vista.IrACofirmacionCita()
             } else {
-                vista.MostrarMensaje(mensaje)
+                // Puede que alguien más ganó el horario: recargamos las horas del día
+                SeleccionarFecha(fechaSeleccionada)
             }
         }
     }

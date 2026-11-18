@@ -8,12 +8,20 @@ class clsInicioPresentador(private val vista: clsInicioVista) {
     private val modelo = clsInicioModelo(vista)
 
     fun InicializarPanel() {
-        modelo.CargarInformacionPanel { nombre, citaTitulo, citaDetalle, tratamientoNombre, pagosTexto ->
-            vista.MostrarDatosUsuario(nombre)
-            vista.MostrarDatosProximaCita(citaTitulo, citaDetalle)
-            vista.MostrarDatosTratamiento(tratamientoNombre)
-            vista.MostrarPagosPendientes(pagosTexto)
-        }
+        // Mientras responde el servidor, saludamos con el nombre guardado al iniciar sesión
+        vista.MostrarDatosUsuario(modelo.ObtenerNombreGuardado())
+
+        modelo.CargarInformacionPanel(
+            alTerminar = { nombre, citaTitulo, citaDetalle, tratamientoNombre, pagosTexto ->
+                vista.MostrarDatosUsuario(nombre)
+                vista.MostrarDatosProximaCita(citaTitulo, citaDetalle)
+                vista.MostrarDatosTratamiento(tratamientoNombre)
+                vista.MostrarPagosPendientes(pagosTexto)
+            },
+            alFallar = { mensaje ->
+                vista.MostrarMensaje(mensaje)
+            }
+        )
     }
 
     fun ClickProximaCita() {

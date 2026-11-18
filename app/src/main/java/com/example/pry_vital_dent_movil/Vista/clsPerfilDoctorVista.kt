@@ -1,5 +1,6 @@
 package com.example.pry_vital_dent_movil.Vista
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
@@ -15,6 +16,12 @@ import com.example.pry_vital_dent_movil.Presentador.clsPerfilDoctorPresentador
 import com.google.android.material.appbar.MaterialToolbar
 
 class clsPerfilDoctorVista : AppCompatActivity() {
+
+    companion object {
+        // Id del doctor que se abre desde "Nuestros doctores" (vacío = el primero)
+        const val EXTRA_ID_DOCTOR = "ID_DOCTOR"
+    }
+
     private lateinit var presentador: clsPerfilDoctorPresentador
     private lateinit var tbPerfilDoctor: MaterialToolbar
     private lateinit var cvPerfilDoctor: MaterialCardView
@@ -54,7 +61,7 @@ class clsPerfilDoctorVista : AppCompatActivity() {
 
         // 2. HASTA DESPUÉS inicializamos el presentador y cargamos los datos
         presentador = clsPerfilDoctorPresentador(this)
-        presentador.CargarDatosDoctor()
+        presentador.CargarDatosDoctor(intent.getStringExtra(EXTRA_ID_DOCTOR) ?: "")
 
         btnAgendarConDoctor.setOnClickListener {
             presentador.ClickAgendarCita()
@@ -82,8 +89,10 @@ class clsPerfilDoctorVista : AppCompatActivity() {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
-    fun IrAAgendarCita() {
-        Toast.makeText(this, "Abriendo flujo para agendar cita...", Toast.LENGTH_SHORT).show()
+    fun IrAAgendarCita(idDoctor: String) {
+        val intent = Intent(this, clsAgendarCitaVista::class.java)
+        intent.putExtra(clsAgendarCitaVista.EXTRA_ID_DOCTOR, idDoctor)
+        startActivity(intent)
     }
 
     fun LlamarConsultorio() {

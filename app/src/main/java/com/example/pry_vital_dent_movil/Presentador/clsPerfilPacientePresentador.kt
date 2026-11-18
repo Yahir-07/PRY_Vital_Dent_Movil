@@ -8,8 +8,12 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private val modelo = clsPerfilPacienteModelo(vista)
 
     fun CargarPerfil() {
-        modelo.ObtenerDatosPerfil { telefono, correo, domicilio, huellaActiva ->
-            vista.MostrarInformacion(telefono, correo, domicilio, huellaActiva)
+        modelo.ObtenerDatosPerfil { datos, mensaje, huellaActiva ->
+            if (datos != null) {
+                vista.MostrarInformacion(datos.telefono, datos.correo, datos.domicilio, huellaActiva)
+            } else {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 
@@ -34,6 +38,7 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     }
 
     fun ClickCerrarSesion() {
+        modelo.CerrarSesion()
         vista.CerrarSesionApp()
     }
 }

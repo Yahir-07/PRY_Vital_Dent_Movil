@@ -14,6 +14,11 @@ import com.google.android.material.appbar.MaterialToolbar
 
 class clsAvanceTratamientoVista : AppCompatActivity() {
 
+    companion object {
+        // Opcional: si no se manda, se muestra el tratamiento en curso más reciente
+        const val EXTRA_ID_TRATAMIENTO = "ID_TRATAMIENTO"
+    }
+
     private lateinit var presentador: clsAvanceTratamientoPresentador
     private lateinit var tbDetalleTratamiento: MaterialToolbar
     private lateinit var tvPorcentajeAvance: TextView
@@ -43,7 +48,11 @@ class clsAvanceTratamientoVista : AppCompatActivity() {
 
         // 2. HASTA DESPUÉS inicializamos el presentador y cargamos los datos
         presentador = clsAvanceTratamientoPresentador(this)
-        presentador.CargarDatosDetalle()
+        presentador.CargarDatosDetalle(intent.getStringExtra(EXTRA_ID_TRATAMIENTO) ?: "")
+    }
+
+    fun MostrarNombreTratamiento(nombre: String) {
+        tbDetalleTratamiento.title = nombre
     }
 
     fun MostrarResumen(porcentaje: String, sesiones: String, finEstimado: String, estado: String) {

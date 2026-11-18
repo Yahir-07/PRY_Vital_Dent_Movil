@@ -56,7 +56,7 @@ class clsMisTratamientosVista : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        // configurarBarraInferior(2) // Descomenta si ya lo tienes implementado
+        configurarBarraInferior(2) // Barra inferior (Tratamientos = posición 2), está en NavegacionHelper.kt
     }
 
     fun MostrarListaTratamientos(lista: List<DataTratamiento>) {
@@ -67,9 +67,9 @@ class clsMisTratamientosVista : AppCompatActivity() {
         tvAvisoTratamientos.text = mensaje
     }
 
-    fun IrADetalleTratamiento(nombreTratamiento: String) {
-        Toast.makeText(this, "Abriendo detalle de: $nombreTratamiento", Toast.LENGTH_SHORT).show()
-        // val intent = Intent(this, clsDetalleTratamientoVista::class.java)
-        // startActivity(intent)
+    fun IrADetalleTratamiento(idTratamiento: String) {
+        val intent = Intent(this, clsAvanceTratamientoVista::class.java)
+        intent.putExtra(clsAvanceTratamientoVista.EXTRA_ID_TRATAMIENTO, idTratamiento)
+        startActivity(intent)
     }
 }

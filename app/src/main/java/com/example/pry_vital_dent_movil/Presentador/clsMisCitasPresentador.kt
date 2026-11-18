@@ -9,15 +9,21 @@ class clsMisCitasPresentador(private val vista: clsMisCitasVista) {
     private val modelo = clsMisCitasModelo(vista as Context)
 
     fun CargarCitasProximas() {
-        modelo.ObtenerListaCitas { lista ->
-            vista.MostrarListaCitas(lista)
-        }
+        CargarCitas("proximas")
     }
 
     fun CargarCitasAnteriores() {
-        // Aquí puedes cargar las citas pasadas o la lista correspondiente
-        modelo.ObtenerListaCitas { lista ->
+        CargarCitas("anteriores")
+    }
+
+    private fun CargarCitas(tipo: String) {
+        modelo.ObtenerListaCitas(tipo) { exito, mensaje, lista ->
             vista.MostrarListaCitas(lista)
+            if (!exito) {
+                vista.MostrarMensaje(mensaje)
+            } else if (lista.isEmpty()) {
+                vista.MostrarMensaje(if (tipo == "proximas") "No tienes citas próximas" else "No tienes citas anteriores")
+            }
         }
     }
 
