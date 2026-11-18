@@ -4,13 +4,17 @@ import android.content.Context
 
 class clsLoginModelo(private val contexto: Context) {
 
+    // POST login.php: valida el correo y la contraseña contra la tabla usuarios
     fun AutenticarUsuario(usuario: String, contrasena: String, alTerminar: (Boolean, String) -> Unit) {
-        // Aquí harás la petición POST con Retrofit a tu backend de PHP
-        if (usuario.isNotEmpty() && contrasena.isNotEmpty()) {
-            // Simulamos éxito
-            alTerminar(true, "Bienvenido")
-        } else {
-            alTerminar(false, "Usuario o contraseña incorrectos")
+        val llamada = RetrofitClient.api.IniciarSesion(SolicitudLogin(usuario, contrasena))
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            if (exito && datos != null) {
+                clsSesion.Guardar(contexto, datos.token, datos.nombre)
+                alTerminar(true, mensaje)
+            } else {
+                alTerminar(false, mensaje)
+            }
         }
     }
 }

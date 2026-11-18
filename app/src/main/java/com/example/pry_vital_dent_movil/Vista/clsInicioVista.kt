@@ -3,6 +3,7 @@ package com.example.pry_vital_dent_movil.Vista
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pry_vital_dent_movil.Presentador.clsInicioPresentador
 import com.example.pry_vital_dent_movil.R
@@ -79,6 +80,10 @@ class clsInicioVista : AppCompatActivity() {
 
     fun MostrarPagosPendientes(textoPagos: String) {
         tvPagosPendientes.text = textoPagos
+    }
+
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
     // ==========================================

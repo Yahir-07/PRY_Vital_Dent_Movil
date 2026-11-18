@@ -5,5 +5,6 @@ data class DataDoctor(
     val nombre: String,
     val especialidad: String,
     val descripcion: String,
-    val cedula: String
+    val cedula: String,
+    val idDoctor: String = ""
 )

@@ -4,29 +4,21 @@ import android.content.Context
 
 class clsHistorialMedicoModelo(private val contexto: Context) {
 
+    // GET historial.php: alergias registradas del paciente
     fun ObtenerAlergias(alTerminar: (List<String>) -> Unit) {
-        // TOD0: Aquí conectarás tu API con Retrofit para traer las alergias del paciente
-        val alergias = listOf("Penicilina", "Látex")
-        alTerminar(alergias)
+        val llamada = RetrofitClient.api.ObtenerHistorial(clsSesion.ObtenerToken(contexto), "Todo")
+
+        RetrofitClient.Ejecutar(contexto, llamada) { _, _, datos ->
+            alTerminar(datos?.alergias ?: emptyList())
+        }
     }
 
-    fun ObtenerHistorial(filtro: String, alTerminar: (List<DataHistorial>) -> Unit) {
-        // TOD0: Aquí conectarás tu API con Retrofit y MySQL para traer el historial médico real
-        val listaCompleta = listOf(
-            DataHistorial("1", "Cita atendida", "24 oct 2026 - Ajuste de brackets"),
-            DataHistorial("2", "Consulta", "24 oct 2026 - Dx: caries profunda pieza 36"),
-            DataHistorial("3", "Receta", "24 oct 2026 - Ibuprofeno 400 mg c/8 h x 3 días"),
-            DataHistorial("4", "Tratamiento iniciado", "2 oct 2026 - Endodoncia pieza 36")
-        )
+    // GET historial.php?filtro=Todo | Consultas | Recetas | Tratamientos (el servidor filtra)
+    fun ObtenerHistorial(filtro: String, alTerminar: (Boolean, String, List<DataHistorial>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerHistorial(clsSesion.ObtenerToken(contexto), filtro)
 
-        // Lógica de filtrado con los objetos DataHistorial
-        val listaFiltrada = when (filtro) {
-            "Consultas" -> listaCompleta.filter { it.titulo.equals("Consulta", ignoreCase = true) }
-            "Recetas" -> listaCompleta.filter { it.titulo.equals("Receta", ignoreCase = true) }
-            "Tratamientos" -> listaCompleta.filter { it.titulo.contains("Tratamiento", ignoreCase = true) }
-            else -> listaCompleta
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos?.historial ?: emptyList())
         }
-
-        alTerminar(listaFiltrada)
     }
 }

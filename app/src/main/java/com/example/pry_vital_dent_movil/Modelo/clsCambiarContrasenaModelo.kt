@@ -25,7 +25,14 @@ class clsCambiarContrasenaModelo(private val contexto: Context) {
             return
         }
 
-        // Simulación de petición exitosa a la API con Retrofit
-        alTerminar(true, "Contraseña actualizada exitosamente")
+        // POST cambiar_contrasena.php: verifica la contraseña actual y guarda la nueva
+        val llamada = RetrofitClient.api.CambiarContrasena(
+            clsSesion.ObtenerToken(contexto),
+            SolicitudCambioContrasena(actual, nueva)
+        )
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, _ ->
+            alTerminar(exito, mensaje)
+        }
     }
 }

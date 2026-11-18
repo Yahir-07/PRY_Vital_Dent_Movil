@@ -4,14 +4,21 @@ import android.content.Context
 
 class clsInicioModelo(private val contexto: Context) {
 
-    fun CargarInformacionPanel(alTerminar: (nombre: String, citaTitulo: String, citaDetalle: String, tratamientoNombre: String, pagosTexto: String) -> Unit) {
-        // Aquí posteriormente conectarás tu API de PHP / Base de datos
-        val nombreUsuario = "Mariana López"
-        val citaTitulo = "Ajuste de brackets"
-        val citaDetalle = "Jue 12 nov · 10:30 a. m. - Dr. Andrés Ruiz"
-        val tratamientoNombre = "Ortodoncia (Sesión 9)"
-        val pagosTexto = "1 pendiente"
+    fun ObtenerNombreGuardado(): String = clsSesion.ObtenerNombre(contexto)
 
-        alTerminar(nombreUsuario, citaTitulo, citaDetalle, tratamientoNombre, pagosTexto)
+    // GET inicio.php: próxima cita, tratamiento activo y saldo pendiente
+    fun CargarInformacionPanel(
+        alTerminar: (nombre: String, citaTitulo: String, citaDetalle: String, tratamientoNombre: String, pagosTexto: String) -> Unit,
+        alFallar: (mensaje: String) -> Unit
+    ) {
+        val llamada = RetrofitClient.api.ObtenerInicio(clsSesion.ObtenerToken(contexto))
+
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            if (exito && datos != null) {
+                alTerminar(datos.nombre, datos.citaTitulo, datos.citaDetalle, datos.tratamientoNombre, datos.pagosTexto)
+            } else {
+                alFallar(mensaje)
+            }
+        }
     }
 }

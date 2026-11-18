@@ -4,12 +4,12 @@ import android.content.Context
 
 class clsMisCitasModelo(private val contexto: Context) {
 
-    fun ObtenerListaCitas(alTerminar: (List<DataCita>) -> Unit) {
-        val listaCitas = listOf(
-            DataCita("1", "Ortodoncia - Ajuste de brackets", "Lunes 24 de Noviembre • 10:00 AM", "Confirmada"),
-            DataCita("2", "Limpieza dental profunda", "Viernes 28 de Noviembre • 04:30 PM", "Pendiente")
-        )
+    // GET citas.php?tipo=proximas | anteriores
+    fun ObtenerListaCitas(tipo: String, alTerminar: (Boolean, String, List<DataCita>) -> Unit) {
+        val llamada = RetrofitClient.api.ObtenerCitas(clsSesion.ObtenerToken(contexto), tipo)
 
-        alTerminar(listaCitas)
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            alTerminar(exito, mensaje, datos ?: emptyList())
+        }
     }
 }

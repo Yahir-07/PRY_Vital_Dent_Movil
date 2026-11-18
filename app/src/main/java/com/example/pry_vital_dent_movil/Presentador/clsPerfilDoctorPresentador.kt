@@ -7,24 +7,28 @@ import com.example.pry_vital_dent_movil.Vista.clsPerfilDoctorVista
 class clsPerfilDoctorPresentador(private val vista: clsPerfilDoctorVista) {
 
     private val modelo = clsPerfilDoctorModelo(vista)
+    private var idDoctorActual: String = ""
 
-    fun CargarDatosDoctor() {
-        modelo.ObtenerDetalleDoctor { iniciales, nombre, especialidad, clinica, cedula, descripcion ->
-            vista.MostrarDetalles(iniciales, nombre, especialidad, clinica, cedula, descripcion)
-        }
-
-        modelo.ObtenerOtrosDoctores { listaOtros ->
-            vista.MostrarOtrosDoctores(listaOtros)
+    // idDoctor vacío = primer doctor de la lista
+    fun CargarDatosDoctor(idDoctor: String) {
+        modelo.ObtenerPerfilDoctor(idDoctor) { exito, mensaje, datos ->
+            if (exito && datos != null) {
+                idDoctorActual = datos.idDoctor
+                vista.MostrarDetalles(datos.iniciales, datos.nombre, datos.especialidad, datos.clinica, datos.cedula, datos.descripcion)
+                vista.MostrarOtrosDoctores(datos.otros ?: emptyList())
+            } else {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 
     fun SeleccionarOtroDoctor(doctor: DataDoctorCompacto) {
         vista.MostrarMensaje("Abriendo perfil de: ${doctor.nombre}")
-        // Aquí puedes manejar la redirección al perfil del doctor seleccionado si lo requieres
+        CargarDatosDoctor(doctor.idDoctor)
     }
 
     fun ClickAgendarCita() {
-        vista.IrAAgendarCita()
+        vista.IrAAgendarCita(idDoctorActual)
     }
 
     fun ClickLlamarConsultorio() {

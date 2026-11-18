@@ -16,8 +16,13 @@ class clsPagosPresentador(private val vista: clsPagosVista) {
     }
 
     fun CambiarPestana(posicionTab: Int) {
-        modelo.ObtenerListaPagos(posicionTab) { listaPagos ->
+        modelo.ObtenerListaPagos(posicionTab) { exito, mensaje, listaPagos ->
             vista.MostrarListaPagos(listaPagos)
+            if (!exito) {
+                vista.MostrarMensaje(mensaje)
+            } else if (listaPagos.isEmpty()) {
+                vista.MostrarMensaje(if (posicionTab == 0) "Aún no tienes pagos registrados" else "No tienes pagos pendientes")
+            }
         }
     }
 

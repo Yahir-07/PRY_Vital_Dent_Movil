@@ -21,6 +21,11 @@ import java.util.Locale
 
 class clsAgendarCitaVista : AppCompatActivity() {
 
+    companion object {
+        // Opcional: id del doctor cuando se llega desde su perfil
+        const val EXTRA_ID_DOCTOR = "ID_DOCTOR"
+    }
+
     private lateinit var presentador: clsAgendarCitaPresentador
     private lateinit var tbAgendarCita: MaterialToolbar
     private lateinit var calCita: CalendarView
@@ -41,6 +46,9 @@ class clsAgendarCitaVista : AppCompatActivity() {
         etMotivo = findViewById(R.id.etMotivo)
         btnConfirmarCita = findViewById(R.id.btnConfirmarCita)
 
+        // No se pueden elegir días pasados
+        calCita.minDate = System.currentTimeMillis() - 1000
+
         // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView (ej. en cuadrícula de 3 o 4 columnas)
         horaAdaptador = HoraAdaptador(emptyList()) { horaSeleccionada ->
             presentador.SeleccionarHora(horaSeleccionada)
@@ -50,6 +58,7 @@ class clsAgendarCitaVista : AppCompatActivity() {
 
         // 2. HASTA DESPUÉS inicializamos el presentador y cargamos las fechas/horas
         presentador = clsAgendarCitaPresentador(this)
+        presentador.AsignarDoctor(intent.getStringExtra(EXTRA_ID_DOCTOR) ?: "")
 
         // Obtener la fecha actual por defecto al abrir
         val fechaActual = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(calCita.date))
@@ -66,6 +75,10 @@ class clsAgendarCitaVista : AppCompatActivity() {
             val motivo = etMotivo.text.toString().trim()
             presentador.ClickConfirmarCita(motivo)
         }
+    }
+
+    fun MostrarFechaSeleccionada(fecha: String) {
+        tvHoraDisponible.text = getString(R.string.hora_disponible_fecha, fecha)
     }
 
     fun MostrarHorariosDisponibles(listaHoras: List<DataHora>) {

@@ -64,8 +64,7 @@ class clsPagosVista : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        // Nota: Asegúrate de tener implementada tu función configurarBarraInferior si la usas en tu app
-        // configurarBarraInferior(3)
+        configurarBarraInferior(3) // Barra inferior (Pagos = posición 3), está en NavegacionHelper.kt
     }
 
     fun MostrarSaldo(monto: String, concepto: String) {
