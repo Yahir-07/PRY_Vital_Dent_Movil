@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
@@ -11,6 +12,11 @@ import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsPagoAprobadoPresentador
 
 class clsPagoAprobadoVista : AppCompatActivity() {
+
+    companion object {
+        // Referencia (folio) del pago que se acaba de aprobar
+        const val EXTRA_REFERENCIA = "REFERENCIA_PAGO"
+    }
 
     private lateinit var presentador: clsPagoAprobadoPresentador
     private lateinit var ivExito: ImageView
@@ -52,7 +58,7 @@ class clsPagoAprobadoVista : AppCompatActivity() {
         btnVolverInicio = findViewById(R.id.btnVolverInicio)
 
         presentador = clsPagoAprobadoPresentador(this)
-        presentador.CargarComprobante()
+        presentador.CargarComprobante(intent.getStringExtra(EXTRA_REFERENCIA) ?: "")
 
         btnVerMisPagos.setOnClickListener {
             presentador.ClickVerMisPagos()
@@ -70,6 +76,10 @@ class clsPagoAprobadoVista : AppCompatActivity() {
         tvMedioValor.text = medio
         tvAutorizadoValor.text = autorizado
         tvFolioValor.text = folio
+    }
+
+    fun MostrarMensaje(mensaje: String) {
+        Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
     }
 
     fun IrAMisPagos() {

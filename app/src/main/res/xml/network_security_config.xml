@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- RNF-10: la app solo se comunica por HTTPS (hosting y Mercado Pago).
+     HTTP sin cifrar solo se permite hacia el XAMPP de la PC del equipo para pruebas locales. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">192.168.137.1</domain>
+        <domain includeSubdomains="false">10.177.56.181</domain>
+        <domain includeSubdomains="false">172.26.72.181</domain>
+        <domain includeSubdomains="false">10.0.2.2</domain>
+        <domain includeSubdomains="false">localhost</domain>
+    </domain-config>
+</network-security-config>

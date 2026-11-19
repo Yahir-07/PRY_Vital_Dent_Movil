@@ -30,7 +30,8 @@ class clsValidacionBiometricaVista : AppCompatActivity() {
         presentador = clsValidacionBiometricaPresentador(this)
 
         // Texto de ejemplo para el concepto de confirmación
-        tvConfirmarConcepto.text = "Endodoncia pieza 36 - $1,800.00"
+        tvConfirmarConcepto.text = intent.getStringExtra(clsRealizarPagoVista.EXTRA_RESUMEN_PAGO)
+            ?: "Endodoncia pieza 36 - $1,800.00"
         tvErrorHuella.text = "Coloca tu dedo en el sensor"
 
         // Simular escaneo al presionar el icono de la huella
@@ -54,11 +55,13 @@ class clsValidacionBiometricaVista : AppCompatActivity() {
     }
 
     fun IrAPagoAprobado() {
-        // Aquí puedes abrir la Pantalla 16 (clsPagoAprobadoVista)
-        Toast.makeText(this, "Redirigiendo a comprobante de pago...", Toast.LENGTH_SHORT).show()
+        // Huella aprobada: Realizar pago continúa con Mercado Pago y después muestra la Pantalla 16
+        setResult(RESULT_OK)
+        finish()
     }
 
     fun CancelarYRegresar() {
+        setResult(RESULT_CANCELED)
         finish()
     }
 }

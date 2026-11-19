@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Pantalla 14 · Realizar pago (la pantalla 15 es bottom_sheet_confirmar_pago.xml) -->
+<!-- Pantalla 14 · Realizar pago con Mercado Pago (Checkout Pro).
+     El paciente elige el tratamiento y el monto; los datos de la tarjeta se escriben en la página
+     segura de Mercado Pago, la app nunca los recibe. Al volver se muestra el comprobante (pantalla 16). -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -33,13 +35,43 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/vd_margen_pantalla">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvConcepto"
+            <!-- 1. Tratamiento a pagar (desde código: opciones de opciones_pago.php) -->
+            <TextView
+                android:id="@+id/lblTratamientoPago"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/actvTratamientoPago"
+                android:text="@string/etiqueta_tratamiento_pagar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTratamientoPago"
+                style="@style/VitalDent.Campo.Desplegable"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/lblTratamientoPago">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvTratamientoPago"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    tools:text="@string/ej_concepto_endodoncia_s2" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- 2. Resumen: concepto y saldo pendiente -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvConcepto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tilTratamientoPago">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -81,7 +113,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/vd_espacio_m"
-                        android:text="@string/etiqueta_total_pagar"
+                        android:text="@string/pagos_saldo_pendiente"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/divConcepto" />
 
@@ -96,6 +128,39 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!-- 3. Monto a pagar (puede ser parcial, máximo el saldo) -->
+            <TextView
+                android:id="@+id/lblMontoPago"
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etMontoPago"
+                android:text="@string/etiqueta_monto_pagar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvConcepto" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMontoPago"
+                style="@style/VitalDent.Campo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lblMontoPago"
+                app:prefixText="$"
+                tools:helperText="@string/ej_ayuda_monto_maximo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMontoPago"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal"
+                    tools:text="1800.00" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- 4. Medio de pago: Mercado Pago (tarjeta de crédito o débito en su página segura) -->
             <TextView
                 android:id="@+id/lblMedioPago"
                 style="@style/VitalDent.Texto.Etiqueta"
@@ -103,15 +168,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/etiqueta_medio_pago"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvConcepto" />
+                app:layout_constraintTop_toBottomOf="@+id/tilMontoPago" />
 
-            <!-- Tarjeta guardada (el RadioButton se sincroniza con el de "Agregar tarjeta" desde código) -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvTarjetaGuardada"
+                android:id="@+id/cvMercadoPago"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lblMedioPago">
@@ -122,17 +184,17 @@
                     android:padding="@dimen/vd_espacio_m">
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
-                        android:id="@+id/rbTarjetaGuardada"
+                        android:id="@+id/rbMercadoPago"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:checked="true"
-                        android:contentDescription="@string/cd_tarjeta_guardada"
+                        android:contentDescription="@string/pago_mercado_pago"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:id="@+id/ivMarcaTarjeta"
+                        android:id="@+id/ivMercadoPago"
                         style="@style/VitalDent.Miniatura"
                         android:layout_width="@dimen/vd_icono_l"
                         android:layout_height="@dimen/vd_icono_l"
@@ -140,54 +202,33 @@
                         android:padding="@dimen/vd_espacio_s"
                         android:src="@drawable/ic_pagos"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/rbTarjetaGuardada"
+                        app:layout_constraintStart_toEndOf="@+id/rbMercadoPago"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvTarjetaGuardada"
+                        android:id="@+id/tvMercadoPago"
                         style="@style/VitalDent.Texto.TituloTarjeta"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/vd_espacio_m"
-                        app:layout_constraintBottom_toTopOf="@+id/tvVenceTarjeta"
+                        android:text="@string/pago_mercado_pago"
+                        app:layout_constraintBottom_toTopOf="@+id/tvMercadoPagoDetalle"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/ivMarcaTarjeta"
+                        app:layout_constraintStart_toEndOf="@+id/ivMercadoPago"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_chainStyle="packed"
-                        tools:text="@string/ej_tarjeta" />
+                        app:layout_constraintVertical_chainStyle="packed" />
 
                     <TextView
-                        android:id="@+id/tvVenceTarjeta"
+                        android:id="@+id/tvMercadoPagoDetalle"
                         style="@style/VitalDent.Texto.Secundario"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:text="@string/pago_mercado_pago_detalle"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/tvTarjetaGuardada"
-                        app:layout_constraintTop_toBottomOf="@+id/tvTarjetaGuardada"
-                        tools:text="@string/ej_vence" />
+                        app:layout_constraintStart_toStartOf="@+id/tvMercadoPago"
+                        app:layout_constraintTop_toBottomOf="@+id/tvMercadoPago" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvAgregarTarjeta"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/vd_espacio_m"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvTarjetaGuardada">
-
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/rbAgregarTarjeta"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/vd_alto_boton"
-                    android:paddingStart="@dimen/vd_espacio_m"
-                    android:paddingEnd="@dimen/vd_espacio_m"
-                    android:layout_marginStart="@dimen/vd_espacio_m"
-                    android:text="@string/pago_agregar_tarjeta"
-                    android:textColor="@color/vd_texto_primario" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
@@ -199,7 +240,7 @@
                 android:text="@string/pago_aviso_cifrado"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvAgregarTarjeta" />
+                app:layout_constraintTop_toBottomOf="@+id/cvMercadoPago" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
