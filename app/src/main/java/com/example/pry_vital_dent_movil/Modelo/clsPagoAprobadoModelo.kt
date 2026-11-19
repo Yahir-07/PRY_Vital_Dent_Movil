@@ -4,15 +4,12 @@ import android.content.Context
 
 class clsPagoAprobadoModelo(private val contexto: Context) {
 
-    fun ObtenerDetallesComprobante(alTerminar: (String, String, String, String, String, String) -> Unit) {
-        // Aquí conectarás tu API con Retrofit para traer los datos del ticket guardado
-        val monto = "$1,800.00"
-        val concepto = "Endodoncia - sesión 2"
-        val fecha = "31 oct 2026, 9:41"
-        val medio = "Visa •••• 4621"
-        val autorizado = "Huella digital"
-        val folio = "VD-2026-10-00418"
-
-        alTerminar(monto, concepto, fecha, medio, autorizado, folio)
+    // GET estado_pago.php: datos del comprobante guardado en la tabla pagos
+    fun ObtenerDetallesComprobante(referencia: String, alTerminar: (Boolean, String, DataComprobante?) -> Unit) {
+        val llamada = RetrofitClient.api.ConsultarEstadoPago(clsSesion.ObtenerToken(contexto), referencia)
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
+            val comprobante = if (exito && datos?.estado == "aprobado") datos.comprobante else null
+            alTerminar(comprobante != null, mensaje, comprobante)
+        }
     }
 }

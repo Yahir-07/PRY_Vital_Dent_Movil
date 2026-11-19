@@ -177,7 +177,13 @@
     <string name="tab_pendientes_conteo">Pendientes (%1$d)</string>
     <string name="realizar_pago_titulo">Realizar pago</string>
     <string name="pago_agregar_tarjeta">Agregar tarjeta nueva</string>
-    <string name="pago_aviso_cifrado">Pago cifrado. No guardamos el número completo de tu tarjeta.</string>
+    <string name="pago_aviso_cifrado">Pago seguro por HTTPS. Los datos de tu tarjeta los escribes en Mercado Pago: Vital Dent no los recibe ni los guarda.</string>
+    <string name="etiqueta_tratamiento_pagar">Tratamiento a pagar *</string>
+    <string name="etiqueta_monto_pagar">Monto a pagar *</string>
+    <string name="ayuda_monto_maximo">Puedes pagar una parte. Máximo %1$s</string>
+    <string name="pago_mercado_pago">Mercado Pago</string>
+    <string name="pago_mercado_pago_detalle">Tarjeta de crédito o débito en la página segura de Mercado Pago</string>
+    <string name="pago_sin_saldo">No tienes pagos pendientes</string>
     <string name="pago_nota_huella">Se pedirá tu huella para autorizar el pago</string>
     <string name="formato_vence">Vence %1$s</string>
     <string name="confirmar_pago_titulo">Confirma tu pago</string>

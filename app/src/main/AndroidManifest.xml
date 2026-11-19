@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -62,7 +62,19 @@
 
         <!-- 08. Pagos y Finanzas -->
         <activity android:name=".Vista.clsPagosVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".Vista.clsRealizarPagoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <!-- Realizar pago: Mercado Pago regresa a la app con el enlace vitaldent://pago?referencia=... -->
+        <activity
+            android:name=".Vista.clsRealizarPagoVista"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="vitaldent" android:host="pago" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Vista.clsPagoAprobadoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
 
         <!-- 09. Sesión / Diálogos de Seguridad -->

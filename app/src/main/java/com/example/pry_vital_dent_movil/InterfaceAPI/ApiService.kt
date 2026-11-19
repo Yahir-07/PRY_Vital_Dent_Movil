@@ -5,6 +5,9 @@ import com.example.pry_vital_dent_movil.Modelo.DataDoctor
 import com.example.pry_vital_dent_movil.Modelo.DataHora
 import com.example.pry_vital_dent_movil.Modelo.DataTratamiento
 import com.example.pry_vital_dent_movil.Modelo.DatosAvanceTratamiento
+import com.example.pry_vital_dent_movil.Modelo.DatosEstadoPago
+import com.example.pry_vital_dent_movil.Modelo.DatosOpcionesPago
+import com.example.pry_vital_dent_movil.Modelo.DatosPagoCreado
 import com.example.pry_vital_dent_movil.Modelo.DatosHistorial
 import com.example.pry_vital_dent_movil.Modelo.DatosInicio
 import com.example.pry_vital_dent_movil.Modelo.DatosLogin
@@ -17,6 +20,7 @@ import com.example.pry_vital_dent_movil.Modelo.RetrofitClient
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCambioContrasena
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCita
 import com.example.pry_vital_dent_movil.Modelo.SolicitudLogin
+import com.example.pry_vital_dent_movil.Modelo.SolicitudPago
 import com.example.pry_vital_dent_movil.Modelo.SolicitudRegistro
 import retrofit2.Call
 import retrofit2.http.Body
@@ -115,4 +119,26 @@ interface ApiService {
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
         @Query("filtro") filtro: String
     ): Call<RespuestaApi<DatosHistorial>>
+
+    // ---------- Realizar pago con Mercado Pago (PAG-02, PAG-04) ----------
+
+    // Tratamientos con saldo por pagar
+    @GET("opciones_pago.php")
+    fun ObtenerOpcionesPago(
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String
+    ): Call<RespuestaApi<DatosOpcionesPago>>
+
+    // Crea el pago en Mercado Pago y regresa la página segura donde se paga
+    @POST("crear_pago.php")
+    fun CrearPago(
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
+        @Body datos: SolicitudPago
+    ): Call<RespuestaApi<DatosPagoCreado>>
+
+    // Estado del pago; si Mercado Pago lo aprobó, el servidor lo registra (una sola vez) y da el comprobante
+    @GET("estado_pago.php")
+    fun ConsultarEstadoPago(
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
+        @Query("referencia") referencia: String
+    ): Call<RespuestaApi<DatosEstadoPago>>
 }
