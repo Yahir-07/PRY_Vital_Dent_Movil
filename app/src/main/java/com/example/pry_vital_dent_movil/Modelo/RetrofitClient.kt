@@ -26,6 +26,10 @@ object RetrofitClient {
 
     val URL_BASE: String = if (USAR_SERVIDOR_LOCAL) "http://192.168.137.1/APIS_proyecto/" else URL_HOSTING
 
+    // APIs de correos de citas con Brevo (carpeta APIs-VD). Cambia la ruta si se sube en otra carpeta.
+    val URL_CORREOS: String =
+        if (USAR_SERVIDOR_LOCAL) "http://192.168.137.1/APIs-VD/" else "https://victor.4buthh.com/APIs-VD/"
+
     // Solo en modo local: direcciones donde puede estar la PC con XAMPP.
     // Se prueban en orden y se recuerda la que funcionó.
     // · 192.168.137.1 = la PC cuando comparte su "Zona con cobertura inalámbrica" (siempre es la misma)

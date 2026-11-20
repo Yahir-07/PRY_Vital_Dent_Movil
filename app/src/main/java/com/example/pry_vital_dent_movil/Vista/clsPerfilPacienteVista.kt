@@ -11,6 +11,7 @@ import com.google.android.material.card.MaterialCardView
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsPerfilPacientePresentador
+import com.example.pry_vital_dent_movil.Modelo.clsBiometria
 import com.google.android.material.appbar.MaterialToolbar
 
 class clsPerfilPacienteVista : AppCompatActivity() {
@@ -42,6 +43,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
     private lateinit var swHuellaPagos: MaterialSwitch
     private lateinit var tvCerrarSesion: TextView
     private var cargandoHuella = false
+    private lateinit var biometria: clsBiometria
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +75,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         swHuellaPagos = findViewById(R.id.swHuellaPagos)
         tvCerrarSesion = findViewById(R.id.tvCerrarSesion)
 
+        biometria = clsBiometria(this) // debe crearse aquí, en onCreate
         presentador = clsPerfilPacientePresentador(this)
         presentador.CargarPerfil()
 
@@ -111,6 +114,31 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         swHuellaPagos.isChecked = huellaActiva
         cargandoHuella = false
         tvHuellaPagosEstado.text = if (huellaActiva) "Activada" else "Desactivada"
+    }
+
+    // ---------- Huella para pagos ----------
+
+    fun BiometriaDisponible(): Boolean = biometria.EstaDisponible()
+
+    fun MotivoBiometriaNoDisponible(): String = biometria.MotivoNoDisponible()
+
+    fun ConfirmarHuellaParaActivar() {
+        biometria.Autenticar(
+            titulo = "Activar huella para pagos",
+            subtitulo = "Confirma tu huella o tu rostro",
+            alExito = { presentador.HuellaPagosConfirmada() },
+            alError = { mensaje -> presentador.HuellaPagosNoConfirmada(mensaje) },
+            alCancelar = { presentador.HuellaPagosNoConfirmada(null) },
+            mensajeSinIntentos = "Demasiados intentos. No se activó la huella para pagos."
+        )
+    }
+
+    // Cambia el interruptor sin volver a disparar su listener
+    fun MarcarSwitchHuella(activa: Boolean) {
+        cargandoHuella = true
+        swHuellaPagos.isChecked = activa
+        cargandoHuella = false
+        tvHuellaPagosEstado.text = if (activa) "Activada" else "Desactivada"
     }
 
     fun MostrarMensaje(mensaje: String) {

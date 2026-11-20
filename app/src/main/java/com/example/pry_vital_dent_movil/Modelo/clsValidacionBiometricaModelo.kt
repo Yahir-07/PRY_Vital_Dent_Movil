@@ -1,24 +1,19 @@
 package com.example.pry_vital_dent_movil.Modelo
 
 import android.content.Context
+import com.example.pry_vital_dent_movil.R
 
+// PAG-03: la lectura real de la huella la hace Android con clsBiometria (desde la vista).
+// Aquí quedan los textos que se le muestran al paciente.
 class clsValidacionBiometricaModelo(private val contexto: Context) {
 
-    private var intentosRestantes = 2
+    fun MensajeHuellaReconocida(): String = "Huella reconocida con éxito"
 
-    fun ValidarHuellaDigital(alTerminar: (Boolean, String) -> Unit) {
-        // Simulación de autenticación biométrica exitosa o fallida
-        val exito = true // Cambiar a false si quieres probar el error de huella
+    // "Huella no reconocida. Te quedan 2 intentos."
+    fun MensajeIntentoFallido(intentosRestantes: Int): String =
+        contexto.resources.getQuantityString(R.plurals.error_huella_intentos, intentosRestantes, intentosRestantes)
 
-        if (exito) {
-            alTerminar(true, "Huella reconocida con éxito")
-        } else {
-            intentosRestantes--
-            if (intentosRestantes > 0) {
-                alTerminar(false, "Huella no reconocida. Te quedan $intentosRestantes intentos.")
-            } else {
-                alTerminar(false, "Demasiados intentos fallidos. Pago cancelado.")
-            }
-        }
-    }
+    fun MensajeSinIntentos(): String = "Demasiados intentos fallidos. Pago cancelado."
+
+    fun MensajeLectorCancelado(): String = "Toca la huella para intentarlo de nuevo"
 }
