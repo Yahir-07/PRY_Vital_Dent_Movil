@@ -7,13 +7,16 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsLoginPresentador
+import com.example.pry_vital_dent_movil.Modelo.clsBiometria
 
 class clsLoginVista : AppCompatActivity() {
 
     private lateinit var presentador: clsLoginPresentador
+    private lateinit var biometria: clsBiometria
     private lateinit var tvErrorCredenciales: TextView
     private lateinit var etUsuario: TextInputEditText
     private lateinit var etContrasena: TextInputEditText
@@ -34,6 +37,7 @@ class clsLoginVista : AppCompatActivity() {
         btnIngresarHuella = findViewById(R.id.btnIngresarHuella)
         btnIrCrearCuenta = findViewById(R.id.btnIrCrearCuenta)
 
+        biometria = clsBiometria(this) // debe crearse aquí, en onCreate
         presentador = clsLoginPresentador(this)
 
         btnIniciarSesion.setOnClickListener {
@@ -52,6 +56,11 @@ class clsLoginVista : AppCompatActivity() {
 
         btnIrCrearCuenta.setOnClickListener {
             presentador.ClickIrCrearCuenta()
+        }
+
+        // Si ya activó la huella, se le pide al abrir (post: espera a que se dibuje la pantalla)
+        if (savedInstanceState == null) {
+            btnIngresarHuella.post { presentador.AlIniciar() }
         }
     }
 
@@ -78,6 +87,45 @@ class clsLoginVista : AppCompatActivity() {
     fun IrARecuperarContrasena() {
         val intent = Intent(this, clsRecuperarContrasenaVista::class.java)
         startActivity(intent)
+    }
+
+    // ---------- Huella o rostro ----------
+
+    fun BiometriaDisponible(): Boolean = biometria.EstaDisponible()
+
+    fun MotivoBiometriaNoDisponible(): String = biometria.MotivoNoDisponible()
+
+    fun SolicitarHuella(nombre: String) {
+        biometria.Autenticar(
+            titulo = "Ingresar a Vital Dent",
+            subtitulo = if (nombre.isNotEmpty()) "Usa tu huella o tu rostro para entrar como $nombre"
+                        else "Usa tu huella o tu rostro",
+            alExito = { presentador.HuellaReconocida() },
+            alError = { mensaje -> presentador.HuellaNoReconocida(mensaje) }
+        )
+    }
+
+    fun PreguntarActivarHuella() {
+        MaterialAlertDialogBuilder(this)
+            .setIcon(R.drawable.ic_huella)
+            .setTitle("¿Entrar con tu huella?")
+            .setMessage("La próxima vez podrás entrar con tu huella o tu rostro, sin escribir tu contraseña.")
+            .setCancelable(false)
+            .setPositiveButton("Activar") { _, _ ->
+                // Se pide la huella una vez para confirmar que es el dueño del celular
+                biometria.Autenticar(
+                    titulo = "Activar acceso con huella",
+                    subtitulo = "Confirma tu huella o tu rostro",
+                    alExito = { presentador.HuellaActivada() },
+                    alError = { mensaje ->
+                        MostrarMensaje(mensaje)
+                        presentador.ActivacionHuellaOmitida()
+                    },
+                    alCancelar = { presentador.ActivacionHuellaOmitida() }
+                )
+            }
+            .setNegativeButton("Ahora no") { _, _ -> presentador.ActivacionHuellaOmitida() }
+            .show()
     }
 
     fun IrARegistro() {

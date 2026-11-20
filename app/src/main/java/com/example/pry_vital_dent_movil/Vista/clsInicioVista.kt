@@ -24,6 +24,7 @@ class clsInicioVista : AppCompatActivity() {
     private lateinit var cvHistorialMedico: MaterialCardView
     private lateinit var cvPagos: MaterialCardView
     private lateinit var tvPagosPendientes: TextView
+    private lateinit var cvMultimedia: MaterialCardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +48,7 @@ class clsInicioVista : AppCompatActivity() {
         cvHistorialMedico = vistaTarjetas.findViewById(R.id.cvHistorialMedico)
         cvPagos = vistaTarjetas.findViewById(R.id.cvPagos)
         tvPagosPendientes = vistaTarjetas.findViewById(R.id.tvPagosPendientes)
+        cvMultimedia = vistaTarjetas.findViewById(R.id.cvMultimedia)
 
         presentador = clsInicioPresentador(this)
         presentador.InicializarPanel()
@@ -58,6 +60,7 @@ class clsInicioVista : AppCompatActivity() {
         cvTratamientos.setOnClickListener { presentador.ClickTratamientos() }
         cvHistorialMedico.setOnClickListener { presentador.ClickHistorialMedico() }
         cvPagos.setOnClickListener { presentador.ClickPagos() }
+        cvMultimedia.setOnClickListener { presentador.ClickMultimedia() }
 
         // 5. Activamos la barra de navegación inferior (Inicio es la posición 0)
         configurarBarraInferior(0)
@@ -116,6 +119,10 @@ class clsInicioVista : AppCompatActivity() {
 
     fun IrAPagos() {
         startActivity(Intent(this, clsPagosVista::class.java))
+    }
+
+    fun IrAMultimedia() {
+        startActivity(Intent(this, clsMultimediaVista::class.java))
     }
 
     fun IrAPerfil() { // <-- Agregado para que el presentador abra el perfil correctamente desde la barra

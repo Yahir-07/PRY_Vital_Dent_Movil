@@ -3,9 +3,11 @@ package com.example.pry_vital_dent_movil.InterfaceAPI
 import com.example.pry_vital_dent_movil.Modelo.DataCita
 import com.example.pry_vital_dent_movil.Modelo.DataDoctor
 import com.example.pry_vital_dent_movil.Modelo.DataHora
+import com.example.pry_vital_dent_movil.Modelo.DataMultimedia
 import com.example.pry_vital_dent_movil.Modelo.DataTratamiento
 import com.example.pry_vital_dent_movil.Modelo.DatosAvanceTratamiento
 import com.example.pry_vital_dent_movil.Modelo.DatosEstadoPago
+import com.example.pry_vital_dent_movil.Modelo.DatosFotoPerfil
 import com.example.pry_vital_dent_movil.Modelo.DatosOpcionesPago
 import com.example.pry_vital_dent_movil.Modelo.DatosPagoCreado
 import com.example.pry_vital_dent_movil.Modelo.DatosHistorial
@@ -19,15 +21,19 @@ import com.example.pry_vital_dent_movil.Modelo.RespuestaApi
 import com.example.pry_vital_dent_movil.Modelo.RetrofitClient
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCambioContrasena
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCita
+import com.example.pry_vital_dent_movil.Modelo.SolicitudFotoPerfil
 import com.example.pry_vital_dent_movil.Modelo.SolicitudLogin
 import com.example.pry_vital_dent_movil.Modelo.SolicitudPago
 import com.example.pry_vital_dent_movil.Modelo.SolicitudRegistro
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 // Cada función corresponde a un archivo PHP de C:\xampp\htdocs\APIS_proyecto
 interface ApiService {
@@ -141,4 +147,54 @@ interface ApiService {
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
         @Query("referencia") referencia: String
     ): Call<RespuestaApi<DatosEstadoPago>>
+
+    // ---------- Multimedia: videos y audios educativos (Fase 4) ----------
+
+    // tipo = "video", "audio" o null (todo). Los archivos están en APIS_proyecto/multimedia/
+    @GET("multimedia.php")
+    fun ObtenerMultimedia(
+        @Query("tipo") tipo: String?
+    ): Call<RespuestaApi<List<DataMultimedia>>>
+
+    // ---------- Correos de citas con Brevo (APIs-VD) ----------
+
+    // tipo = "registrada", "confirmada", "reprogramada" o "cancelada"
+    // url = RetrofitClient.URL_CORREOS + "enviar_correo_cita.php" (está en otra carpeta del servidor)
+    @FormUrlEncoded
+    @POST
+    fun EnviarCorreoCita(
+        @Url url: String,
+        @Field("id_cita") idCita: String,
+        @Field("tipo") tipo: String
+    ): Call<RespuestaApi<Any>>
+
+    // ---------- Recuperar contraseña con código por correo (ACC-04 · APIs-VD) ----------
+
+    // accion = "enviar" (solo correo) o "cambiar" (correo, codigo y nueva)
+    // url = RetrofitClient.URL_CORREOS + "recuperar_contrasena.php"
+    @FormUrlEncoded
+    @POST
+    fun RecuperarContrasena(
+        @Url url: String,
+        @Field("accion") accion: String,
+        @Field("correo") correo: String,
+        @Field("codigo") codigo: String,
+        @Field("nueva") nueva: String
+    ): Call<RespuestaApi<Any>>
+
+    // ---------- Foto de perfil tomada con la cámara (ACC-08 · APIs-VD) ----------
+
+    // url = RetrofitClient.URL_CORREOS + "foto_perfil.php"
+    @GET
+    fun ObtenerFotoPerfil(
+        @Url url: String,
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String
+    ): Call<RespuestaApi<DatosFotoPerfil>>
+
+    @POST
+    fun GuardarFotoPerfil(
+        @Url url: String,
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
+        @Body datos: SolicitudFotoPerfil
+    ): Call<RespuestaApi<DatosFotoPerfil>>
 }

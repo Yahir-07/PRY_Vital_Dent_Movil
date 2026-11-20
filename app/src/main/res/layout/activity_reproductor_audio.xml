@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fase 4.2 · Reproductor de audio (MediaPlayer): portada con Glide, barra de progreso y controles -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbReproductorAudio"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:title="@string/multimedia_titulo_audio" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbReproductorAudio">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvReproductorAudio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <ImageView
+                        android:id="@+id/ivPortadaAudio"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:contentDescription="@null"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintDimensionRatio="16:9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/bg_placeholder" />
+
+                    <TextView
+                        android:id="@+id/tvTipoAudio"
+                        style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:text="@string/multimedia_tipo_audio"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ivPortadaAudio" />
+
+                    <TextView
+                        android:id="@+id/tvTituloAudio"
+                        style="@style/VitalDent.Texto.Titulo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTipoAudio"
+                        tools:text="Indicaciones después de colocar tus brackets" />
+
+                    <TextView
+                        android:id="@+id/tvDescripcionAudio"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTituloAudio"
+                        tools:text="Qué esperar y cómo cuidarte los primeros días." />
+
+                    <!-- Barra de progreso: progreso = reproducido, secundario = descargado -->
+                    <SeekBar
+                        android:id="@+id/sbProgresoAudio"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xl"
+                        android:contentDescription="@string/cd_barra_progreso"
+                        android:paddingStart="0dp"
+                        android:paddingEnd="0dp"
+                        android:progressBackgroundTint="@color/vd_marcador"
+                        android:progressTint="@color/vd_primario"
+                        android:secondaryProgressTint="@color/vd_borde"
+                        android:thumbTint="@color/vd_primario"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvDescripcionAudio"
+                        tools:max="48000"
+                        tools:progress="15000" />
+
+                    <TextView
+                        android:id="@+id/tvTiempoActualAudio"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:text="@string/multimedia_tiempo_cero"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sbProgresoAudio" />
+
+                    <TextView
+                        android:id="@+id/tvTiempoTotalAudio"
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/multimedia_tiempo_cero"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvTiempoActualAudio"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <!-- Controles -->
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/fabPlayPausaAudio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_l"
+                        android:contentDescription="@string/cd_reproducir"
+                        android:src="@drawable/ic_play"
+                        app:backgroundTint="@color/vd_primario"
+                        app:elevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvTiempoActualAudio"
+                        app:tint="@color/vd_sobre_primario" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRetrocederAudio"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/vd_espacio_xl"
+                        android:contentDescription="@string/cd_retroceder"
+                        app:icon="@drawable/ic_retroceder"
+                        app:iconSize="@dimen/vd_icono_m"
+                        app:iconTint="@color/vd_icono"
+                        app:layout_constraintBottom_toBottomOf="@+id/fabPlayPausaAudio"
+                        app:layout_constraintEnd_toStartOf="@+id/fabPlayPausaAudio"
+                        app:layout_constraintTop_toTopOf="@+id/fabPlayPausaAudio" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAdelantarAudio"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_xl"
+                        android:contentDescription="@string/cd_adelantar"
+                        app:icon="@drawable/ic_adelantar"
+                        app:iconSize="@dimen/vd_icono_m"
+                        app:iconTint="@color/vd_icono"
+                        app:layout_constraintBottom_toBottomOf="@+id/fabPlayPausaAudio"
+                        app:layout_constraintStart_toEndOf="@+id/fabPlayPausaAudio"
+                        app:layout_constraintTop_toTopOf="@+id/fabPlayPausaAudio" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/multimedia_menos_10"
+                        app:layout_constraintEnd_toEndOf="@+id/btnRetrocederAudio"
+                        app:layout_constraintStart_toStartOf="@+id/btnRetrocederAudio"
+                        app:layout_constraintTop_toBottomOf="@+id/btnRetrocederAudio" />
+
+                    <TextView
+                        style="@style/VitalDent.Texto.Caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/multimedia_mas_10"
+                        app:layout_constraintEnd_toEndOf="@+id/btnAdelantarAudio"
+                        app:layout_constraintStart_toStartOf="@+id/btnAdelantarAudio"
+                        app:layout_constraintTop_toBottomOf="@+id/btnAdelantarAudio" />
+
+                    <com.google.android.material.progressindicator.CircularProgressIndicator
+                        android:id="@+id/pbCargaAudio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:indeterminate="true"
+                        android:visibility="invisible"
+                        app:indicatorColor="@color/vd_primario"
+                        app:layout_constraintBottom_toBottomOf="@+id/ivPortadaAudio"
+                        app:layout_constraintEnd_toEndOf="@+id/ivPortadaAudio"
+                        app:layout_constraintStart_toStartOf="@+id/ivPortadaAudio"
+                        app:layout_constraintTop_toTopOf="@+id/ivPortadaAudio"
+                        tools:visibility="visible" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvAvisoAudio"
+                style="@style/VitalDent.Aviso.Error"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvReproductorAudio"
+                tools:text="No se pudo reproducir el audio."
+                tools:visibility="visible" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

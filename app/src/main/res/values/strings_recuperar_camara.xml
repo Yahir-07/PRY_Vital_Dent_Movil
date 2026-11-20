@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ACC-04 Recuperar contraseña con código y ACC-08 Cámara (foto de perfil) · Gustavo -->
+<resources>
+    <!-- Recuperar contraseña (paso 1: correo · paso 2: código y contraseña nueva) -->
+    <string name="recuperar_descripcion_codigo">Te enviaremos un código de 6 dígitos a tu correo para crear una contraseña nueva.</string>
+    <string name="accion_enviar_codigo">Enviar código</string>
+    <string name="recuperar_paso_codigo">Escribe el código que te llegó y tu contraseña nueva.</string>
+    <string name="etiqueta_codigo">Código de 6 dígitos *</string>
+    <string name="placeholder_codigo">000000</string>
+    <string name="accion_cambiar_contrasena">Cambiar contraseña</string>
+    <string name="accion_reenviar_codigo">No me llegó, enviar otro código</string>
+
+    <!-- Cámara · foto de perfil -->
+    <string name="cd_foto_perfil">Foto de perfil</string>
+    <string name="accion_tomar_foto">Tomar foto</string>
+    <string name="accion_cambiar_foto">Cambiar foto</string>
+    <string name="camara_permiso_titulo">Permiso de cámara</string>
+    <string name="camara_permiso_explicacion">Vital Dent usa la cámara solo para tomar tu foto de perfil. La foto se guarda en tu cuenta y no se usa para nada más.</string>
+    <string name="camara_permiso_denegado">Sin permiso de cámara no se puede tomar la foto. Puedes activarlo en Ajustes, en Permisos de la app.</string>
+    <string name="accion_permitir">Permitir</string>
+    <string name="accion_abrir_ajustes">Abrir ajustes</string>
+    <string name="accion_ahora_no">Ahora no</string>
+</resources>

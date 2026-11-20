@@ -54,4 +54,14 @@ dependencies {
     // 5. Corrutinas de Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
+    // 6. Biometría (huella o rostro en el login)
+    implementation("androidx.biometric:biometric:1.1.0")
+
+    // 7. Multimedia: reproductor de video ExoPlayer (Media3) con controles y pantalla completa
+    implementation("androidx.media3:media3-exoplayer:1.8.0")
+    implementation("androidx.media3:media3-ui:1.8.0")
+
+    // Pruebas unitarias (src/test)
+    testImplementation(libs.junit)
+
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fase 4.3 · Reproductor de video (ExoPlayer). En pantalla completa el contenedor ocupa toda la pantalla. -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRaizVideo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbReproductorVideo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:title="@string/multimedia_titulo_video" />
+
+    <FrameLayout
+        android:id="@+id/flContenedorVideo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/black"
+        app:layout_constraintDimensionRatio="16:9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbReproductorVideo">
+
+        <!-- Controles: play/pausa, barra de progreso, tiempo, adelantar/retroceder y pantalla completa -->
+        <androidx.media3.ui.PlayerView
+            android:id="@+id/pvVideo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:resize_mode="fit"
+            app:show_buffering="never"
+            app:use_controller="true" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/pbCargaVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="@color/white"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svDetallesVideo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flContenedorVideo">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <TextView
+                style="@style/VitalDent.Texto.Sobretitulo.Acento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/multimedia_tipo_video" />
+
+            <TextView
+                android:id="@+id/tvTituloVideo"
+                style="@style/VitalDent.Texto.Titulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                tools:text="Cepillado correcto con brackets" />
+
+            <TextView
+                android:id="@+id/tvDescripcionVideo"
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_s"
+                tools:text="Cómo limpiar alrededor de cada bracket paso a paso." />
+
+            <TextView
+                android:id="@+id/tvAvisoVideo"
+                style="@style/VitalDent.Aviso.Error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:visibility="gone"
+                tools:text="No se pudo reproducir el video."
+                tools:visibility="visible" />
+
+            <TextView
+                style="@style/VitalDent.Aviso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:text="@string/multimedia_aviso_pantalla_completa" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

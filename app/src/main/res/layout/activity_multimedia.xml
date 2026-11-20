@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fase 4 · Videos y audios educativos (lista con miniaturas de Glide) -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbMultimedia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:subtitle="@string/multimedia_subtitulo"
+        app:title="@string/multimedia_titulo" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlMultimedia"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbMultimedia">
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multimedia_tab_todo" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multimedia_tab_videos" />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/multimedia_tab_audios" />
+    </com.google.android.material.tabs.TabLayout>
+
+    <!-- Lista + aviso en cadena vertical: el aviso queda justo debajo de la lista -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMultimedia"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/vd_margen_pantalla"
+        android:paddingTop="@dimen/vd_espacio_m"
+        android:paddingEnd="@dimen/vd_margen_pantalla"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constrainedHeight="true"
+        app:layout_constraintBottom_toTopOf="@+id/tvAvisoMultimedia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlMultimedia"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_multimedia" />
+
+    <TextView
+        android:id="@+id/tvAvisoMultimedia"
+        style="@style/VitalDent.Aviso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_m"
+        android:text="@string/multimedia_aviso"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnReintentarMultimedia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvMultimedia"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnReintentarMultimedia"
+        style="@style/VitalDent.Boton.Secundario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/multimedia_reintentar"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAvisoMultimedia" />
+
+    <!-- Estado de carga -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/pbCargaMultimedia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/vd_primario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlMultimedia"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -48,6 +48,10 @@ class clsInicioPresentador(private val vista: clsInicioVista) {
         vista.IrAPagos()
     }
 
+    fun ClickMultimedia() {
+        vista.IrAMultimedia()
+    }
+
 
 
     fun clickNavCitas() {
