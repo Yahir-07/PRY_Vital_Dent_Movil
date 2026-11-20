@@ -18,6 +18,29 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     }
 
     fun CambiarEstadoHuella(activada: Boolean) {
+        if (!activada) {
+            GuardarEstadoHuella(false)
+            return
+        }
+        // Para activarla, el celular debe tener huella o rostro y el paciente debe confirmarla
+        if (!vista.BiometriaDisponible()) {
+            vista.MarcarSwitchHuella(false)
+            vista.MostrarMensaje(vista.MotivoBiometriaNoDisponible())
+            return
+        }
+        vista.ConfirmarHuellaParaActivar()
+    }
+
+    fun HuellaPagosConfirmada() {
+        GuardarEstadoHuella(true)
+    }
+
+    fun HuellaPagosNoConfirmada(mensaje: String?) {
+        vista.MarcarSwitchHuella(false)
+        if (mensaje != null) vista.MostrarMensaje(mensaje)
+    }
+
+    private fun GuardarEstadoHuella(activada: Boolean) {
         modelo.ActualizarEstadoHuella(activada) { exito ->
             if (exito) {
                 vista.MostrarMensaje(if (activada) "Huella para pagos activada" else "Huella para pagos desactivada")

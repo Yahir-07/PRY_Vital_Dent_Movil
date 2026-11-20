@@ -24,10 +24,13 @@ import com.example.pry_vital_dent_movil.Modelo.SolicitudPago
 import com.example.pry_vital_dent_movil.Modelo.SolicitudRegistro
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 // Cada función corresponde a un archivo PHP de C:\xampp\htdocs\APIS_proyecto
 interface ApiService {
@@ -141,4 +144,16 @@ interface ApiService {
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
         @Query("referencia") referencia: String
     ): Call<RespuestaApi<DatosEstadoPago>>
+
+    // ---------- Correos de citas con Brevo (APIs-VD) ----------
+
+    // tipo = "registrada", "confirmada", "reprogramada" o "cancelada"
+    // url = RetrofitClient.URL_CORREOS + "enviar_correo_cita.php" (está en otra carpeta del servidor)
+    @FormUrlEncoded
+    @POST
+    fun EnviarCorreoCita(
+        @Url url: String,
+        @Field("id_cita") idCita: String,
+        @Field("tipo") tipo: String
+    ): Call<RespuestaApi<Any>>
 }

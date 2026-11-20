@@ -54,4 +54,7 @@ dependencies {
     // 5. Corrutinas de Kotlin
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0")
 
+    // 6. Biometría (huella o rostro en el login)
+    implementation("androidx.biometric:biometric:1.1.0")
+
 }

@@ -21,7 +21,11 @@ class clsAgendarCitaModelo(private val contexto: Context) {
             SolicitudCita(fecha, hora, motivo, idDoctor)
         )
 
-        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, _ ->
+        RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, cita ->
+            // Correo "Tu cita en Vital Dent quedó registrada" (Brevo); no detiene el flujo si falla
+            if (exito && cita != null) {
+                clsCorreosModelo.EnviarCorreoCita(cita.idCita, clsCorreosModelo.TIPO_REGISTRADA)
+            }
             alTerminar(exito, mensaje)
         }
     }
