@@ -4,7 +4,6 @@ import android.content.Context
 
 class clsPerfilPacienteModelo(private val contexto: Context) {
 
-    // GET perfil.php: teléfono, correo y domicilio del paciente
     fun ObtenerDatosPerfil(alTerminar: (datos: DatosPerfil?, mensaje: String, huellaActiva: Boolean) -> Unit) {
         val llamada = RetrofitClient.api.ObtenerPerfil(clsSesion.ObtenerToken(contexto))
 
@@ -13,13 +12,13 @@ class clsPerfilPacienteModelo(private val contexto: Context) {
         }
     }
 
-    // La preferencia de huella para pagos se guarda en el teléfono (SharedPreferences)
     fun ActualizarEstadoHuella(activada: Boolean, alTerminar: (Boolean) -> Unit) {
         clsSesion.GuardarHuellaPagos(contexto, activada)
         alTerminar(true)
     }
 
     fun CerrarSesion() {
+        clsNotificacionesModelo.DesactivarCelular(contexto)
         clsSesion.Cerrar(contexto)
     }
 }

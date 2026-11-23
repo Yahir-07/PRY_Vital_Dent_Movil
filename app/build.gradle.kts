@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     kotlin("plugin.serialization") version "1.9.24"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -63,5 +64,8 @@ dependencies {
 
     // Pruebas unitarias (src/test)
     testImplementation(libs.junit)
+    // Firebase (notificaciones)
+    implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
+    implementation("com.google.firebase:firebase-messaging")
 
 }

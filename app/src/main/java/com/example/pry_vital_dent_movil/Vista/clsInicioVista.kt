@@ -9,6 +9,12 @@ import com.example.pry_vital_dent_movil.Presentador.clsInicioPresentador
 import com.example.pry_vital_dent_movil.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import com.example.pry_vital_dent_movil.Notificaciones.MyFirebaseMessagingService
 
 class clsInicioVista : AppCompatActivity() {
 
@@ -25,18 +31,17 @@ class clsInicioVista : AppCompatActivity() {
     private lateinit var cvPagos: MaterialCardView
     private lateinit var tvPagosPendientes: TextView
     private lateinit var cvMultimedia: MaterialCardView
+    private val permisoNotificaciones =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // 1. Inflamos el layout principal que contiene la barra inferior
         setContentView(R.layout.activity_principal)
 
-        // 2. Insertamos el diseño de las tarjetas (fragment_inicio) dentro del contenedor central
         val contenedor = findViewById<android.view.ViewGroup>(R.id.contenedorFragmentos)
         val vistaTarjetas = layoutInflater.inflate(R.layout.fragment_inicio, contenedor, true)
 
-        // 3. Inicializamos los componentes buscando dentro de la vista de las tarjetas
         tbInicio = vistaTarjetas.findViewById(R.id.tbInicio)
         cvProximaCita = vistaTarjetas.findViewById(R.id.cvProximaCita)
         tvProximaCitaTitulo = vistaTarjetas.findViewById(R.id.tvProximaCitaTitulo)
@@ -53,7 +58,6 @@ class clsInicioVista : AppCompatActivity() {
         presentador = clsInicioPresentador(this)
         presentador.InicializarPanel()
 
-        // 4. Configuración de clics en las tarjetas
         cvProximaCita.setOnClickListener { presentador.ClickProximaCita() }
         cvTratamientoActivo.setOnClickListener { presentador.ClickTratamientoActivo() }
         cvAgendarCita.setOnClickListener { presentador.ClickAgendarCita() }
@@ -62,11 +66,18 @@ class clsInicioVista : AppCompatActivity() {
         cvPagos.setOnClickListener { presentador.ClickPagos() }
         cvMultimedia.setOnClickListener { presentador.ClickMultimedia() }
 
-        // 5. Activamos la barra de navegación inferior (Inicio es la posición 0)
         configurarBarraInferior(0)
+
+        MyFirebaseMessagingService.crearCanal(this)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            != PackageManager.PERMISSION_GRANTED
+        ) {
+            permisoNotificaciones.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 
-    // Métodos para actualizar la interfaz visualmente
     fun MostrarDatosUsuario(nombre: String) {
         tbInicio.title = "Hola, $nombre"
         tbInicio.subtitle = "Paciente"
@@ -88,16 +99,11 @@ class clsInicioVista : AppCompatActivity() {
     fun MostrarMensaje(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
-
-    // ==========================================
-    // MÉTODOS DE NAVEGACIÓN (Tarjetas y Barra)
-    // ==========================================
-
     fun IrADetalleCita() {
         startActivity(Intent(this, clsMisCitasVista::class.java))
     }
 
-    fun IrAMisCitas() { // <-- Agregado para que el presentador no marque error al usar la barra inferior
+    fun IrAMisCitas() {
         startActivity(Intent(this, clsMisCitasVista::class.java))
     }
 

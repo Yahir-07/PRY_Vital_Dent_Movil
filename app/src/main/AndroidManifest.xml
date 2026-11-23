@@ -5,6 +5,7 @@
     <!-- Para conectarse a las APIs PHP de XAMPP -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <!-- ACC-08: cámara para la foto de perfil. required=false: la app también se instala en celulares sin cámara -->
     <uses-feature android:name="android.hardware.camera.any" android:required="false" />
@@ -111,6 +112,19 @@
         <!-- 09. Sesión / Diálogos de Seguridad -->
         <activity android:name=".Vista.clsSesionPorTerminarVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsSesionVencidaVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+
+        <!-- 10. Notificaciones Push (Firebase Cloud Messaging) -->
+        <service
+            android:name=".Notificaciones.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="vitaldent_general" />
 
     </application>
 

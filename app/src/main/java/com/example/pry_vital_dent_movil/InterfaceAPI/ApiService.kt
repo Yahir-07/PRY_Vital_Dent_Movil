@@ -197,4 +197,15 @@ interface ApiService {
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
         @Body datos: SolicitudFotoPerfil
     ): Call<RespuestaApi<DatosFotoPerfil>>
+
+    // ---------- Notificaciones push (Firebase) ----------
+
+    @FormUrlEncoded
+    @POST("guardar_token_fcm.php")
+    fun GuardarTokenFcm(
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
+        @Field("token") tokenFcm: String,
+        @Field("dispositivo") dispositivo: String,
+        @Field("accion") accion: String
+    ): Call<RespuestaApi<Any>>
 }
