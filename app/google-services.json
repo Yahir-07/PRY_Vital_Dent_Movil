@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "957392600165",
+    "project_id": "vital-dent",
+    "storage_bucket": "vital-dent.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957392600165:android:6481c4b5e3170c72121a8c",
+        "android_client_info": {
+          "package_name": "com.example.pry_vital_dent_movil"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-Wu3GFPpn2t-YCYO-hTq6E-hgYy3VJ90"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

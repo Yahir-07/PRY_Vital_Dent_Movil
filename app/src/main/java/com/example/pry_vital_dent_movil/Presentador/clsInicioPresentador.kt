@@ -2,13 +2,13 @@ package com.example.pry_vital_dent_movil.Presentador
 
 import com.example.pry_vital_dent_movil.Modelo.clsInicioModelo
 import com.example.pry_vital_dent_movil.Vista.clsInicioVista
+import com.example.pry_vital_dent_movil.Modelo.clsNotificacionesModelo
 
 class clsInicioPresentador(private val vista: clsInicioVista) {
 
     private val modelo = clsInicioModelo(vista)
 
     fun InicializarPanel() {
-        // Mientras responde el servidor, saludamos con el nombre guardado al iniciar sesión
         vista.MostrarDatosUsuario(modelo.ObtenerNombreGuardado())
 
         modelo.CargarInformacionPanel(
@@ -22,6 +22,8 @@ class clsInicioPresentador(private val vista: clsInicioVista) {
                 vista.MostrarMensaje(mensaje)
             }
         )
+
+        clsNotificacionesModelo.RegistrarCelular(vista)
     }
 
     fun ClickProximaCita() {
@@ -47,8 +49,6 @@ class clsInicioPresentador(private val vista: clsInicioVista) {
     fun ClickPagos() {
         vista.IrAPagos()
     }
-
-
 
     fun clickNavCitas() {
         vista.IrAMisCitas()

@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
+    kotlin("plugin.serialization") version "1.9.24"
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -55,5 +57,9 @@ dependencies {
 
     // 6. Biometría (huella o rostro en el login)
     implementation("androidx.biometric:biometric:1.1.0")
+
+    // Firebase (notificaciones)
+    implementation(platform("com.google.firebase:firebase-bom:35.1.0"))
+    implementation("com.google.firebase:firebase-messaging")
 
 }
