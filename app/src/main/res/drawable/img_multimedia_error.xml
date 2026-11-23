@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Glide: imagen que se muestra si la miniatura no se pudo descargar -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/bg_placeholder" />
+    <item
+        android:width="@dimen/vd_icono_l"
+        android:height="@dimen/vd_icono_l"
+        android:drawable="@drawable/ic_multimedia"
+        android:gravity="center" />
+</layer-list>

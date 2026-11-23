@@ -343,6 +343,62 @@
                         tools:text="@string/ej_pagos_pendientes" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- ===== Tarjeta: videos y audios (Fase 4 · Multimedia) ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvMultimedia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cvHistorialMedico">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/vd_relleno_tarjeta">
+
+                    <ImageView
+                        style="@style/VitalDent.Miniatura"
+                        android:layout_width="@dimen/vd_icono_tarjeta"
+                        android:layout_height="@dimen/vd_icono_tarjeta"
+                        android:contentDescription="@null"
+                        android:padding="@dimen/vd_espacio_xs2"
+                        android:src="@drawable/ic_multimedia" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/vd_espacio_m"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.TituloTarjeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/inicio_multimedia" />
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Caption"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/vd_espacio_xs"
+                            android:text="@string/inicio_multimedia_detalle" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="@dimen/vd_icono_m"
+                        android:layout_height="@dimen/vd_icono_m"
+                        android:contentDescription="@null"
+                        android:src="@drawable/ic_chevron_derecha" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

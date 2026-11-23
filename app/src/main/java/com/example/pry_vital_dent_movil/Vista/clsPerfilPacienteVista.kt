@@ -1,7 +1,17 @@
 package com.example.pry_vital_dent_movil.Vista
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
+import android.widget.ImageView.ScaleType
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.imageview.ShapeableImageView
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -45,6 +55,24 @@ class clsPerfilPacienteVista : AppCompatActivity() {
     private var cargandoHuella = false
     private lateinit var biometria: clsBiometria
 
+    // Cámara (ACC-08)
+    private lateinit var ivFotoPerfil: ShapeableImageView
+    private lateinit var btnTomarFoto: MaterialButton
+    private var uriFoto: Uri? = null
+    private var tieneFoto = false
+
+    // Pide el permiso de cámara al sistema
+    private val pedirPermisoCamara =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { concedido ->
+            presentador.ResultadoPermisoCamara(concedido)
+        }
+
+    // Abre la app de cámara; la foto queda en uriFoto
+    private val tomarFoto =
+        registerForActivityResult(ActivityResultContracts.TakePicture()) { tomada ->
+            presentador.ResultadoFotoTomada(tomada, uriFoto)
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_perfil)
@@ -74,6 +102,11 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         tvHuellaPagosEstado = findViewById(R.id.tvHuellaPagosEstado)
         swHuellaPagos = findViewById(R.id.swHuellaPagos)
         tvCerrarSesion = findViewById(R.id.tvCerrarSesion)
+        ivFotoPerfil = findViewById(R.id.ivFotoPerfil)
+        btnTomarFoto = findViewById(R.id.btnTomarFoto)
+
+        // Si Android cerró la pantalla mientras la cámara estaba abierta, se recupera el archivo
+        uriFoto = savedInstanceState?.getString("uriFoto")?.let { Uri.parse(it) }
 
         biometria = clsBiometria(this) // debe crearse aquí, en onCreate
         presentador = clsPerfilPacientePresentador(this)
@@ -101,6 +134,14 @@ class clsPerfilPacienteVista : AppCompatActivity() {
 
         tvCerrarSesion.setOnClickListener {
             presentador.ClickCerrarSesion()
+        }
+
+        btnTomarFoto.setOnClickListener {
+            presentador.ClickTomarFoto()
+        }
+
+        ivFotoPerfil.setOnClickListener {
+            presentador.ClickTomarFoto()
         }
 
         configurarBarraInferior(4)
@@ -166,5 +207,74 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
         finish()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        uriFoto?.let { outState.putString("uriFoto", it.toString()) }
+    }
+
+    // ---------- Cámara: foto de perfil (ACC-08) ----------
+
+    fun TieneCamara(): Boolean = packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA_ANY)
+
+    fun PermisoCamaraConcedido(): Boolean =
+        ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+
+    fun DebeExplicarPermisoCamara(): Boolean = shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)
+
+    fun PedirPermisoCamara() {
+        pedirPermisoCamara.launch(Manifest.permission.CAMERA)
+    }
+
+    fun MostrarExplicacionPermisoCamara() {
+        MaterialAlertDialogBuilder(this)
+            .setIcon(R.drawable.ic_camara)
+            .setTitle(R.string.camara_permiso_titulo)
+            .setMessage(R.string.camara_permiso_explicacion)
+            .setPositiveButton(R.string.accion_permitir) { _, _ -> presentador.PermisoExplicadoAceptado() }
+            .setNegativeButton(R.string.accion_ahora_no, null)
+            .show()
+    }
+
+    // Permiso negado con "No volver a preguntar": se manda a los ajustes de la app
+    fun MostrarDialogoAjustesCamara() {
+        MaterialAlertDialogBuilder(this)
+            .setIcon(R.drawable.ic_camara)
+            .setTitle(R.string.camara_permiso_titulo)
+            .setMessage(R.string.camara_permiso_denegado)
+            .setPositiveButton(R.string.accion_abrir_ajustes) { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", packageName, null))
+                startActivity(intent)
+            }
+            .setNegativeButton(R.string.accion_ahora_no, null)
+            .show()
+    }
+
+    fun AbrirCamara(destino: Uri) {
+        uriFoto = destino
+        try {
+            tomarFoto.launch(destino)
+        } catch (e: Exception) {
+            MostrarMensaje("No se encontró una app de cámara en este celular")
+        }
+    }
+
+    fun MostrarFoto(foto: Bitmap) {
+        tieneFoto = true
+        ivFotoPerfil.setPadding(0, 0, 0, 0)
+        ivFotoPerfil.scaleType = ScaleType.CENTER_CROP
+        ivFotoPerfil.setImageBitmap(foto)
+        btnTomarFoto.setText(R.string.accion_cambiar_foto)
+    }
+
+    fun MostrarSubiendoFoto(subiendo: Boolean) {
+        btnTomarFoto.isEnabled = !subiendo
+        ivFotoPerfil.alpha = if (subiendo) 0.5f else 1f
+        when {
+            subiendo -> btnTomarFoto.text = "Guardando foto…"
+            tieneFoto -> btnTomarFoto.setText(R.string.accion_cambiar_foto)
+            else -> btnTomarFoto.setText(R.string.accion_tomar_foto)
+        }
     }
 }

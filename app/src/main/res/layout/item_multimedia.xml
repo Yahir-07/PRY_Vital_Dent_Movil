@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Elemento de lista · video o audio (rvMultimedia). La miniatura se carga con Glide. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vd_espacio_m"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/vd_relleno_tarjeta">
+
+        <ImageView
+            android:id="@+id/ivMultimediaMiniatura"
+            android:layout_width="@dimen/vd_miniatura_multimedia_ancho"
+            android:layout_height="0dp"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/bg_placeholder" />
+
+        <TextView
+            android:id="@+id/tvMultimediaDuracion"
+            style="@style/VitalDent.Texto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/vd_espacio_xs"
+            android:background="@drawable/bg_duracion"
+            android:paddingStart="@dimen/vd_espacio_xs2"
+            android:paddingTop="2dp"
+            android:paddingEnd="@dimen/vd_espacio_xs2"
+            android:paddingBottom="2dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/vd_texto_micro"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivMultimediaMiniatura"
+            app:layout_constraintEnd_toEndOf="@+id/ivMultimediaMiniatura"
+            tools:text="0:46" />
+
+        <TextView
+            android:id="@+id/tvMultimediaTipo"
+            style="@style/VitalDent.Texto.Sobretitulo.Acento"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vd_espacio_m"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/ivMultimediaMiniatura"
+            app:layout_constraintTop_toTopOf="@+id/ivMultimediaMiniatura"
+            tools:text="@string/multimedia_tipo_video" />
+
+        <TextView
+            android:id="@+id/tvMultimediaTitulo"
+            style="@style/VitalDent.Texto.TituloTarjeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_xs"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvMultimediaTipo"
+            app:layout_constraintTop_toBottomOf="@+id/tvMultimediaTipo"
+            tools:text="Cepillado correcto con brackets" />
+
+        <TextView
+            android:id="@+id/tvMultimediaDescripcion"
+            style="@style/VitalDent.Texto.Caption"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/vd_espacio_xs"
+            android:ellipsize="end"
+            android:maxLines="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvMultimediaTipo"
+            app:layout_constraintTop_toBottomOf="@+id/tvMultimediaTitulo"
+            tools:text="Cómo limpiar alrededor de cada bracket paso a paso." />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

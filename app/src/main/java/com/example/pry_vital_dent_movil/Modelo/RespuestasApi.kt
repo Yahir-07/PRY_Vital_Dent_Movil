@@ -16,6 +16,9 @@ data class SolicitudRegistro(val nombre: String, val correo: String, val contras
 
 data class SolicitudCambioContrasena(val actual: String, val nueva: String)
 
+// Foto de perfil en JPG codificada en base64 (foto_perfil.php)
+data class SolicitudFotoPerfil(val foto: String)
+
 // idDoctor vacío = el servidor asigna un doctor libre
 data class SolicitudCita(val fecha: String, val hora: String, val motivo: String, val idDoctor: String = "")
 
@@ -76,3 +79,6 @@ data class DatosAvanceTratamiento(
     val estado: String,
     val avances: List<DataAvance>?
 )
+
+// foto = JPG en base64, o null si el paciente todavía no tiene foto
+data class DatosFotoPerfil(val foto: String?)

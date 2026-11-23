@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vd_espacio_l"
                 android:gravity="center"
-                android:text="@string/recuperar_descripcion"
+                android:text="@string/recuperar_descripcion_codigo"
                 android:textSize="@dimen/vd_texto_cuerpo" />
 
             <TextView
@@ -81,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/vd_espacio_l"
-                android:text="@string/accion_enviar_enlace" />
+                android:text="@string/accion_enviar_codigo" />
 
             <!-- Confirmación: se muestra después de enviar el enlace -->
             <TextView
@@ -93,6 +93,110 @@
                 android:text="@string/recuperar_aviso_enviado"
                 android:visibility="gone"
                 tools:visibility="visible" />
+
+            <!-- Paso 2: se muestra cuando ya se envió el código -->
+            <LinearLayout
+                android:id="@+id/llPasoCodigo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <TextView
+                    style="@style/VitalDent.Texto.Secundario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/vd_espacio_l"
+                    android:text="@string/recuperar_paso_codigo"
+                    android:textSize="@dimen/vd_texto_cuerpo" />
+
+                <TextView
+                    style="@style/VitalDent.Texto.Etiqueta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/etCodigo"
+                    android:text="@string/etiqueta_codigo" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilCodigo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="6"
+                    app:placeholderText="@string/placeholder_codigo">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etCodigo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="smsOTPCode"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="6" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/VitalDent.Texto.Etiqueta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/etNuevaContrasena"
+                    android:text="@string/etiqueta_contrasena_nueva" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilNuevaContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="password_toggle"
+                    app:helperText="@string/ayuda_contrasena">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etNuevaContrasena"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="newPassword"
+                        android:imeOptions="actionNext"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    style="@style/VitalDent.Texto.Etiqueta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/etConfirmarNuevaContrasena"
+                    android:text="@string/etiqueta_confirmar_contrasena_nueva" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/tilConfirmarNuevaContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconMode="password_toggle"
+                    app:placeholderText="@string/placeholder_repite_contrasena">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etConfirmarNuevaContrasena"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="newPassword"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCambiarContrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/vd_espacio_l"
+                    android:text="@string/accion_cambiar_contrasena" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnReenviarCodigo"
+                    style="@style/VitalDent.Boton.Texto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/accion_reenviar_codigo" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

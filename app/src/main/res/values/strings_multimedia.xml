@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Fase 4 · Módulo de gestión y reproducción multimedia -->
+<resources>
+    <string name="multimedia_titulo">Videos y audios</string>
+    <string name="multimedia_subtitulo">Aprende a cuidar tu sonrisa</string>
+    <string name="multimedia_titulo_video">Video</string>
+    <string name="multimedia_titulo_audio">Audio</string>
+    <string name="multimedia_tab_todo">Todo</string>
+    <string name="multimedia_tab_videos">Videos</string>
+    <string name="multimedia_tab_audios">Audios</string>
+    <string name="multimedia_tipo_video">VIDEO</string>
+    <string name="multimedia_tipo_audio">AUDIO</string>
+    <string name="multimedia_aviso">Toca un video o un audio para reproducirlo. Se reproducen desde el servidor de Vital Dent.</string>
+    <string name="multimedia_aviso_pantalla_completa">Toca el video para ver los controles. Usa el botón de pantalla completa para verlo en horizontal.</string>
+    <string name="multimedia_reintentar">Reintentar</string>
+    <string name="multimedia_tiempo_cero">0:00</string>
+    <string name="multimedia_menos_10">−10 s</string>
+    <string name="multimedia_mas_10">+10 s</string>
+
+    <string name="inicio_multimedia">Videos y audios</string>
+    <string name="inicio_multimedia_detalle">Guías para cuidar tus brackets</string>
+
+    <string name="cd_reproducir">Reproducir</string>
+    <string name="cd_pausar">Pausar</string>
+    <string name="cd_retroceder">Retroceder 10 segundos</string>
+    <string name="cd_adelantar">Adelantar 10 segundos</string>
+    <string name="cd_barra_progreso">Progreso del audio</string>
+</resources>
