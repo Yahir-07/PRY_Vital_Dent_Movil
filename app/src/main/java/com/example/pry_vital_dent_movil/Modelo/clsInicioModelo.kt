@@ -6,7 +6,6 @@ class clsInicioModelo(private val contexto: Context) {
 
     fun ObtenerNombreGuardado(): String = clsSesion.ObtenerNombre(contexto)
 
-    // GET inicio.php: próxima cita, tratamiento activo y saldo pendiente
     fun CargarInformacionPanel(
         alTerminar: (nombre: String, citaTitulo: String, citaDetalle: String, tratamientoNombre: String, pagosTexto: String) -> Unit,
         alFallar: (mensaje: String) -> Unit
