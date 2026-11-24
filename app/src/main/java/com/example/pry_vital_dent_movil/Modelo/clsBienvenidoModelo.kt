@@ -8,4 +8,8 @@ class clsBienvenidoModelo(private val contexto: Context) {
     fun ObtenerTokenGuardado(): String {
         return clsSesion.ObtenerToken(contexto)
     }
+    
+    fun ObtenerImagenes(alTerminar: (Map<String, String>) -> Unit) {
+        clsImagenesModelo.ObtenerImagenes(contexto, alTerminar)
+    }
 }

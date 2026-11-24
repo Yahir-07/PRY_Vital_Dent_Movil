@@ -42,14 +42,14 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         chipFiltroTratamientos = findViewById(R.id.chipFiltroTratamientos)
         rvHistorial = findViewById(R.id.rvHistorial)
 
-        // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView
+        tbHistorialMedico.mostrarLogo()
+
         historialAdaptador = HistorialAdaptador(emptyList()) { itemSeleccionado ->
             presentador.SeleccionarHistorial(itemSeleccionado)
         }
         rvHistorial.layoutManager = LinearLayoutManager(this)
         rvHistorial.adapter = historialAdaptador
 
-        // 2. HASTA DESPUÉS inicializamos el presentador y cargamos los datos
         presentador = clsHistorialMedicoPresentador(this)
         presentador.CargarDatosIniciales()
 

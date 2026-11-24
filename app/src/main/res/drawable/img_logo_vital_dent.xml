@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- MARCADOR TEMPORAL del logotipo.
-     Exporta el logo desde Figma como PNG y guárdalo como res/drawable/img_logo_vital_dent.png,
-     luego BORRA este archivo .xml (si existen los dos, Android marca "Duplicate resources"). -->
+<!-- Marcador del logotipo: se ve mientras carga el logo del hosting (imagenes.php)
+      o si no hay internet. NO borrar: lo usan MainActivity y logo_encabezado.xml. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:drawable="@drawable/ic_logo_vital_dent" />
 </layer-list>

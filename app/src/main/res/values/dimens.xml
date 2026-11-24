@@ -29,7 +29,7 @@
     <dimen name="vd_alto_encabezado">64dp</dimen>
     <dimen name="vd_alto_progreso">6dp</dimen>
     <dimen name="vd_alto_calendario">320dp</dimen>
-    <dimen name="vd_alto_foto_bienvenida">170dp</dimen>
+    <dimen name="vd_alto_foto_bienvenida">200dp</dimen>
     <dimen name="vd_alto_ilustracion_brackets">72dp</dimen>
     <dimen name="vd_alto_multilinea">88dp</dimen>
 
@@ -40,7 +40,7 @@
     <dimen name="vd_icono_tarjeta">32dp</dimen>
     <dimen name="vd_miniatura">52dp</dimen>
     <dimen name="vd_ilustracion">88dp</dimen>
-    <dimen name="vd_logo">132dp</dimen>
+    <dimen name="vd_logo">146dp</dimen>
     <dimen name="vd_logo_encabezado">36dp</dimen>
     <dimen name="vd_avatar_doctor">60dp</dimen>
     <dimen name="vd_avatar_doctor_grande">88dp</dimen>
