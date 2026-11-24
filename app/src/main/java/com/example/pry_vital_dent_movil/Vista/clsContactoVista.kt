@@ -9,6 +9,8 @@ import com.google.android.material.card.MaterialCardView
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsContactoPresentador
 import com.google.android.material.appbar.MaterialToolbar
+import android.content.Intent
+import android.net.Uri
 
 class clsContactoVista : AppCompatActivity() {
     private lateinit var presentador: clsContactoPresentador
@@ -61,9 +63,18 @@ class clsContactoVista : AppCompatActivity() {
     }
 
     fun AbrirMapaComoLlegar() {
-        Toast.makeText(this, "Abriendo ubicación en mapas...", Toast.LENGTH_SHORT).show()
-        // const intent = Intent(Intent.ACTION_VIEW, Uri.parse("geo:..."))
-        // startActivity(intent)
+        val direccion = "Av. Juarez 120, Juárez, 43000 Huejutla de Reyes, Hgo."
+
+        val uri = Uri.Builder()
+            .scheme("https")
+            .authority("www.google.com")
+            .path("maps/dir/")
+            .appendQueryParameter("api", "1")
+            .appendQueryParameter("destination", direccion)
+            .appendQueryParameter("travelmode", "driving")
+            .build()
+
+        startActivity(Intent(Intent.ACTION_VIEW, uri))
     }
 
     fun RealizarLlamadaConsultorio() {
