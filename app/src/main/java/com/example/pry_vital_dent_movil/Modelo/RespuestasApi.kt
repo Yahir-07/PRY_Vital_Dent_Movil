@@ -12,8 +12,17 @@ data class RespuestaApi<T>(
 
 data class SolicitudLogin(val correo: String, val contrasena: String)
 
-data class SolicitudRegistro(val nombre: String, val correo: String, val contrasena: String)
+data class SolicitudRegistro(val nombre: String, val correo: String, val contrasena: String, val telefono: String = "")
 
+data class SolicitudCuestionario(
+    val correo: String, val contrasena: String,
+    val nombre: String, val telefono: String, val fechaNacimiento: String,
+    val sexo: String, val domicilio: String,
+    val tipoSangre: String, val sangrado: String, val enfermedades: String,
+    val medicamentos: String, val motivoConsulta: String, val observaciones: String,
+    val contactoEmergencia: String, val parentesco: String,
+    val telEmergencia: String, val telEmergenciaAlterno: String
+)
 data class SolicitudCambioContrasena(val actual: String, val nueva: String)
 
 // Foto de perfil en JPG codificada en base64 (foto_perfil.php)

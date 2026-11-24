@@ -7,6 +7,7 @@ import android.widget.CheckBox
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsCuestionario3Presentador
@@ -14,8 +15,6 @@ import com.example.pry_vital_dent_movil.Presentador.clsCuestionario3Presentador
 class clsCuestionario3Vista : AppCompatActivity() {
 
     private lateinit var presentador: clsCuestionario3Presentador
-
-    // Declaración de componentes con tus IDs exactos
     private lateinit var etNombreContacto: TextInputEditText
     private lateinit var actvParentesco: MaterialAutoCompleteTextView
     private lateinit var etTelefonoContacto: TextInputEditText
@@ -23,12 +22,12 @@ class clsCuestionario3Vista : AppCompatActivity() {
     private lateinit var cbAvisoPrivacidad: CheckBox
     private lateinit var btnAtras: Button
     private lateinit var btnContinuar: Button
+    private lateinit var camposObligatorios: Map<String, TextInputLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contacto_emergencia)
 
-        // Enlazando con findViewById
         etNombreContacto = findViewById(R.id.etNombreContacto)
         actvParentesco = findViewById(R.id.actvParentesco)
         etTelefonoContacto = findViewById(R.id.etTelefonoContacto)
@@ -37,10 +36,15 @@ class clsCuestionario3Vista : AppCompatActivity() {
         btnAtras = findViewById(R.id.btnAtras)
         btnContinuar = findViewById(R.id.btnContinuar)
 
-        // Inicializamos el presentador
+        camposObligatorios = mapOf(
+            "nombre" to findViewById<TextInputLayout>(R.id.tilNombreContacto),
+            "parentesco" to findViewById<TextInputLayout>(R.id.tilParentesco),
+            "telefono" to findViewById<TextInputLayout>(R.id.tilTelefonoContacto),
+            "telefonoAlterno" to findViewById<TextInputLayout>(R.id.tilTelefonoAlterno)
+        )
+
         presentador = clsCuestionario3Presentador(this)
 
-        // Configuración de clics
         btnContinuar.setOnClickListener {
             val nombreContacto = etNombreContacto.text.toString().trim()
             val parentesco = actvParentesco.text.toString().trim()
@@ -60,13 +64,22 @@ class clsCuestionario3Vista : AppCompatActivity() {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
-    fun IrAlPanelPrincipal() {
-        val intent = Intent(this, clsInicioVista::class.java)
+    fun MostrarErrorCampo(campo: String, mensaje: String) {
+        camposObligatorios[campo]?.error = mensaje
+    }
+
+    fun LimpiarErrores() {
+        camposObligatorios.values.forEach { it.error = null }
+    }
+
+    fun IrAlLogin() {
+        val intent = Intent(this, clsLoginVista::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
-        finishAffinity() // Cierra las pantallas anteriores del flujo de registro/cuestionario
+        finish()
     }
 
     fun VolverAlPasoDos() {
-        finish() // Regresa al paso anterior
+        finish()
     }
 }

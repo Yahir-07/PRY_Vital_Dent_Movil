@@ -7,15 +7,39 @@ class clsRegistroPresentador(private val actividad: clsRegistroVista) {
 
     private val modelo = clsRegistroModelo(actividad)
 
-    fun ClickCrearCuenta(nombre: String, correo: String, contrasena: String, confirmarContrasena: String, aceptaAviso: Boolean) {
-        // Validaciones básicas de lógica
-        if (nombre.isEmpty() || correo.isEmpty() || contrasena.isEmpty() || confirmarContrasena.isEmpty()) {
-            actividad.MostrarMensaje("Por favor llena todos los campos obligatorios")
-            return
+    fun ClickCrearCuenta(
+        nombre: String, correo: String, telefono: String,
+        contrasena: String, confirmarContrasena: String, aceptaAviso: Boolean
+    ) {
+        actividad.LimpiarErrores()
+        var valido = true
+
+        if (nombre.isEmpty()) {
+            actividad.MostrarErrorCampo("nombre", "Este campo es obligatorio"); valido = false
+        }
+        if (correo.isEmpty()) {
+            actividad.MostrarErrorCampo("correo", "Este campo es obligatorio"); valido = false
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            actividad.MostrarErrorCampo("correo", "Ingresa un correo válido"); valido = false
+        }
+        if (telefono.isEmpty()) {
+            actividad.MostrarErrorCampo("telefono", "Este campo es obligatorio"); valido = false
+        } else if (!Regex("^\\d{10}$").matches(telefono)) {
+            actividad.MostrarErrorCampo("telefono", "Ingresa un teléfono de 10 dígitos"); valido = false
+        }
+        if (contrasena.isEmpty()) {
+            actividad.MostrarErrorCampo("contrasena", "Este campo es obligatorio"); valido = false
+        } else if (contrasena.length < 8 || !contrasena.any { it.isUpperCase() } || !contrasena.any { it.isDigit() }) {
+            actividad.MostrarErrorCampo("contrasena", "Mínimo 8 caracteres, una mayúscula y un número"); valido = false
+        }
+        if (confirmarContrasena.isEmpty()) {
+            actividad.MostrarErrorCampo("confirmar", "Este campo es obligatorio"); valido = false
+        } else if (contrasena != confirmarContrasena) {
+            actividad.MostrarErrorCampo("confirmar", "Las contraseñas no coinciden"); valido = false
         }
 
-        if (contrasena != confirmarContrasena) {
-            actividad.MostrarMensaje("Las contraseñas no coinciden")
+        if (!valido) {
+            actividad.MostrarMensaje("Por favor llena todos los campos obligatorios")
             return
         }
 
@@ -24,11 +48,12 @@ class clsRegistroPresentador(private val actividad: clsRegistroVista) {
             return
         }
 
-        // Si pasa las validaciones, mandamos los datos al modelo
-        modelo.RegistrarUsuario(nombre, correo, contrasena) { exito, mensaje ->
+        actividad.HabilitarBoton(false)
+        modelo.RegistrarUsuario(nombre, correo, telefono, contrasena) { exito, mensaje ->
+            actividad.HabilitarBoton(true)
             if (exito) {
-                actividad.MostrarMensaje("¡Cuenta creada con éxito!")
-                actividad.IrAlLogin()
+                actividad.MostrarMensaje("¡Cuenta creada! Ahora completa tus datos")
+                actividad.IrAlCuestionario(telefono)
             } else {
                 actividad.MostrarMensaje(mensaje)
             }

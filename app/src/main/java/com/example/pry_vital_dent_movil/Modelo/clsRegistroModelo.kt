@@ -4,11 +4,17 @@ import android.content.Context
 
 class clsRegistroModelo(private val contexto: Context) {
 
-    // POST registro.php: crea la cuenta en usuarios y su ficha en pacientes
-    fun RegistrarUsuario(nombre: String, correo: String, contrasena: String, alTerminar: (Boolean, String) -> Unit) {
-        val llamada = RetrofitClient.api.Registrar(SolicitudRegistro(nombre, correo, contrasena))
+    fun RegistrarUsuario(
+        nombre: String, correo: String, telefono: String, contrasena: String,
+        alTerminar: (Boolean, String) -> Unit
+    ) {
+        val llamada = RetrofitClient.api.Registrar(SolicitudRegistro(nombre, correo, contrasena, telefono))
 
         RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, _ ->
+            if (exito) {
+                // Se guardan para que guardar_cuestionario.php compruebe la cuenta al finalizar
+                clsRegistroTemporal.Iniciar(correo, contrasena)
+            }
             alTerminar(exito, mensaje)
         }
     }

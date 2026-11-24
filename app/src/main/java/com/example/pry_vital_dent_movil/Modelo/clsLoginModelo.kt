@@ -7,10 +7,8 @@ import retrofit2.Response
 
 class clsLoginModelo(private val contexto: Context) {
 
-    // Datos del último login con contraseña (para activar la huella después)
     private var ultimoLogin: DatosLogin? = null
 
-    // POST login.php: valida el correo y la contraseña contra la tabla usuarios
     fun AutenticarUsuario(usuario: String, contrasena: String, alTerminar: (Boolean, String) -> Unit) {
         val llamada = RetrofitClient.api.IniciarSesion(SolicitudLogin(usuario, contrasena))
 
@@ -26,20 +24,16 @@ class clsLoginModelo(private val contexto: Context) {
         }
     }
 
-    // ---------- Acceso con huella ----------
 
     fun HuellaActiva(): Boolean = clsSesion.HuellaLoginActiva(contexto)
 
     fun NombreHuella(): String = clsSesion.ObtenerNombreHuella(contexto)
 
-    // El paciente aceptó usar su huella después de entrar con contraseña
     fun ActivarHuella() {
         val datos = ultimoLogin ?: return
         clsSesion.GuardarHuellaLogin(contexto, datos.token, datos.nombre, datos.idPaciente)
     }
 
-    // Si ya tenía la huella activada, se guarda el token nuevo;
-    // si entró otra persona en este celular, se apaga la huella de la anterior.
     private fun ActualizarHuellaTrasLogin(datos: DatosLogin) {
         if (!clsSesion.HuellaLoginActiva(contexto)) return
         if (clsSesion.ObtenerIdPacienteHuella(contexto) == datos.idPaciente) {
@@ -49,8 +43,6 @@ class clsLoginModelo(private val contexto: Context) {
         }
     }
 
-    // Android ya reconoció la huella: se revisa con perfil.php que el token guardado
-    // siga vigente en el servidor y, si es así, se abre la sesión con ese token.
     fun IniciarSesionConHuella(alTerminar: (Boolean, String) -> Unit) {
         val token = clsSesion.ObtenerTokenHuella(contexto)
         val nombre = clsSesion.ObtenerNombreHuella(contexto)
@@ -60,8 +52,6 @@ class clsLoginModelo(private val contexto: Context) {
             return
         }
 
-        // Se usa enqueue directo (no RetrofitClient.Ejecutar) para que un token vencido
-        // solo apague la huella y no mande al usuario a otra pantalla.
         RetrofitClient.api.ObtenerPerfil(token).enqueue(object : Callback<RespuestaApi<DatosPerfil>> {
 
             override fun onResponse(

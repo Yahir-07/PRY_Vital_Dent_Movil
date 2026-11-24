@@ -21,6 +21,7 @@ import com.example.pry_vital_dent_movil.Modelo.RespuestaApi
 import com.example.pry_vital_dent_movil.Modelo.RetrofitClient
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCambioContrasena
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCita
+import com.example.pry_vital_dent_movil.Modelo.SolicitudCuestionario
 import com.example.pry_vital_dent_movil.Modelo.SolicitudFotoPerfil
 import com.example.pry_vital_dent_movil.Modelo.SolicitudLogin
 import com.example.pry_vital_dent_movil.Modelo.SolicitudPago
@@ -44,6 +45,9 @@ interface ApiService {
 
     @POST("registro.php")
     fun Registrar(@Body datos: SolicitudRegistro): Call<RespuestaApi<DatosRegistro>>
+
+    @POST("guardar_cuestionario.php")
+    fun GuardarCuestionario(@Body datos: SolicitudCuestionario): Call<RespuestaApi<Any>>
 
     @GET("perfil.php")
     fun ObtenerPerfil(
@@ -196,8 +200,6 @@ interface ApiService {
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
         @Body datos: SolicitudFotoPerfil
     ): Call<RespuestaApi<DatosFotoPerfil>>
-
-    // ---------- Notificaciones push (Firebase) ----------
 
     @FormUrlEncoded
     @POST("guardar_token_fcm.php")
