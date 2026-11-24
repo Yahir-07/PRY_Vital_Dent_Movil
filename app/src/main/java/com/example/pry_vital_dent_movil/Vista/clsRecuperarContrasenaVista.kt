@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsRecuperarContrasenaPresentador
+import com.google.android.material.appbar.MaterialToolbar
 
 class clsRecuperarContrasenaVista : AppCompatActivity() {
 
@@ -19,8 +20,6 @@ class clsRecuperarContrasenaVista : AppCompatActivity() {
     private lateinit var btnEnviarEnlace: Button
     private lateinit var tvAvisoEnlaceEnviado: TextView
     private lateinit var btnVolverIniciarSesion: Button
-
-    // Paso 2: código y contraseña nueva
     private lateinit var llPasoCodigo: LinearLayout
     private lateinit var etCodigo: TextInputEditText
     private lateinit var etNuevaContrasena: TextInputEditText
@@ -32,6 +31,7 @@ class clsRecuperarContrasenaVista : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recuperar_contrasena)
 
+        findViewById<MaterialToolbar>(R.id.tbRecuperarContrasena).mostrarLogo()
         etCorreoRecuperacion = findViewById(R.id.etCorreoRecuperacion)
         btnEnviarEnlace = findViewById(R.id.btnEnviarEnlace)
         tvAvisoEnlaceEnviado = findViewById(R.id.tvAvisoEnlaceEnviado)
@@ -66,7 +66,6 @@ class clsRecuperarContrasenaVista : AppCompatActivity() {
         }
     }
 
-    // Métodos que ordenan los cambios visuales
     fun MostrarAvisoEnviado(mensaje: String) {
         tvAvisoEnlaceEnviado.text = mensaje
         tvAvisoEnlaceEnviado.visibility = View.VISIBLE

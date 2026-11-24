@@ -39,7 +39,6 @@ import retrofit2.http.Url
 interface ApiService {
 
     // ---------- Cuenta ----------
-
     @POST("login.php")
     fun IniciarSesion(@Body datos: SolicitudLogin): Call<RespuestaApi<DatosLogin>>
 
@@ -208,4 +207,7 @@ interface ApiService {
         @Field("dispositivo") dispositivo: String,
         @Field("accion") accion: String
     ): Call<RespuestaApi<Any>>
+
+    @GET("imagenes.php")
+    fun ObtenerImagenes(@Query("seccion") seccion: String?): Call<RespuestaApi<Map<String, String>>>
 }

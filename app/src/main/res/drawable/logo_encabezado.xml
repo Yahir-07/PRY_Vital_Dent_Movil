@@ -4,5 +4,6 @@
     <item
         android:width="@dimen/vd_logo_encabezado"
         android:height="@dimen/vd_logo_encabezado"
+        android:end="@dimen/vd_espacio_xs2"
         android:drawable="@drawable/img_logo_vital_dent" />
 </layer-list>

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsRegistroPresentador
+import com.google.android.material.appbar.MaterialToolbar
 import kotlin.jvm.java
 
 class clsRegistroVista : AppCompatActivity() {
@@ -26,6 +27,7 @@ class clsRegistroVista : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_cuenta)
 
+        findViewById<MaterialToolbar>(R.id.tbCrearCuenta).mostrarLogo()
         etNombreUsuario = findViewById(R.id.etNombreUsuario)
         etCorreo = findViewById(R.id.etCorreo)
         etContrasena = findViewById(R.id.etContrasena)

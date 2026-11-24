@@ -73,6 +73,8 @@ class clsRealizarPagoVista : AppCompatActivity() {
         btnPagar = findViewById(R.id.btnPagar)
         tvNotaHuella = findViewById(R.id.tvNotaHuella)
 
+        tbRealizarPago.mostrarLogo()
+
         textoBotonPagar = getString(R.string.accion_pagar)
         esperandoMercadoPago = savedInstanceState?.getBoolean(ESTADO_ESPERANDO_MP) ?: false
         referenciaDelEnlace = LeerReferencia(intent)

@@ -46,6 +46,8 @@ class clsAgendarCitaVista : AppCompatActivity() {
         etMotivo = findViewById(R.id.etMotivo)
         btnConfirmarCita = findViewById(R.id.btnConfirmarCita)
 
+        tbAgendarCita.mostrarLogo()
+
         // No se pueden elegir días pasados
         calCita.minDate = System.currentTimeMillis() - 1000
 

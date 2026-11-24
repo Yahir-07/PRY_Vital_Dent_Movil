@@ -39,6 +39,8 @@ class clsAvanceTratamientoVista : AppCompatActivity() {
         tvEstadoTratamiento = findViewById(R.id.tvEstadoTratamiento)
         rvAvances = findViewById(R.id.rvAvances)
 
+        tbDetalleTratamiento.mostrarLogo()
+
         // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView
         avanceAdaptador = AvanceAdaptador(emptyList()) { avanceSeleccionado ->
             presentador.SeleccionarAvance(avanceSeleccionado)

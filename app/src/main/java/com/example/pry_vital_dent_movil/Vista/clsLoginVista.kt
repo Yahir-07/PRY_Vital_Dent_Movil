@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Presentador.clsLoginPresentador
 import com.example.pry_vital_dent_movil.Modelo.clsBiometria
+import com.google.android.material.appbar.MaterialToolbar
 
 class clsLoginVista : AppCompatActivity() {
 
@@ -29,6 +30,7 @@ class clsLoginVista : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_iniciar_sesion)
 
+        findViewById<MaterialToolbar>(R.id.tbIniciarSesion).mostrarLogo()
         tvErrorCredenciales = findViewById(R.id.tvErrorCredenciales)
         etUsuario = findViewById(R.id.etUsuario)
         etContrasena = findViewById(R.id.etContrasena)

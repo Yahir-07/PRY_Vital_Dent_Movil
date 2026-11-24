@@ -49,6 +49,8 @@ class clsCambiarContrasenaVista : AppCompatActivity() {
         btnCancelar = findViewById(R.id.btnCancelar)
         btnGuardarCambios = findViewById(R.id.btnGuardarCambios)
 
+        tbCambiarContrasena.mostrarLogo()
+
         presentador = clsCambiarContrasenaPresentador(this)
 
         btnGuardarCambios.setOnClickListener {

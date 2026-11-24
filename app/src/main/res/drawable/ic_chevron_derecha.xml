@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Icono del Figma (icono_siguiente) convertido a vector -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="@dimen/vd_icono_m"
     android:height="@dimen/vd_icono_m"
@@ -6,5 +7,6 @@
     android:viewportHeight="24">
     <path
         android:fillColor="@color/vd_icono"
-        android:pathData="M10,6L8.59,7.41 13.17,12l-4.58,4.59L10,18l6,-6z" />
+        android:fillType="evenOdd"
+        android:pathData="M8.600,18.921C8.410,18.835 8.158,18.578 8.079,18.390C7.994,18.187 7.999,17.803 8.088,17.588C8.138,17.468 8.998,16.575 10.864,14.707L13.568,12L10.844,9.270C7.876,6.294 7.987,6.426 8.025,5.905C8.060,5.413 8.413,5.060 8.906,5.025C9.429,4.987 9.263,4.845 12.623,8.197C14.319,9.889 15.762,11.354 15.831,11.453C15.979,11.666 16.027,12.077 15.937,12.358C15.891,12.504 15.277,13.143 12.803,15.623C11.111,17.319 9.645,18.763 9.545,18.832C9.400,18.933 9.300,18.961 9.053,18.972C8.861,18.980 8.688,18.961 8.600,18.921Z" />
 </vector>

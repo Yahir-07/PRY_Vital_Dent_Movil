@@ -1,6 +1,7 @@
 package com.example.pry_vital_dent_movil.Presentador
 
 import com.example.pry_vital_dent_movil.Modelo.clsBienvenidoModelo
+import com.example.pry_vital_dent_movil.Modelo.clsImagenesModelo
 import com.example.pry_vital_dent_movil.Vista.MainActivity
 
 class clsBienvenidoPresentador(private val actividad: MainActivity) {
@@ -20,5 +21,10 @@ class clsBienvenidoPresentador(private val actividad: MainActivity) {
 
     fun ClickCrearCuenta() {
         actividad.IrARegistro()
+    }
+    fun CargarImagenes() {
+        modelo.ObtenerImagenes { imagenes ->
+            actividad.MostrarImagenes(imagenes[clsImagenesModelo.LOGO], imagenes[clsImagenesModelo.FOTO_BIENVENIDA])
+        }
     }
 }

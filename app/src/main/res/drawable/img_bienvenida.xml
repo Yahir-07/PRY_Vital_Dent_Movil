@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- MARCADOR TEMPORAL de la foto del dentista (pantalla 01 · Inicio).
-     Exporta la imagen desde Figma como PNG/JPG y guárdala como res/drawable/img_bienvenida.png
-     (o .jpg), luego BORRA este archivo .xml. -->
+<!-- Marcador de la foto del consultorio (pantalla 01 · Inicio): se ve mientras carga
+      la foto del hosting (imagenes.php) o si no hay internet. NO borrar. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
     <corners android:radius="@dimen/vd_radio_l" />
     <solid android:color="@color/vd_marcador" />

@@ -55,8 +55,10 @@
         android:id="@+id/ivBienvenida"
         android:layout_width="0dp"
         android:layout_height="@dimen/vd_alto_foto_bienvenida"
+        android:layout_marginStart="@dimen/vd_espacio_m"
         android:layout_marginTop="@dimen/vd_espacio_xl"
-        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:layout_marginEnd="@dimen/vd_espacio_m"
+        android:layout_marginBottom="@dimen/vd_espacio_m"
         android:contentDescription="@string/cd_foto_bienvenida"
         android:scaleType="centerCrop"
         android:src="@drawable/img_bienvenida"
@@ -72,6 +74,7 @@
         android:layout_height="wrap_content"
         android:text="@string/accion_iniciar_sesion"
         app:layout_constraintBottom_toTopOf="@+id/tvSinCuenta"
+        app:layout_constraintTop_toBottomOf="@+id/ivBienvenida"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -84,6 +87,7 @@
         android:layout_marginBottom="@dimen/vd_espacio_m"
         android:text="@string/bienvenida_sin_cuenta"
         app:layout_constraintBottom_toTopOf="@+id/btnCrearCuenta"
+        app:layout_constraintTop_toBottomOf="@+id/btnIniciarSesion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -95,6 +99,7 @@
         android:layout_marginBottom="@dimen/vd_espacio_xl"
         android:text="@string/accion_crear_cuenta"
         app:layout_constraintBottom_toTopOf="@+id/tvPie"
+        app:layout_constraintTop_toBottomOf="@+id/tvSinCuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
