@@ -7,13 +7,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pry_vital_dent_movil.Presentador.clsCuestionario1Presentador
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.example.pry_vital_dent_movil.R
+
 class clsCuestionario1Vista : AppCompatActivity() {
 
     private lateinit var presentador: clsCuestionario1Presentador
-
-    // Declaración de componentes con tus IDs exactos
     private lateinit var etNombre: TextInputEditText
     private lateinit var etApellidoPaterno: TextInputEditText
     private lateinit var etApellidoMaterno: TextInputEditText
@@ -26,11 +26,11 @@ class clsCuestionario1Vista : AppCompatActivity() {
     private lateinit var etCalle: TextInputEditText
     private lateinit var etReferencia: TextInputEditText
     private lateinit var btnContinuar: Button
+    private lateinit var camposObligatorios: Map<String, TextInputLayout>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_datos_personales)
-
 
         etNombre = findViewById(R.id.etNombre)
         etApellidoPaterno = findViewById(R.id.etApellidoPaterno)
@@ -45,10 +45,20 @@ class clsCuestionario1Vista : AppCompatActivity() {
         etReferencia = findViewById(R.id.etReferencia)
         btnContinuar = findViewById(R.id.btnContinuar)
 
-        // Inicializamos el presentador
+        etFechaNacimiento.setOnClickListener { MostrarCalendario() }
+
+        camposObligatorios = mapOf(
+            "nombre" to findViewById<TextInputLayout>(R.id.tilNombre),
+            "apPaterno" to findViewById<TextInputLayout>(R.id.tilApellidoPaterno),
+            "fechaNac" to findViewById<TextInputLayout>(R.id.tilFechaNacimiento),
+            "sexo" to findViewById<TextInputLayout>(R.id.tilSexo),
+            "telefono" to findViewById<TextInputLayout>(R.id.tilTelefono)
+        )
+
+        intent.getStringExtra(clsRegistroVista.EXTRA_TELEFONO)?.let { etTelefono.setText(it) }
+
         presentador = clsCuestionario1Presentador(this)
 
-        // Configuración de clics
         btnContinuar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             val apPaterno = etApellidoPaterno.text.toString().trim()
@@ -73,9 +83,24 @@ class clsCuestionario1Vista : AppCompatActivity() {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
     }
 
+    fun MostrarErrorCampo(campo: String, mensaje: String) {
+        camposObligatorios[campo]?.error = mensaje
+    }
+
+    fun LimpiarErrores() {
+        camposObligatorios.values.forEach { it.error = null }
+    }
+
     fun IrAlPasoDos() {
-        Toast.makeText(this, "Avanzando al Paso 2...", Toast.LENGTH_SHORT).show()
-        // val intent = Intent(this, clsCuestionarioPaso2Vista::class.java)
-        // startActivity(intent)
+        startActivity(Intent(this, clsCuestionario2Vista::class.java))
+    }
+    private fun MostrarCalendario() {
+        val hoy = java.util.Calendar.getInstance()
+        val dialogo = android.app.DatePickerDialog(this, { _, anio, mes, dia ->
+            etFechaNacimiento.setText(String.format(java.util.Locale.US, "%02d/%02d/%04d", dia, mes + 1, anio))
+            camposObligatorios["fechaNac"]?.error = null
+        }, hoy.get(java.util.Calendar.YEAR) - 18, hoy.get(java.util.Calendar.MONTH), hoy.get(java.util.Calendar.DAY_OF_MONTH))
+        dialogo.datePicker.maxDate = hoy.timeInMillis
+        dialogo.show()
     }
 }

@@ -337,4 +337,5 @@
     <string name="dia_sabado">Sábado</string>
     <string name="dia_domingo">Domingo</string>
     <string name="horario_cerrado">Cerrado</string>
+    <string name="placeholder_telefono">10 dígitos</string>
 </resources>

@@ -13,8 +13,29 @@ class clsCuestionario1Presentador(private val vista: clsCuestionario1Vista) {
         cp: String, domicilio: String, localidad: String,
         calle: String, referencia: String
     ) {
-        if (nombre.isEmpty() || telefono.isEmpty() || cp.isEmpty()) {
-            vista.MostrarMensaje("Por favor llena los campos obligatorios principales (Nombre, Teléfono, CP)")
+        vista.LimpiarErrores()
+        var valido = true
+
+        if (nombre.isEmpty()) {
+            vista.MostrarErrorCampo("nombre", "Este campo es obligatorio"); valido = false
+        }
+        if (apPaterno.isEmpty()) {
+            vista.MostrarErrorCampo("apPaterno", "Este campo es obligatorio"); valido = false
+        }
+        if (fechaNac.isEmpty()) {
+            vista.MostrarErrorCampo("fechaNac", "Este campo es obligatorio"); valido = false
+        }
+        if (sexo.isEmpty()) {
+            vista.MostrarErrorCampo("sexo", "Selecciona una opción"); valido = false
+        }
+        if (telefono.isEmpty()) {
+            vista.MostrarErrorCampo("telefono", "Este campo es obligatorio"); valido = false
+        } else if (!Regex("^\\d{10}$").matches(telefono)) {
+            vista.MostrarErrorCampo("telefono", "Ingresa un teléfono de 10 dígitos"); valido = false
+        }
+
+        if (!valido) {
+            vista.MostrarMensaje("Por favor llena los campos obligatorios (*)")
             return
         }
 
