@@ -23,7 +23,7 @@ class clsMisTratamientosVista : AppCompatActivity() {
     private lateinit var tlTratamientos: TabLayout
     private lateinit var rvTratamientos: RecyclerView
     private lateinit var tvAvisoTratamientos: TextView
-    private lateinit var btnVerTiposBrackets: MaterialButton
+    private lateinit var btnAgregarTratamiento: MaterialButton
     private lateinit var tratamientoAdaptador: TratamientoAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,7 @@ class clsMisTratamientosVista : AppCompatActivity() {
         tlTratamientos = findViewById(R.id.tlTratamientos)
         rvTratamientos = findViewById(R.id.rvTratamientos)
         tvAvisoTratamientos = findViewById(R.id.tvAvisoTratamientos)
-        btnVerTiposBrackets = findViewById(R.id.btnVerTiposBrackets)
+        btnAgregarTratamiento = findViewById(R.id.btnAgregarTratamiento)
 
         // 1. PRIMERO inicializamos el adaptador y lo configuramos en el RecyclerView
         tratamientoAdaptador = TratamientoAdaptador(emptyList()) { tratamientoSeleccionado ->
@@ -59,9 +59,9 @@ class clsMisTratamientosVista : AppCompatActivity() {
             override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
 
-        // Botón "Ver tipos de brackets" (solo se ve si no hay tratamientos en curso)
-        btnVerTiposBrackets.setOnClickListener {
-            presentador.ClickVerTiposBrackets()
+        // Botón "Agregar tratamiento", abre Tipos de brackets
+        btnAgregarTratamiento.setOnClickListener {
+            presentador.ClickAgregarTratamiento()
         }
 
         configurarBarraInferior(2) // Barra inferior (Tratamientos = posición 2), está en NavegacionHelper.kt
@@ -73,10 +73,6 @@ class clsMisTratamientosVista : AppCompatActivity() {
 
     fun MostrarAviso(mensaje: String) {
         tvAvisoTratamientos.text = mensaje
-    }
-
-    fun MostrarBotonBrackets(mostrar: Boolean) {
-        btnVerTiposBrackets.visibility = if (mostrar) View.VISIBLE else View.GONE
     }
 
     fun IrATiposBrackets() {

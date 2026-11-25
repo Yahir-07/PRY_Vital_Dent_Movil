@@ -24,7 +24,6 @@ class clsMisTratamientosPresentador(private val vista: clsMisTratamientosVista) 
 
             // Si la API respondió bien pero la lista viene vacía, el paciente no tiene tratamiento
             val sinTratamiento = exito && lista.isEmpty()
-            vista.MostrarBotonBrackets(sinTratamiento)
 
             // Lo mandamos a Tipos de brackets (como dijo Gustavo), pero solo la primera vez
             if (sinTratamiento && !yaSeAbrieronBrackets) {
@@ -37,7 +36,6 @@ class clsMisTratamientosPresentador(private val vista: clsMisTratamientosVista) 
     fun CargarTratamientosFinalizados() {
         modelo.ObtenerTratamientosFinalizados { exito, mensaje, lista ->
             vista.MostrarListaTratamientos(lista)
-            vista.MostrarBotonBrackets(false) // en Finalizados no va el botón
             vista.MostrarAviso(
                 when {
                     !exito -> mensaje
@@ -52,7 +50,7 @@ class clsMisTratamientosPresentador(private val vista: clsMisTratamientosVista) 
         vista.IrADetalleTratamiento(tratamiento.idTratamiento)
     }
 
-    fun ClickVerTiposBrackets() {
+    fun ClickAgregarTratamiento() {
         vista.IrATiposBrackets()
     }
 }

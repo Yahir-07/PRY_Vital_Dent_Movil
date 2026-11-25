@@ -38,6 +38,20 @@
             android:text="@string/tab_finalizados" />
     </com.google.android.material.tabs.TabLayout>
 
+    <!-- Botón "Agregar tratamiento": abre Tipos de brackets para pedir una valoración -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAgregarTratamiento"
+        style="@style/VitalDent.Boton.Primario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:text="@string/accion_agregar_tratamiento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tlTratamientos" />
+
     <!-- Lista + aviso en cadena vertical: el aviso queda justo debajo de la lista -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTratamientos"
@@ -52,7 +66,7 @@
         app:layout_constraintBottom_toTopOf="@+id/tvAvisoTratamientos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tlTratamientos"
+        app:layout_constraintTop_toBottomOf="@+id/btnAgregarTratamiento"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintVertical_chainStyle="packed"
         tools:itemCount="3"
@@ -67,27 +81,10 @@
         android:layout_marginEnd="@dimen/vd_margen_pantalla"
         android:layout_marginBottom="@dimen/vd_espacio_m"
         android:text="@string/tratamientos_aviso"
-        app:layout_constraintBottom_toTopOf="@+id/btnVerTiposBrackets"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvTratamientos" />
-
-    <!-- Botón para ir a Tipos de brackets, solo sale si no tienes tratamientos en curso -->
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnVerTiposBrackets"
-        style="@style/VitalDent.Boton.Primario"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/vd_margen_pantalla"
-        android:layout_marginEnd="@dimen/vd_margen_pantalla"
-        android:layout_marginBottom="@dimen/vd_espacio_m"
-        android:text="@string/accion_ver_tipos_brackets"
-        android:visibility="gone"
-        tools:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/divNavegacion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAvisoTratamientos" />
+        app:layout_constraintTop_toBottomOf="@+id/rvTratamientos" />
 
     <!-- Barra de navegación inferior -->
     <com.google.android.material.divider.MaterialDivider

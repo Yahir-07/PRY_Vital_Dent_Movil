@@ -307,7 +307,7 @@
     <string name="filtro_clasicos">Clásicos</string>
     <string name="accion_ver_caracteristicas">▸ Ver características</string>
     <string name="accion_solicitar_valoracion">Solicitar valoración</string>
-    <string name="accion_ver_tipos_brackets">Ver tipos de brackets</string>
+    <string name="accion_agregar_tratamiento">Agregar tratamiento</string>
     <string name="brackets_metalicos_etiqueta">Opción clásica</string>
     <string name="brackets_metalicos_nombre">Brackets metálicos</string>
     <string name="brackets_metalicos_descripcion">Piezas metálicas colocadas en la parte externa de los dientes.</string>
