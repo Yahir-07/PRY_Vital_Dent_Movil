@@ -14,7 +14,6 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.example.pry_vital_dent_movil.Notificaciones.MyFirebaseMessagingService
 
 class clsInicioVista : AppCompatActivity() {
 

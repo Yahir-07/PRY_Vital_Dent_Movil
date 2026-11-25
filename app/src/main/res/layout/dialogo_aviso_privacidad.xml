@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Burbuja del aviso de privacidad (vista de MaterialAlertDialogBuilder.setView).
+     Se abre al tocar la casilla "Acepto el aviso de privacidad" en Crear cuenta y en Contacto de emergencia.
+     El botón Aceptar se habilita hasta que el paciente marca la casilla de la burbuja. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_hoja"
+    android:orientation="vertical"
+    android:padding="@dimen/vd_espacio_xl">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/vd_icono_l"
+            android:layout_height="@dimen/vd_icono_l"
+            android:background="@drawable/bg_icono_circulo"
+            android:contentDescription="@null"
+            android:padding="@dimen/vd_espacio_s"
+            android:src="@drawable/ic_escudo"
+            android:tint="@color/vd_primario" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/vd_espacio_m"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/VitalDent.Texto.Titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacidad_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacidad_actualizacion" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnCerrarAvisoPrivacidad"
+            android:layout_width="@dimen/vd_icono_l"
+            android:layout_height="@dimen/vd_icono_l"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/privacidad_cerrar"
+            android:src="@drawable/ic_cerrar"
+            android:tint="@color/vd_texto_secundario" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:text="@string/privacidad_resumen" />
+
+    <!-- Texto del aviso con desplazamiento: la burbuja no crece más que esta altura -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svAvisoPrivacidad"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/vd_alto_aviso_privacidad"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:background="@drawable/bg_aviso"
+        android:fadeScrollbars="false"
+        android:padding="@dimen/vd_espacio_l"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:text="@string/privacidad_1_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_1_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_2_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_2_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_3_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_3_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_4_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_4_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_5_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_5_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_6_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_6_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_7_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_7_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_8_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_8_texto" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Seccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/privacidad_9_titulo" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Secundario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_xs"
+                android:text="@string/privacidad_9_texto" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cbAceptoAvisoBurbuja"
+        style="@style/Widget.Material3.CompoundButton.CheckBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:text="@string/privacidad_casilla"
+        android:textColor="@color/vd_texto_secundario"
+        android:textSize="@dimen/vd_texto_etiqueta"
+        app:buttonTint="@color/vd_primario" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAceptarAvisoPrivacidad"
+        style="@style/VitalDent.Boton.Primario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_m"
+        android:enabled="false"
+        android:text="@string/privacidad_aceptar" />
+
+</LinearLayout>

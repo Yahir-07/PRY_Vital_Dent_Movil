@@ -33,6 +33,7 @@ class clsCuestionario3Vista : AppCompatActivity() {
         etTelefonoContacto = findViewById(R.id.etTelefonoContacto)
         etTelefonoAlterno = findViewById(R.id.etTelefonoAlterno)
         cbAvisoPrivacidad = findViewById(R.id.cbAvisoPrivacidad)
+        cbAvisoPrivacidad.conectarAvisoPrivacidad(this) // abre la burbuja del aviso de privacidad
         btnAtras = findViewById(R.id.btnAtras)
         btnContinuar = findViewById(R.id.btnContinuar)
 

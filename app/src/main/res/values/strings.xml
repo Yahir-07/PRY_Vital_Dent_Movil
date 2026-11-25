@@ -74,7 +74,7 @@
     <string name="placeholder_motivo">Ej. limpieza, revisión, dolor de muela</string>
     <string name="placeholder_repite_contrasena">Repite la contraseña nueva</string>
     <string name="ayuda_contrasena">Mínimo 8 caracteres, una mayúscula y un número</string>
-    <string name="acepto_aviso_privacidad">Acepto el aviso de privacidad.</string>
+    <string name="acepto_aviso_privacidad">Acepto el <u>aviso de privacidad</u>.</string>
     <string name="separador_o">o</string>
 
     <string-array name="opciones_sexo">

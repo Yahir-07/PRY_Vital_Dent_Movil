@@ -115,7 +115,7 @@
 
         <!-- 10. Notificaciones Push (Firebase Cloud Messaging) -->
         <service
-            android:name=".Notificaciones.MyFirebaseMessagingService"
+            android:name=".Vista.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
