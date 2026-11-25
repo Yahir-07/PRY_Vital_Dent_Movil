@@ -53,7 +53,7 @@ class clsAgendarCitaPresentador(private val vista: clsAgendarCitaVista) {
             return
         }
         if (motivo.isEmpty()) {
-            vista.MostrarMensaje("Escribe el motivo de la cita")
+            vista.MostrarMensaje("Elige o escribe el motivo de la cita")
             return
         }
 

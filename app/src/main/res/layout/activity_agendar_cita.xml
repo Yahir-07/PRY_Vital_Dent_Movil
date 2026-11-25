@@ -95,8 +95,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvNotaHorarios" />
 
+            <!-- Motivo: se elige de la lista (como en la web) o se escribe a mano -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilMotivo"
+                style="@style/VitalDent.Campo.Desplegable"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,13 +106,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblMotivo"
                 app:placeholderText="@string/placeholder_motivo">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/etMotivo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:completionThreshold="1"
                     android:imeOptions="actionDone"
                     android:importantForAutofill="no"
-                    android:inputType="textCapSentences" />
+                    android:inputType="textCapSentences"
+                    android:maxLength="120"
+                    app:simpleItems="@array/opciones_motivo_cita" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

@@ -71,7 +71,7 @@
     <string name="placeholder_correo">nombre@correo.com</string>
     <string name="placeholder_fecha">dd/mm/aaaa</string>
     <string name="placeholder_domicilio">Calle, número y colonia</string>
-    <string name="placeholder_motivo">Ej. limpieza, revisión, dolor de muela</string>
+    <string name="placeholder_motivo">Elige un motivo o escríbelo</string>
     <string name="placeholder_repite_contrasena">Repite la contraseña nueva</string>
     <string name="ayuda_contrasena">Mínimo 8 caracteres, una mayúscula y un número</string>
     <string name="acepto_aviso_privacidad">Acepto el aviso de privacidad.</string>
@@ -287,6 +287,18 @@
         <item>Otro</item>
     </string-array>
 
+    <!-- Motivos de la cita, son los mismos de la web + la valoración de brackets -->
+    <string-array name="opciones_motivo_cita">
+        <item>Valoración general</item>
+        <item>Valoración de brackets</item>
+        <item>Limpieza dental</item>
+        <item>Ajuste de brackets</item>
+        <item>Endodoncia</item>
+        <item>Resina</item>
+        <item>Prótesis</item>
+        <item>Revisión o dolor</item>
+    </string-array>
+
     <!-- ===== 10b · Tipos de brackets ===== -->
     <string name="brackets_titulo">Tipos de brackets</string>
     <string name="brackets_subtitulo">Conoce las opciones y solicita una valoración</string>
@@ -295,6 +307,7 @@
     <string name="filtro_clasicos">Clásicos</string>
     <string name="accion_ver_caracteristicas">▸ Ver características</string>
     <string name="accion_solicitar_valoracion">Solicitar valoración</string>
+    <string name="accion_ver_tipos_brackets">Ver tipos de brackets</string>
     <string name="brackets_metalicos_etiqueta">Opción clásica</string>
     <string name="brackets_metalicos_nombre">Brackets metálicos</string>
     <string name="brackets_metalicos_descripcion">Piezas metálicas colocadas en la parte externa de los dientes.</string>

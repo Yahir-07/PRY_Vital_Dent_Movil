@@ -13,14 +13,8 @@ class clsTipoBracketsPresentador(private val vista: clsTipoBracketsVista) {
     }
 
     fun ClickSolicitarValoracion(tipoBracket: String) {
-        modelo.RegistrarSolicitudValoracion(tipoBracket) { exito, mensaje ->
-            if (exito) {
-                vista.MostrarMensaje(mensaje)
-                vista.IrASolicitudExitosa()
-            } else {
-                vista.MostrarMensaje(mensaje)
-            }
-        }
+        val motivo = modelo.ArmarMotivoValoracion(tipoBracket)
+        vista.IrAAgendarValoracion(motivo) // Agendar cita se abre con el motivo ya escrito
     }
 
     fun FiltrarBrackets(posicionTab: Int) {

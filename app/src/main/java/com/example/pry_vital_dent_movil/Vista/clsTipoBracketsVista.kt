@@ -136,8 +136,9 @@ class clsTipoBracketsVista : AppCompatActivity() {
         cvBracketsAutoligables.visibility = View.GONE
     }
 
-    fun IrASolicitudExitosa() {
+    fun IrAAgendarValoracion(motivo: String) {
         val intent = Intent(this, clsAgendarCitaVista::class.java)
+        intent.putExtra(clsAgendarCitaVista.EXTRA_MOTIVO, motivo) // le pasamos el motivo a Agendar cita
         startActivity(intent)
     }
 }
