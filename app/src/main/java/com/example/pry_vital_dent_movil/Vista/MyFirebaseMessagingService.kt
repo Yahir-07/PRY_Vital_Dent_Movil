@@ -1,4 +1,4 @@
-package com.example.pry_vital_dent_movil.Notificaciones
+package com.example.pry_vital_dent_movil.Vista
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -13,7 +13,6 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.pry_vital_dent_movil.R
-import com.example.pry_vital_dent_movil.Vista.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.example.pry_vital_dent_movil.Modelo.clsNotificacionesModelo
