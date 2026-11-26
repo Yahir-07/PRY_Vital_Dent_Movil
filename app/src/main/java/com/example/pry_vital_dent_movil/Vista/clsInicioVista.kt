@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pry_vital_dent_movil.Presentador.clsInicioPresentador
 import com.example.pry_vital_dent_movil.R
@@ -66,6 +67,12 @@ class clsInicioVista : AppCompatActivity() {
         cvMultimedia.setOnClickListener { presentador.ClickMultimedia() }
 
         configurarBarraInferior(0)
+
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                finishAffinity()
+            }
+        })
 
         MyFirebaseMessagingService.crearCanal(this)
 
@@ -130,7 +137,7 @@ class clsInicioVista : AppCompatActivity() {
         startActivity(Intent(this, clsMultimediaVista::class.java))
     }
 
-    fun IrAPerfil() { // <-- Agregado para que el presentador abra el perfil correctamente desde la barra
+    fun IrAPerfil() {
         startActivity(Intent(this, clsPerfilPacienteVista::class.java))
     }
 }
