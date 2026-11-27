@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ACC-08 · Foto de perfil redonda -->
 <resources>
-    <dimen name="vd_foto_perfil">96dp</dimen>
-    <dimen name="vd_foto_perfil_relleno">24dp</dimen>
+    <dimen name="vd_foto_perfil">140dp</dimen>
+    <dimen name="vd_foto_perfil_relleno">34dp</dimen>
 
     <style name="VitalDent.FormaCirculo" parent="">
         <item name="cornerFamily">rounded</item>

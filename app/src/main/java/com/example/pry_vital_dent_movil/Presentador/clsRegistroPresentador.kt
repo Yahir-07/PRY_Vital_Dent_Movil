@@ -54,7 +54,7 @@ class clsRegistroPresentador(private val actividad: clsRegistroVista) {
             actividad.HabilitarBoton(true)
             if (exito) {
                 actividad.MostrarMensaje("¡Cuenta creada! Ahora completa tus datos")
-                actividad.IrAlCuestionario(telefono)
+                actividad.IrAlCuestionario(nombre, telefono)
             } else {
                 actividad.MostrarMensaje(mensaje)
             }

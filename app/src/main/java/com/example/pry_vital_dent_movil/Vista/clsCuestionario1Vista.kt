@@ -62,6 +62,9 @@ class clsCuestionario1Vista : AppCompatActivity() {
 
         presentador = clsCuestionario1Presentador(this)
 
+        // Se rellena con el "Nombre completo" que escribió en Crear cuenta (se puede corregir)
+        intent.getStringExtra(clsRegistroVista.EXTRA_NOMBRE)?.let { presentador.PrellenarNombre(it) }
+
         // Cada que cambia el CP se le avisa al presentador, él decide cuándo buscar
         etCodigoPostal.doAfterTextChanged { texto ->
             presentador.CodigoPostalCambio(texto.toString().trim())
@@ -90,6 +93,12 @@ class clsCuestionario1Vista : AppCompatActivity() {
                 telefono, cp, domicilio, localidad, calle, referencia
             )
         }
+    }
+
+    fun MostrarNombre(nombre: String, apPaterno: String, apMaterno: String) {
+        etNombre.setText(nombre)
+        etApellidoPaterno.setText(apPaterno)
+        etApellidoMaterno.setText(apMaterno)
     }
 
     fun MostrarMensaje(mensaje: String) {

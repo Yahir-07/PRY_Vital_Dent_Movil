@@ -83,8 +83,9 @@ class clsRegistroVista : AppCompatActivity() {
         btnCrearCuenta.isEnabled = habilitado
     }
 
-    fun IrAlCuestionario(telefono: String) {
+    fun IrAlCuestionario(nombre: String, telefono: String) {
         val intent = Intent(this, clsCuestionario1Vista::class.java)
+        intent.putExtra(EXTRA_NOMBRE, nombre)
         intent.putExtra(EXTRA_TELEFONO, telefono)
         startActivity(intent)
         finish()
@@ -98,5 +99,6 @@ class clsRegistroVista : AppCompatActivity() {
 
     companion object {
         const val EXTRA_TELEFONO = "telefono"
+        const val EXTRA_NOMBRE = "nombre"
     }
 }

@@ -62,6 +62,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
     private lateinit var tvAviso: TextView
     private var uriFoto: Uri? = null
     private var tieneFoto = false
+    private var fotoActual: Bitmap? = null
 
     // Pide el permiso de cámara al sistema
     private val pedirPermisoCamara =
@@ -147,8 +148,11 @@ class clsPerfilPacienteVista : AppCompatActivity() {
             presentador.ClickTomarFoto()
         }
 
+        // Tocar la foto la abre en grande; si todavía no tiene foto, abre la cámara.
+        // Para cambiarla se usa el botón "Cambiar foto".
         ivFotoPerfil.setOnClickListener {
-            presentador.ClickTomarFoto()
+            val foto = fotoActual
+            if (foto != null) MostrarFotoAmpliada(foto) else presentador.ClickTomarFoto()
         }
 
         configurarBarraInferior(4)
@@ -313,10 +317,31 @@ class clsPerfilPacienteVista : AppCompatActivity() {
 
     fun MostrarFoto(foto: Bitmap) {
         tieneFoto = true
+        fotoActual = foto
         ivFotoPerfil.setPadding(0, 0, 0, 0)
         ivFotoPerfil.scaleType = ScaleType.CENTER_CROP
         ivFotoPerfil.setImageBitmap(foto)
         btnTomarFoto.setText(R.string.accion_cambiar_foto)
+    }
+
+    // Foto de perfil a pantalla completa con fondo negro; se cierra con un toque o con "atrás"
+    private fun MostrarFotoAmpliada(foto: Bitmap) {
+        val dialogo = android.app.Dialog(this, android.R.style.Theme_Black_NoTitleBar_Fullscreen)
+        val imagen = ImageView(this).apply {
+            setImageBitmap(foto)
+            scaleType = ScaleType.FIT_CENTER
+            setBackgroundColor(android.graphics.Color.BLACK)
+            contentDescription = getString(R.string.cd_foto_perfil)
+            setOnClickListener { dialogo.dismiss() }
+        }
+        dialogo.setContentView(
+            imagen,
+            android.view.ViewGroup.LayoutParams(
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                android.view.ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+        dialogo.show()
     }
 
     fun MostrarSubiendoFoto(subiendo: Boolean) {
