@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla 12b · Detalle de consulta y receta (HIS-04). Se abre al tocar una consulta o una receta del historial -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo">
+
+    <!-- El subtítulo (la fecha) se pone desde código -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbDetalleHistorial"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationContentDescription="@string/cd_regresar"
+        app:navigationIcon="@drawable/ic_atras"
+        app:title="@string/detalle_historial_titulo"
+        tools:subtitle="@string/ej_detalle_fecha" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbDetalleHistorial">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/vd_margen_pantalla">
+
+            <!-- Aviso rojo por si falla la carga -->
+            <TextView
+                android:id="@+id/tvAvisoError"
+                style="@style/VitalDent.Aviso.Error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/vd_espacio_m"
+                android:visibility="gone"
+                tools:text="@string/aviso_sin_conexion" />
+
+            <!-- ===== Hoja de la receta (se muestra cuando llegan los datos) ===== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvReceta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/vd_espacio_l">
+
+                    <!-- Membrete: logo, nombre del consultorio, fecha y folio -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivLogoReceta"
+                            android:layout_width="@dimen/vd_miniatura"
+                            android:layout_height="@dimen/vd_logo_encabezado"
+                            android:contentDescription="@string/cd_logo"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/img_logo_vital_dent" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/vd_espacio_m"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/VitalDent.Texto.TituloTarjeta"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/detalle_historial_marca"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                style="@style/VitalDent.Texto.Secundario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/detalle_historial_consultorio"
+                                android:textSize="@dimen/vd_texto_micro" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/vd_espacio_s"
+                            android:gravity="end"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvFechaReceta"
+                                style="@style/VitalDent.Texto"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:textSize="@dimen/vd_texto_micro"
+                                tools:text="@string/ej_detalle_fecha" />
+
+                            <TextView
+                                android:id="@+id/tvFolioReceta"
+                                style="@style/VitalDent.Texto.Secundario"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/vd_texto_micro"
+                                android:visibility="gone"
+                                tools:text="@string/ej_detalle_folio"
+                                tools:visibility="visible" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_m"
+                        android:layout_marginBottom="@dimen/vd_espacio_m" />
+
+                    <!-- ===== Datos de la consulta: etiqueta a la izquierda y dato a la derecha ===== -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="@dimen/vd_ancho_etiqueta_receta"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detalle_historial_medico"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvMedico"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_doctor" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="@dimen/vd_ancho_etiqueta_receta"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detalle_historial_especialidad"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvEspecialidad"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_especialidad" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="@dimen/vd_ancho_etiqueta_receta"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detalle_historial_diagnostico"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvDiagnostico"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_diagnostico" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="@dimen/vd_ancho_etiqueta_receta"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detalle_historial_observaciones"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvObservaciones"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_observaciones" />
+                    </LinearLayout>
+
+                    <!-- Esta fila se oculta si la consulta no tiene seguimiento -->
+                    <LinearLayout
+                        android:id="@+id/llFilaSeguimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/vd_espacio_s"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="@dimen/vd_ancho_etiqueta_receta"
+                            android:layout_height="wrap_content"
+                            android:text="@string/detalle_historial_seguimiento"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvSeguimiento"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_seguimiento" />
+                    </LinearLayout>
+
+                    <com.google.android.material.divider.MaterialDivider
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xs"
+                        android:layout_marginBottom="@dimen/vd_espacio_m" />
+
+                    <!-- ===== Receta: se oculta completa si la consulta no tuvo receta ===== -->
+                    <LinearLayout
+                        android:id="@+id/llReceta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Titulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/vd_espacio_s"
+                            android:text="@string/detalle_historial_rp"
+                            android:textColor="@color/vd_primario" />
+
+                        <!-- Aquí se agrega un item_medicamento.xml por cada medicamento -->
+                        <LinearLayout
+                            android:id="@+id/llMedicamentos"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                        <com.google.android.material.divider.MaterialDivider
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/vd_espacio_m" />
+
+                        <TextView
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/detalle_historial_indicaciones"
+                            android:textSize="@dimen/vd_texto_micro" />
+
+                        <TextView
+                            android:id="@+id/tvIndicaciones"
+                            style="@style/VitalDent.Texto"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/vd_espacio_xs"
+                            android:textSize="@dimen/vd_texto_etiqueta"
+                            tools:text="@string/ej_detalle_indicaciones" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvSinReceta"
+                        style="@style/VitalDent.Texto.Secundario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detalle_historial_sin_receta"
+                        android:visibility="gone" />
+
+                    <!-- ===== Firma del doctor ===== -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/vd_espacio_xl"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="@dimen/vd_ancho_firma"
+                            android:layout_height="@dimen/vd_borde_fino"
+                            android:background="@color/vd_texto_terciario" />
+
+                        <TextView
+                            android:id="@+id/tvFirmaDoctor"
+                            style="@style/VitalDent.Texto.Secundario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/vd_espacio_xs"
+                            android:textSize="@dimen/vd_texto_micro"
+                            tools:text="@string/ej_detalle_doctor" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/tvAvisoSoloLectura"
+                style="@style/VitalDent.Aviso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_m"
+                android:text="@string/detalle_historial_aviso" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

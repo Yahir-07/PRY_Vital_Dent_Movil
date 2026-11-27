@@ -28,7 +28,11 @@ class clsHistorialMedicoPresentador(private val vista: clsHistorialMedicoVista) 
         }
     }
 
+    // Solo las consultas (Q) y las recetas (R) tienen detalle; las citas (C) y los tratamientos (T) no abren nada
     fun SeleccionarHistorial(historial: DataHistorial) {
-        // Por ahora no hace nada, aquí se puede abrir el detalle después
+        val letra = historial.idHistorial.take(1)
+        if (letra == "Q" || letra == "R") {
+            vista.IrADetalleHistorial(historial.idHistorial)
+        }
     }
 }

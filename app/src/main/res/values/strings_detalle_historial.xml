@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de la pantalla 12b · Detalle de consulta y receta (HIS-04) -->
+<resources>
+    <string name="detalle_historial_titulo">Detalle de consulta</string>
+    <string name="detalle_historial_marca">Vital Dent</string>
+    <string name="detalle_historial_consultorio">Consultorio dental</string>
+    <string name="detalle_historial_medico">Médico</string>
+    <string name="detalle_historial_especialidad">Especialidad</string>
+    <string name="detalle_historial_diagnostico">Diagnóstico</string>
+    <string name="detalle_historial_observaciones">Observaciones</string>
+    <string name="detalle_historial_seguimiento">Seguimiento</string>
+    <string name="detalle_historial_rp">Rp.</string>
+    <string name="detalle_historial_indicaciones">Indicaciones</string>
+    <string name="detalle_historial_folio">Folio %1$s</string>
+    <string name="detalle_historial_sin_receta">En esta consulta no se recetaron medicamentos.</string>
+    <string name="detalle_historial_aviso">Consulta de solo lectura. Si algo no coincide, coméntalo con tu doctor.</string>
+
+    <!-- Solo para la vista previa de Android Studio (tools:text) -->
+    <string name="ej_detalle_fecha">24 de octubre 2026</string>
+    <string name="ej_detalle_folio">Folio RX-0005</string>
+    <string name="ej_detalle_doctor">Dr. Andrés Ruiz</string>
+    <string name="ej_detalle_especialidad">Ortodoncia</string>
+    <string name="ej_detalle_diagnostico">Caries profunda en pieza 36</string>
+    <string name="ej_detalle_observaciones">Se programa endodoncia. Evitar alimentos muy fríos o duros.</string>
+    <string name="ej_detalle_seguimiento">Regresar en 15 días</string>
+    <string name="ej_detalle_medicamento">1. Ibuprofeno 400 mg</string>
+    <string name="ej_detalle_indicacion">1 tableta · cada 8 horas · 3 días</string>
+    <string name="ej_detalle_indicaciones">Toma los medicamentos después de comer. Si notas alguna reacción, llama al consultorio.</string>
+</resources>

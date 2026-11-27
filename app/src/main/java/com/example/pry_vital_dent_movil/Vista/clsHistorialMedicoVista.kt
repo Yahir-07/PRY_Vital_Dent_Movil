@@ -1,5 +1,6 @@
 package com.example.pry_vital_dent_movil.Vista
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -79,6 +80,13 @@ class clsHistorialMedicoVista : AppCompatActivity() {
 
     fun MostrarListaHistorial(lista: List<DataHistorial>) {
         historialAdaptador.actualizarLista(lista)
+    }
+
+    // Abre la pantalla 12b con el id que tocó el paciente (Q12, R5...)
+    fun IrADetalleHistorial(idHistorial: String) {
+        val intent = Intent(this, clsDetalleHistorialVista::class.java)
+        intent.putExtra(clsDetalleHistorialVista.EXTRA_ID_HISTORIAL, idHistorial)
+        startActivity(intent)
     }
 
     // ---------- Aviso de abajo ----------
