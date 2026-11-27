@@ -120,6 +120,10 @@ class clsPerfilPacienteVista : AppCompatActivity() {
             }
         }
 
+        btnEditarContacto.setOnClickListener {
+            presentador.ClickEditarContacto()
+        }
+
         tvCambiarContrasena.setOnClickListener {
             presentador.ClickCambiarContrasena()
         }
@@ -184,6 +188,21 @@ class clsPerfilPacienteVista : AppCompatActivity() {
 
     fun MostrarMensaje(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    // Le paso los datos actuales a Editar
+    fun IrAEditarContacto(telefono: String, correo: String, domicilio: String) {
+        val intent = Intent(this, clsEditarPerfilVista::class.java)
+        intent.putExtra("telefono", telefono)
+        intent.putExtra("correo", correo)
+        intent.putExtra("domicilio", domicilio)
+        startActivity(intent)
+    }
+
+    // Al volver de otra pantalla se recargan los datos
+    override fun onRestart() {
+        super.onRestart()
+        presentador.RecargarDatos()
     }
 
     fun IrACambiarContrasena() {

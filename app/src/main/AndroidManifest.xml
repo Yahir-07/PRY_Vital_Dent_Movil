@@ -56,6 +56,7 @@
         <activity android:name=".Vista.clsInicioVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsHistorialMedicoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsPerfilPacienteVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsEditarPerfilVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
 
         <!-- 05. Citas -->
         <activity android:name=".Vista.clsMisCitasVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
