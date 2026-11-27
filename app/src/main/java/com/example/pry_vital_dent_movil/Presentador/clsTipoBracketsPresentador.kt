@@ -2,13 +2,13 @@ package com.example.pry_vital_dent_movil.Presentador
 
 import com.example.pry_vital_dent_movil.Modelo.clsTipoBracketsModelo
 import com.example.pry_vital_dent_movil.Vista.clsTipoBracketsVista
+import com.example.pry_vital_dent_movil.Modelo.clsImagenesModelo
 
 class clsTipoBracketsPresentador(private val vista: clsTipoBracketsVista) {
 
     private val modelo = clsTipoBracketsModelo(vista)
 
     fun ClickVerCaracteristicas(estaOculto: Boolean): Boolean {
-        // Alterna el estado de visibilidad de las características
         return !estaOculto
     }
 
@@ -22,6 +22,16 @@ class clsTipoBracketsPresentador(private val vista: clsTipoBracketsVista) {
             0 -> vista.MostrarFiltroTodos()
             1 -> vista.MostrarFiltroEsteticos()
             2 -> vista.MostrarFiltroClasicos()
+        }
+    }
+    fun CargarImagenes() {
+        modelo.ObtenerImagenes { imagenes ->
+            vista.MostrarImagenes(
+                imagenes[clsImagenesModelo.BRACKETS_METALICOS],
+                imagenes[clsImagenesModelo.BRACKETS_CERAMICOS],
+                imagenes[clsImagenesModelo.BRACKETS_ZAFIRO],
+                imagenes[clsImagenesModelo.BRACKETS_AUTOLIGABLES]
+            )
         }
     }
 }

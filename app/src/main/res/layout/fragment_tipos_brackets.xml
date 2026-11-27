@@ -74,6 +74,7 @@
 
                     <!-- Ilustración exportada de Figma: img_brackets_metalicos -->
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivBracketsMetalicos"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vd_alto_ilustracion_brackets"
                         android:contentDescription="@null"
@@ -125,6 +126,12 @@
                         android:text="@string/brackets_metalicos_caracteristicas"
                         android:textColor="@color/vd_texto_primario" />
 
+                    <!-- Empuja el botón hasta abajo cuando la tarjeta se iguala en altura -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSolicitarValoracionMetalicos"
                         android:layout_width="match_parent"
@@ -150,6 +157,7 @@
 
                     <!-- Ilustración exportada de Figma: img_brackets_ceramicos -->
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivBracketsCeramicos"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vd_alto_ilustracion_brackets"
                         android:contentDescription="@null"
@@ -197,6 +205,12 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
 
+                    <!-- Empuja el botón hasta abajo cuando la tarjeta se iguala en altura -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSolicitarValoracionCeramicos"
                         android:layout_width="match_parent"
@@ -222,6 +236,7 @@
 
                     <!-- Ilustración exportada de Figma: img_brackets_zafiro -->
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivBracketsZafiro"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vd_alto_ilustracion_brackets"
                         android:contentDescription="@null"
@@ -269,6 +284,12 @@
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
 
+                    <!-- Empuja el botón hasta abajo cuando la tarjeta se iguala en altura -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSolicitarValoracionZafiro"
                         android:layout_width="match_parent"
@@ -294,6 +315,7 @@
 
                     <!-- Ilustración exportada de Figma: img_brackets_autoligables -->
                     <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivBracketsAutoligables"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/vd_alto_ilustracion_brackets"
                         android:contentDescription="@null"
@@ -340,6 +362,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:visibility="gone" />
+
+                    <!-- Empuja el botón hasta abajo cuando la tarjeta se iguala en altura -->
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnSolicitarValoracionAutoligables"
