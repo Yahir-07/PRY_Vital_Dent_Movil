@@ -39,6 +39,40 @@ class clsCuestionario1Presentador(private val vista: clsCuestionario1Vista) {
         }
     }
 
+    // Separa el nombre completo de Crear cuenta en nombre(s) y apellidos.
+    // Regla: las dos últimas palabras son los apellidos, el resto es el nombre.
+    // Las partículas (de, del, la, las, los, y) se pegan a la palabra que sigue,
+    // para que "Juan de la Cruz López" quede como Juan / de la Cruz / López.
+    fun PrellenarNombre(nombreCompleto: String) {
+        val palabras = nombreCompleto.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }
+        if (palabras.isEmpty()) return
+
+        val particulas = setOf("de", "del", "la", "las", "los", "y", "san", "santa")
+        val bloques = mutableListOf<String>()
+        var pendiente = ""
+        for (palabra in palabras) {
+            if (palabra.lowercase() in particulas) {
+                pendiente = if (pendiente.isEmpty()) palabra else "$pendiente $palabra"
+            } else {
+                bloques.add(if (pendiente.isEmpty()) palabra else "$pendiente $palabra")
+                pendiente = ""
+            }
+        }
+        if (pendiente.isNotEmpty()) {
+            if (bloques.isEmpty()) bloques.add(pendiente) else bloques[bloques.size - 1] += " $pendiente"
+        }
+
+        when (bloques.size) {
+            1 -> vista.MostrarNombre(bloques[0], "", "")
+            2 -> vista.MostrarNombre(bloques[0], bloques[1], "")
+            else -> vista.MostrarNombre(
+                bloques.dropLast(2).joinToString(" "),
+                bloques[bloques.size - 2],
+                bloques[bloques.size - 1]
+            )
+        }
+    }
+
     fun ClickContinuar(
         nombre: String, apPaterno: String, apMaterno: String,
         fechaNac: String, sexo: String, telefono: String,

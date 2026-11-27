@@ -3,13 +3,17 @@ package com.example.pry_vital_dent_movil.Modelo
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.graphics.Matrix
+import android.graphics.Paint
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import android.util.Base64
+import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.example.pry_vital_dent_movil.R
 import java.io.ByteArrayOutputStream
 import java.io.File
 
@@ -33,7 +37,7 @@ class clsCamaraModelo(private val contexto: Context) {
         return FileProvider.getUriForFile(contexto, contexto.packageName + ".fileprovider", archivo)
     }
 
-    // Lee la foto que tomó la cámara, la endereza, la recorta en cuadro y la achica.
+    // Lee la foto que tomó la cámara, la endereza, la achica y la pone completa en un cuadro.
     // Se hace en segundo plano porque la foto original puede pesar varios MB.
     fun PrepararFoto(uri: Uri, alTerminar: (Bitmap?) -> Unit) {
         Thread {
@@ -101,17 +105,28 @@ class clsCamaraModelo(private val contexto: Context) {
             else -> 0f
         }
 
-        // 4. Recorte cuadrado al centro, giro y tamaño final
-        val lado = minOf(original.width, original.height)
-        val x = (original.width - lado) / 2
-        val y = (original.height - lado) / 2
-        val escala = TAMANO_FOTO.toFloat() / lado
+        // 4. Girarla y achicarla para que el lado más largo mida TAMANO_FOTO
+        val escala = TAMANO_FOTO.toFloat() / maxOf(original.width, original.height)
         val matriz = Matrix().apply {
             postScale(escala, escala)
             postRotate(grados)
         }
-        val resultado = Bitmap.createBitmap(original, x, y, lado, lado, matriz, true)
-        if (resultado != original) original.recycle()
+        val girada = Bitmap.createBitmap(original, 0, 0, original.width, original.height, matriz, true)
+        if (girada != original) original.recycle()
+
+        // 5. Ponerla completa (sin recortar) al centro de un cuadro de TAMANO_FOTO.
+        //    Antes se recortaba el cuadro del centro y se perdían la frente y la barbilla;
+        //    ahora se ve toda la cara y lo que sobra se rellena con el color del círculo.
+        val resultado = Bitmap.createBitmap(TAMANO_FOTO, TAMANO_FOTO, Bitmap.Config.ARGB_8888)
+        val lienzo = Canvas(resultado)
+        lienzo.drawColor(ContextCompat.getColor(contexto, R.color.vd_placeholder))
+        lienzo.drawBitmap(
+            girada,
+            (TAMANO_FOTO - girada.width) / 2f,
+            (TAMANO_FOTO - girada.height) / 2f,
+            Paint(Paint.FILTER_BITMAP_FLAG)
+        )
+        girada.recycle()
         return resultado
     }
 }
