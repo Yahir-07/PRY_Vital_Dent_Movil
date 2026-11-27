@@ -2,6 +2,7 @@ package com.example.pry_vital_dent_movil.Presentador
 
 import android.graphics.Bitmap
 import android.net.Uri
+import com.example.pry_vital_dent_movil.Modelo.DatosPerfil
 import com.example.pry_vital_dent_movil.Modelo.clsCamaraModelo
 import com.example.pry_vital_dent_movil.Modelo.clsPerfilPacienteModelo
 import com.example.pry_vital_dent_movil.Vista.clsPerfilPacienteVista
@@ -12,17 +13,37 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private val camara = clsCamaraModelo(vista)
     private var subiendoFoto = false
 
+    // Se guardan para mandarlos a Editar
+    private var datosActuales: DatosPerfil? = null
+
     fun CargarPerfil() {
+        RecargarDatos()
+        camara.ObtenerFoto { foto ->
+            if (foto != null) vista.MostrarFoto(foto)
+        }
+    }
+
+    // También se llama al regresar de Editar
+    fun RecargarDatos() {
         modelo.ObtenerDatosPerfil { datos, mensaje, huellaActiva ->
             if (datos != null) {
+                datosActuales = datos
                 vista.MostrarInformacion(datos.telefono, datos.correo, datos.domicilio, huellaActiva)
             } else {
                 vista.MostrarMensaje(mensaje)
             }
         }
-        camara.ObtenerFoto { foto ->
-            if (foto != null) vista.MostrarFoto(foto)
+    }
+
+    // ---------- Editar datos de contacto (HIS-02) ----------
+
+    fun ClickEditarContacto() {
+        val datos = datosActuales
+        if (datos == null) {
+            vista.MostrarMensaje("Espera a que se carguen tus datos")
+            return
         }
+        vista.IrAEditarContacto(datos.telefono, datos.correo, datos.domicilio)
     }
 
     // ---------- Cámara: foto de perfil (ACC-08) ----------

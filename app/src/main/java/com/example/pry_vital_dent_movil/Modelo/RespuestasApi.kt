@@ -57,6 +57,20 @@ data class DatosPerfil(
     val domicilio: String
 )
 
+// ---------- Editar datos de contacto (HIS-02) ----------
+
+// Lo que se manda a actualizar_perfil.php
+data class SolicitudActualizarPerfil(val telefono: String, val correo: String, val domicilio: String)
+
+// Lo que responde COPOMEX, los nombres van igual que en su JSON
+data class RespuestaCopomex(val error: Boolean, val response: DatosCopomex?)
+
+// asentamiento es Any? porque a veces llega como lista y a veces como texto
+data class DatosCopomex(val asentamiento: Any?, val municipio: String?, val estado: String?)
+
+// Datos del CP ya listos para el presentador
+data class DatosCodigoPostal(val municipio: String, val estado: String, val colonias: List<String>)
+
 data class DatosPagos(
     val saldoMonto: String,
     val saldoConcepto: String,

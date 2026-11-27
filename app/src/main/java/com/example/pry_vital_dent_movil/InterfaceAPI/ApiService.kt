@@ -23,6 +23,8 @@ import com.example.pry_vital_dent_movil.Modelo.SolicitudCambioContrasena
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCita
 import com.example.pry_vital_dent_movil.Modelo.SolicitudCuestionario
 import com.example.pry_vital_dent_movil.Modelo.SolicitudFotoPerfil
+import com.example.pry_vital_dent_movil.Modelo.SolicitudActualizarPerfil
+import com.example.pry_vital_dent_movil.Modelo.RespuestaCopomex
 import com.example.pry_vital_dent_movil.Modelo.SolicitudLogin
 import com.example.pry_vital_dent_movil.Modelo.SolicitudPago
 import com.example.pry_vital_dent_movil.Modelo.SolicitudRegistro
@@ -53,6 +55,21 @@ interface ApiService {
     fun ObtenerPerfil(
         @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String
     ): Call<RespuestaApi<DatosPerfil>>
+
+    // Editar datos de contacto (HIS-02)
+    @POST("actualizar_perfil.php")
+    fun ActualizarPerfil(
+        @Header(RetrofitClient.ENCABEZADO_TOKEN) token: String,
+        @Body datos: SolicitudActualizarPerfil
+    ): Call<RespuestaApi<Any>>
+
+    // Busca un código postal en COPOMEX, la url ya lleva el CP al final
+    @GET
+    fun ConsultarCodigoPostal(
+        @Url url: String,
+        @Query("type") tipo: String,
+        @Query("token") token: String
+    ): Call<RespuestaCopomex>
 
     @POST("cambiar_contrasena.php")
     fun CambiarContrasena(
