@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import com.example.pry_vital_dent_movil.Presentador.clsCuestionario1Presentador
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -20,9 +21,10 @@ class clsCuestionario1Vista : AppCompatActivity() {
     private lateinit var etFechaNacimiento: TextInputEditText
     private lateinit var actvSexo: MaterialAutoCompleteTextView
     private lateinit var etTelefono: TextInputEditText
+    private lateinit var tilCodigoPostal: TextInputLayout
     private lateinit var etCodigoPostal: TextInputEditText
     private lateinit var etDatosDomicilio: TextInputEditText
-    private lateinit var etLocalidad: TextInputEditText
+    private lateinit var etLocalidad: MaterialAutoCompleteTextView
     private lateinit var etCalle: TextInputEditText
     private lateinit var etReferencia: TextInputEditText
     private lateinit var btnContinuar: Button
@@ -38,6 +40,7 @@ class clsCuestionario1Vista : AppCompatActivity() {
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento)
         actvSexo = findViewById(R.id.actvSexo)
         etTelefono = findViewById(R.id.etTelefono)
+        tilCodigoPostal = findViewById(R.id.tilCodigoPostal)
         etCodigoPostal = findViewById(R.id.etCodigoPostal)
         etDatosDomicilio = findViewById(R.id.etDatosDomicilio)
         etLocalidad = findViewById(R.id.etLocalidad)
@@ -58,6 +61,16 @@ class clsCuestionario1Vista : AppCompatActivity() {
         intent.getStringExtra(clsRegistroVista.EXTRA_TELEFONO)?.let { etTelefono.setText(it) }
 
         presentador = clsCuestionario1Presentador(this)
+
+        // Cada que cambia el CP se le avisa al presentador, él decide cuándo buscar
+        etCodigoPostal.doAfterTextChanged { texto ->
+            presentador.CodigoPostalCambio(texto.toString().trim())
+        }
+
+        // Para que la lista de colonias se abra con solo tocar
+        etLocalidad.setOnClickListener {
+            etLocalidad.showDropDown()
+        }
 
         btnContinuar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
@@ -89,6 +102,36 @@ class clsCuestionario1Vista : AppCompatActivity() {
 
     fun LimpiarErrores() {
         camposObligatorios.values.forEach { it.error = null }
+    }
+
+    // ---------- Código postal (SEPOMEX) ----------
+
+    fun CodigoPostalEscrito(): String = etCodigoPostal.text.toString().trim()
+
+    fun MostrarBuscandoCodigoPostal(buscando: Boolean) {
+        tilCodigoPostal.error = null
+        tilCodigoPostal.helperText = if (buscando) "Buscando tu código postal…" else null
+    }
+
+    // Pone el municipio y estado, y carga las colonias en la lista. Si solo hay una, la elige sola.
+    fun MostrarDatosCodigoPostal(datosDomicilio: String, colonias: List<String>) {
+        etDatosDomicilio.setText(datosDomicilio)
+        etLocalidad.setSimpleItems(colonias.toTypedArray())
+
+        if (colonias.size == 1) {
+            etLocalidad.setText(colonias[0], false)
+        }
+    }
+
+    // Borra lo que se llenó solo, para que no se quede el municipio de otro CP
+    fun LimpiarDatosDomicilio() {
+        etDatosDomicilio.setText("")
+        etLocalidad.setText("", false)
+        etLocalidad.setSimpleItems(arrayOf())
+    }
+
+    fun MostrarErrorCodigoPostal(mensaje: String) {
+        tilCodigoPostal.error = mensaje
     }
 
     fun IrAlPasoDos() {

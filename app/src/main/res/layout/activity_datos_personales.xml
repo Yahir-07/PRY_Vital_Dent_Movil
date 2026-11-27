@@ -305,8 +305,10 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tilDatosDomicilio" />
 
+            <!-- Se llena con las colonias del CP, pero también se puede escribir -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilLocalidad"
+                style="@style/VitalDent.Campo.Desplegable"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -314,11 +316,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/lblLocalidad"
                 app:placeholderText="@string/placeholder_localidad">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
                     android:id="@+id/etLocalidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:autofillHints="postalAddressLocality"
+                    android:completionThreshold="1"
                     android:imeOptions="actionNext"
                     android:inputType="textPostalAddress|textCapWords" />
             </com.google.android.material.textfield.TextInputLayout>
