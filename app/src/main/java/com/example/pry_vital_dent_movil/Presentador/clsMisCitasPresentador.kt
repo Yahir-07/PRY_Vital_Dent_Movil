@@ -20,9 +20,11 @@ class clsMisCitasPresentador(private val vista: clsMisCitasVista) {
         modelo.ObtenerListaCitas(tipo) { exito, mensaje, lista ->
             vista.MostrarListaCitas(lista)
             if (!exito) {
-                vista.MostrarMensaje(mensaje)
+                vista.MostrarAvisoError(mensaje)
             } else if (lista.isEmpty()) {
-                vista.MostrarMensaje(if (tipo == "proximas") "No tienes citas próximas" else "No tienes citas anteriores")
+                vista.MostrarAviso(if (tipo == "proximas") "No tienes citas próximas" else "No tienes citas anteriores")
+            } else {
+                vista.OcultarAviso()
             }
         }
     }

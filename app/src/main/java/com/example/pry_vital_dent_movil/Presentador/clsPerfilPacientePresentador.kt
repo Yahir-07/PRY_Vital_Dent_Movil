@@ -29,8 +29,9 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
             if (datos != null) {
                 datosActuales = datos
                 vista.MostrarInformacion(datos.telefono, datos.correo, datos.domicilio, huellaActiva)
+                vista.OcultarAviso()
             } else {
-                vista.MostrarMensaje(mensaje)
+                vista.MostrarAvisoError(mensaje)
             }
         }
     }
@@ -93,8 +94,12 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private fun GuardarFoto(foto: Bitmap) {
         camara.GuardarFoto(foto) { exito, mensaje ->
             TerminarSubida()
-            if (exito) vista.MostrarFoto(foto)
-            vista.MostrarMensaje(if (exito) "Foto de perfil actualizada" else mensaje)
+            if (exito) {
+                vista.MostrarFoto(foto)
+                vista.MostrarConfirmacion("Foto de perfil actualizada")
+            } else {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 
@@ -129,7 +134,7 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private fun GuardarEstadoHuella(activada: Boolean) {
         modelo.ActualizarEstadoHuella(activada) { exito ->
             if (exito) {
-                vista.MostrarMensaje(if (activada) "Huella para pagos activada" else "Huella para pagos desactivada")
+                vista.MostrarConfirmacion(if (activada) "Huella para pagos activada" else "Huella para pagos desactivada")
             }
         }
     }

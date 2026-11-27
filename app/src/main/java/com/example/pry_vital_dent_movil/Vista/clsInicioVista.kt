@@ -2,8 +2,8 @@ package com.example.pry_vital_dent_movil.Vista
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pry_vital_dent_movil.Presentador.clsInicioPresentador
@@ -31,6 +31,7 @@ class clsInicioVista : AppCompatActivity() {
     private lateinit var cvPagos: MaterialCardView
     private lateinit var tvPagosPendientes: TextView
     private lateinit var cvMultimedia: MaterialCardView
+    private lateinit var tvAviso: TextView
     private val permisoNotificaciones =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
 
@@ -54,6 +55,7 @@ class clsInicioVista : AppCompatActivity() {
         cvPagos = vistaTarjetas.findViewById(R.id.cvPagos)
         tvPagosPendientes = vistaTarjetas.findViewById(R.id.tvPagosPendientes)
         cvMultimedia = vistaTarjetas.findViewById(R.id.cvMultimedia)
+        tvAviso = vistaTarjetas.findViewById(R.id.tvAviso)
 
         presentador = clsInicioPresentador(this)
         presentador.InicializarPanel()
@@ -102,8 +104,25 @@ class clsInicioVista : AppCompatActivity() {
         tvPagosPendientes.text = textoPagos
     }
 
-    fun MostrarMensaje(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    // ---------- Aviso de abajo ----------
+
+    fun MostrarAviso(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_info, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    // El mismo aviso pero en rojo, para cuando algo falla al cargar
+    fun MostrarAvisoError(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso_error)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_error, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    fun OcultarAviso() {
+        tvAviso.visibility = View.GONE
     }
     fun IrADetalleCita() {
         startActivity(Intent(this, clsMisCitasVista::class.java))

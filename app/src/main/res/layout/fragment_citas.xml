@@ -61,12 +61,28 @@
         android:paddingTop="@dimen/vd_espacio_m"
         android:paddingEnd="@dimen/vd_margen_pantalla"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btnAgendarNuevaCita"
+        app:layout_constraintBottom_toTopOf="@+id/tvAviso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlCitas"
         tools:itemCount="4"
         tools:listitem="@layout/item_cita" />
+
+    <!-- ===== Aviso de estado (lista vacía o error al cargar) ===== -->
+    <TextView
+        android:id="@+id/tvAviso"
+        style="@style/VitalDent.Aviso"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_m"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/btnAgendarNuevaCita"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="@string/aviso_sin_conexion"
+        tools:visibility="visible" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnAgendarNuevaCita"

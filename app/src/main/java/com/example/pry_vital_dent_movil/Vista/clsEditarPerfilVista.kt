@@ -9,6 +9,7 @@ import com.example.pry_vital_dent_movil.Presentador.clsEditarPerfilPresentador
 import com.example.pry_vital_dent_movil.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -166,6 +167,15 @@ class clsEditarPerfilVista : AppCompatActivity() {
 
     fun MostrarMensaje(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    // No se puede cerrar tocando afuera, así siempre regresa a Mi perfil con Aceptar
+    fun MostrarDatosGuardados(mensaje: String) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(mensaje)
+            .setCancelable(false)
+            .setPositiveButton(R.string.accion_aceptar) { _, _ -> presentador.ClickAceptarGuardado() }
+            .show()
     }
 
     fun RegresarAlPerfil() {
