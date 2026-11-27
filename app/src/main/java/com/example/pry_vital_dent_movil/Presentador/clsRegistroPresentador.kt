@@ -1,5 +1,6 @@
 package com.example.pry_vital_dent_movil.Presentador
 
+import com.example.pry_vital_dent_movil.Modelo.clsValidarContrasena
 import com.example.pry_vital_dent_movil.Modelo.clsRegistroModelo
 import com.example.pry_vital_dent_movil.Vista.clsRegistroVista
 
@@ -29,8 +30,8 @@ class clsRegistroPresentador(private val actividad: clsRegistroVista) {
         }
         if (contrasena.isEmpty()) {
             actividad.MostrarErrorCampo("contrasena", "Este campo es obligatorio"); valido = false
-        } else if (contrasena.length < 8 || !contrasena.any { it.isUpperCase() } || !contrasena.any { it.isDigit() }) {
-            actividad.MostrarErrorCampo("contrasena", "Mínimo 8 caracteres, una mayúscula y un número"); valido = false
+        } else if (clsValidarContrasena.Validar(contrasena) != null) {
+            actividad.MostrarErrorCampo("contrasena", clsValidarContrasena.Validar(contrasena)!!); valido = false
         }
         if (confirmarContrasena.isEmpty()) {
             actividad.MostrarErrorCampo("confirmar", "Este campo es obligatorio"); valido = false
