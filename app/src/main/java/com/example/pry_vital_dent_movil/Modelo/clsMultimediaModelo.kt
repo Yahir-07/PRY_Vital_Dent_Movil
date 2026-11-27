@@ -11,7 +11,7 @@ class clsMultimediaModelo(private val contexto: Context) {
         tipo: String?,
         alTerminar: (Boolean, String, List<DataMultimedia>) -> Unit
     ) {
-        val llamada = RetrofitClient.api.ObtenerMultimedia(tipo)
+        val llamada = RetrofitClient.api.ObtenerMultimedia(RetrofitClient.URL_CORREOS + "multimedia.php", tipo)
 
         RetrofitClient.Ejecutar(contexto, llamada) { exito, mensaje, datos ->
             alTerminar(exito, mensaje, datos ?: emptyList())

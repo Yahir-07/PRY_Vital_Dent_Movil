@@ -2,6 +2,7 @@ package com.example.pry_vital_dent_movil.Presentador
 
 import android.util.Patterns
 import com.example.pry_vital_dent_movil.Modelo.clsRecuperarContrasenaModelo
+import com.example.pry_vital_dent_movil.Modelo.clsValidarContrasena
 import com.example.pry_vital_dent_movil.Vista.clsRecuperarContrasenaVista
 
 class clsRecuperarContrasenaPresentador(private val vista: clsRecuperarContrasenaVista) {
@@ -54,8 +55,9 @@ class clsRecuperarContrasenaPresentador(private val vista: clsRecuperarContrasen
             vista.MostrarMensaje("El código tiene 6 números")
             return
         }
-        if (nueva.length < 8 || nueva.none { it.isUpperCase() } || nueva.none { it.isDigit() }) {
-            vista.MostrarMensaje("La contraseña debe tener mínimo 8 caracteres, una mayúscula y un número")
+        val errorContrasena = clsValidarContrasena.Validar(nueva)
+        if (errorContrasena != null) {
+            vista.MostrarMensaje(errorContrasena)
             return
         }
         if (nueva != confirmar) {

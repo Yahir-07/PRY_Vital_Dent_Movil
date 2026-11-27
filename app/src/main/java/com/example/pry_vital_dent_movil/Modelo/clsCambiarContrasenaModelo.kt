@@ -10,8 +10,9 @@ class clsCambiarContrasenaModelo(private val contexto: Context) {
             return
         }
 
-        if (nueva.length < 8) {
-            alTerminar(false, "La contraseña debe tener al menos 8 caracteres")
+        val errorContrasena = clsValidarContrasena.Validar(nueva)
+        if (errorContrasena != null) {
+            alTerminar(false, errorContrasena)
             return
         }
 

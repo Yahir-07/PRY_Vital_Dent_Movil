@@ -42,7 +42,7 @@
 
     <!-- ===== Etiquetas de formulario ===== -->
     <string name="campos_obligatorios">Los campos con * son obligatorios</string>
-    <string name="etiqueta_nombre_usuario">Nombre de usuario *</string>
+    <string name="etiqueta_nombre_usuario">Nombre de completo *</string>
     <string name="etiqueta_correo">Correo electrónico *</string>
     <string name="etiqueta_usuario_o_correo">Usuario o correo electrónico *</string>
     <string name="etiqueta_contrasena">Contraseña *</string>
@@ -73,7 +73,7 @@
     <string name="placeholder_domicilio">Calle, número y colonia</string>
     <string name="placeholder_motivo">Ej. limpieza, revisión, dolor de muela</string>
     <string name="placeholder_repite_contrasena">Repite la contraseña nueva</string>
-    <string name="ayuda_contrasena">Mínimo 8 caracteres, una mayúscula y un número</string>
+    <string name="ayuda_contrasena">Mínimo 8 caracteres, empieza con mayúscula y lleva un carácter especial</string>
     <string name="acepto_aviso_privacidad">Acepto el aviso de privacidad.</string>
     <string name="separador_o">o</string>
 
@@ -201,8 +201,8 @@
     <string name="formato_paciente_desde">Paciente desde %1$s</string>
     <string name="cambiar_contrasena_titulo">Cambiar contraseña</string>
     <string name="requisito_longitud">Al menos 8 caracteres</string>
-    <string name="requisito_mayuscula">Una letra mayúscula</string>
-    <string name="requisito_numero">Un número</string>
+    <string name="requisito_mayuscula">Empieza con mayúscula</string>
+    <string name="requisito_numero">Un carácter especial (!@#$%&amp;*)</string>
     <string name="requisito_distinta">Distinta a la actual</string>
 
     <!-- ===== 19 · Estados del sistema ===== -->

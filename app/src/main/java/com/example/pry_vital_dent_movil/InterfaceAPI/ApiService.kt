@@ -153,9 +153,11 @@ interface ApiService {
 
     // ---------- Multimedia: videos y audios educativos (Fase 4) ----------
 
-    // tipo = "video", "audio" o null (todo). Los archivos están en APIS_proyecto/multimedia/
-    @GET("multimedia.php")
+    // tipo = "video", "audio" o null (todo). Los archivos están en APIs-VD/multimedia/
+    // url = RetrofitClient.URL_CORREOS + "multimedia.php" (está en la carpeta APIs-VD del servidor)
+    @GET
     fun ObtenerMultimedia(
+        @Url url: String,
         @Query("tipo") tipo: String?
     ): Call<RespuestaApi<List<DataMultimedia>>>
 
