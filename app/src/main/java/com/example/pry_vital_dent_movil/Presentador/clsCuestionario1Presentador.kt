@@ -1,11 +1,43 @@
 package com.example.pry_vital_dent_movil.Presentador
 
+import com.example.pry_vital_dent_movil.Modelo.clsCodigoPostalModelo
 import com.example.pry_vital_dent_movil.Modelo.clsCuestionario1Modelo
 import com.example.pry_vital_dent_movil.Vista.clsCuestionario1Vista
 
 class clsCuestionario1Presentador(private val vista: clsCuestionario1Vista) {
 
     private val modelo = clsCuestionario1Modelo(vista)
+    private val codigoPostal = clsCodigoPostalModelo()
+
+    // El último CP que sí encontró COPOMEX
+    private var cpEncontrado = ""
+
+    // Cuando el CP tiene 5 números lo busca. Si el paciente cambia un CP que ya se había
+    // encontrado, se borra lo que se llenó solo. Todo es opcional, si falla puede escribirlo a mano.
+    fun CodigoPostalCambio(cp: String) {
+        if (cpEncontrado != "" && cp != cpEncontrado) {
+            cpEncontrado = ""
+            vista.LimpiarDatosDomicilio()
+        }
+
+        if (cp.length != 5) return
+
+        vista.MostrarBuscandoCodigoPostal(true)
+        codigoPostal.BuscarCodigoPostal(cp) { datos, mensaje ->
+            vista.MostrarBuscandoCodigoPostal(false)
+
+            // Si ya escribió otro CP mientras buscaba, esta respuesta ya no sirve
+            if (vista.CodigoPostalEscrito() != cp) return@BuscarCodigoPostal
+
+            if (datos == null) {
+                vista.MostrarErrorCodigoPostal(mensaje)
+                return@BuscarCodigoPostal
+            }
+
+            cpEncontrado = cp
+            vista.MostrarDatosCodigoPostal("${datos.municipio}, ${datos.estado}", datos.colonias)
+        }
+    }
 
     fun ClickContinuar(
         nombre: String, apPaterno: String, apMaterno: String,

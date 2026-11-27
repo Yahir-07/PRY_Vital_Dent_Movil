@@ -1,12 +1,14 @@
 package com.example.pry_vital_dent_movil.Presentador
 
 import android.util.Patterns
+import com.example.pry_vital_dent_movil.Modelo.clsCodigoPostalModelo
 import com.example.pry_vital_dent_movil.Modelo.clsEditarPerfilModelo
 import com.example.pry_vital_dent_movil.Vista.clsEditarPerfilVista
 
 class clsEditarPerfilPresentador(private val vista: clsEditarPerfilVista) {
 
     private val modelo = clsEditarPerfilModelo(vista)
+    private val codigoPostal = clsCodigoPostalModelo()
 
     // Domicilio que ya tenía, se usa si no escribe uno nuevo
     private var domicilioActual = ""
@@ -36,7 +38,7 @@ class clsEditarPerfilPresentador(private val vista: clsEditarPerfilVista) {
         // Se busca hasta que tenga los 5 números
         if (cp.length == 5) {
             vista.MostrarBuscandoCodigoPostal(true)
-            modelo.BuscarCodigoPostal(cp) { datos, mensaje ->
+            codigoPostal.BuscarCodigoPostal(cp) { datos, mensaje ->
                 vista.MostrarBuscandoCodigoPostal(false)
 
                 // Si ya escribió otro CP mientras buscaba, esta respuesta ya no sirve
