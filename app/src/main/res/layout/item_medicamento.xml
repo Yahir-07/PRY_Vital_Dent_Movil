@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Un medicamento de la receta (pantalla 12b). Se agrega desde código dentro de llMedicamentos -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/vd_espacio_m"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvMedicamentoNombre"
+        style="@style/VitalDent.Texto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/vd_texto_etiqueta"
+        tools:text="@string/ej_detalle_medicamento" />
+
+    <TextView
+        android:id="@+id/tvMedicamentoIndicacion"
+        style="@style/VitalDent.Texto.Secundario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vd_espacio_xs"
+        tools:text="@string/ej_detalle_indicacion" />
+</LinearLayout>

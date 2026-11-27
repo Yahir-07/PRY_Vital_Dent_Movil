@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Medidas de la pantalla 12b · Detalle de consulta y receta -->
+<resources>
+    <!-- Ancho de las etiquetas de la izquierda (Médico, Especialidad...) para que los datos queden alineados -->
+    <dimen name="vd_ancho_etiqueta_receta">96dp</dimen>
+    <!-- Línea de la firma del doctor -->
+    <dimen name="vd_ancho_firma">140dp</dimen>
+</resources>

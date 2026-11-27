@@ -55,6 +55,7 @@
         <!-- 04. Dashboard y Navegación Principal -->
         <activity android:name=".Vista.clsInicioVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsHistorialMedicoVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".Vista.clsDetalleHistorialVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsPerfilPacienteVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Vista.clsEditarPerfilVista" android:exported="false" android:windowSoftInputMode="adjustResize" />
 
