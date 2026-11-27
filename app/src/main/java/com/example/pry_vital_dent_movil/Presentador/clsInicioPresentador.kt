@@ -17,9 +17,10 @@ class clsInicioPresentador(private val vista: clsInicioVista) {
                 vista.MostrarDatosProximaCita(citaTitulo, citaDetalle)
                 vista.MostrarDatosTratamiento(tratamientoNombre)
                 vista.MostrarPagosPendientes(pagosTexto)
+                vista.OcultarAviso()
             },
             alFallar = { mensaje ->
-                vista.MostrarMensaje(mensaje)
+                vista.MostrarAvisoError(mensaje)
             }
         )
 

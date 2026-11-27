@@ -1,8 +1,8 @@
 package com.example.pry_vital_dent_movil.Vista
 
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +26,7 @@ class clsHistorialMedicoVista : AppCompatActivity() {
     private lateinit var chipFiltroRecetas: Chip
     private lateinit var chipFiltroTratamientos: Chip
     private lateinit var rvHistorial: RecyclerView
+    private lateinit var tvAviso: TextView
     private lateinit var historialAdaptador: HistorialAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +42,7 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         chipFiltroRecetas = findViewById(R.id.chipFiltroRecetas)
         chipFiltroTratamientos = findViewById(R.id.chipFiltroTratamientos)
         rvHistorial = findViewById(R.id.rvHistorial)
+        tvAviso = findViewById(R.id.tvAviso)
 
         tbHistorialMedico.mostrarLogo()
 
@@ -79,7 +81,24 @@ class clsHistorialMedicoVista : AppCompatActivity() {
         historialAdaptador.actualizarLista(lista)
     }
 
-    fun MostrarMensaje(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    // ---------- Aviso de abajo ----------
+
+    fun MostrarAviso(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_info, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    // El mismo aviso pero en rojo, para cuando algo falla al cargar
+    fun MostrarAvisoError(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso_error)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_error, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    fun OcultarAviso() {
+        tvAviso.visibility = View.GONE
     }
 }

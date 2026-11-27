@@ -19,15 +19,17 @@ class clsPagosPresentador(private val vista: clsPagosVista) {
         modelo.ObtenerListaPagos(posicionTab) { exito, mensaje, listaPagos ->
             vista.MostrarListaPagos(listaPagos)
             if (!exito) {
-                vista.MostrarMensaje(mensaje)
+                vista.MostrarAvisoError(mensaje)
             } else if (listaPagos.isEmpty()) {
-                vista.MostrarMensaje(if (posicionTab == 0) "Aún no tienes pagos registrados" else "No tienes pagos pendientes")
+                vista.MostrarAviso(if (posicionTab == 0) "Aún no tienes pagos registrados" else "No tienes pagos pendientes")
+            } else {
+                vista.OcultarAviso()
             }
         }
     }
 
     fun SeleccionarPago(pago: DataPago) {
-        vista.MostrarMensaje("Pago seleccionado: ${pago.concepto} (${pago.estado})")
+        // Por ahora no hace nada, aquí se puede abrir el detalle después
     }
 
     fun ClickPagarAhora() {

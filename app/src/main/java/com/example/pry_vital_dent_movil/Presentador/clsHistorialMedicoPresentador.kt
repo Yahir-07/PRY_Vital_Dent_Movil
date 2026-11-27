@@ -19,14 +19,16 @@ class clsHistorialMedicoPresentador(private val vista: clsHistorialMedicoVista) 
         modelo.ObtenerHistorial(filtro) { exito, mensaje, lista ->
             vista.MostrarListaHistorial(lista)
             if (!exito) {
-                vista.MostrarMensaje(mensaje)
+                vista.MostrarAvisoError(mensaje)
             } else if (lista.isEmpty()) {
-                vista.MostrarMensaje("No hay registros en tu historial")
+                vista.MostrarAviso("No hay registros en tu historial")
+            } else {
+                vista.OcultarAviso()
             }
         }
     }
 
     fun SeleccionarHistorial(historial: DataHistorial) {
-        vista.MostrarMensaje("Seleccionaste: ${historial.titulo}")
+        // Por ahora no hace nada, aquí se puede abrir el detalle después
     }
 }

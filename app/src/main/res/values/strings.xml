@@ -37,6 +37,7 @@
     <string name="accion_editar">Editar</string>
     <string name="accion_cerrar_sesion">Cerrar sesión</string>
     <string name="accion_cancelar">Cancelar</string>
+    <string name="accion_aceptar">Aceptar</string>
     <string name="accion_guardar_cambios">Guardar cambios</string>
     <string name="accion_usar_huella">Usar huella</string>
 

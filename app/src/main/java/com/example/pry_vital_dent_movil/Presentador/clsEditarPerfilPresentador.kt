@@ -99,8 +99,7 @@ class clsEditarPerfilPresentador(private val vista: clsEditarPerfilVista) {
             vista.MostrarGuardando(false)
 
             if (exito) {
-                vista.MostrarMensaje("Tus datos se guardaron")
-                vista.RegresarAlPerfil()
+                vista.MostrarDatosGuardados("Tus datos se guardaron")
             } else {
                 vista.MostrarMensaje(mensaje)
             }
@@ -111,6 +110,10 @@ class clsEditarPerfilPresentador(private val vista: clsEditarPerfilVista) {
     private fun ArmarDomicilio(calle: String, colonia: String, cp: String): String {
         val partes = listOf(calle, "Col. $colonia", municipio, estado, "C.P. $cp")
         return partes.filter { it.isNotBlank() }.joinToString(", ").take(200)
+    }
+
+    fun ClickAceptarGuardado() {
+        vista.RegresarAlPerfil()
     }
 
     fun ClickCancelar() {
