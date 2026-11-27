@@ -60,21 +60,11 @@
             android:paddingEnd="@dimen/vd_margen_pantalla"
             android:paddingBottom="@dimen/vd_margen_pantalla">
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/glMitad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvBracketsMetalicos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/glMitad"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginEnd="@dimen/vd_espacio_xs2"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -150,10 +140,7 @@
                 android:id="@+id/cvBracketsCeramicos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/glMitad"
-                android:layout_marginStart="@dimen/vd_espacio_xs2"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -221,22 +208,11 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.constraintlayout.widget.Barrier
-                android:id="@+id/brFila1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:barrierDirection="bottom"
-                app:constraint_referenced_ids="cvBracketsMetalicos,cvBracketsCeramicos" />
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cvBracketsZafiro"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@+id/glMitad"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginEnd="@dimen/vd_espacio_xs2"
-                app:layout_constraintTop_toBottomOf="@+id/brFila1"
-                android:layout_marginTop="@dimen/vd_espacio_m">
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -308,11 +284,7 @@
                 android:id="@+id/cvBracketsAutoligables"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/glMitad"
-                android:layout_marginStart="@dimen/vd_espacio_xs2"
-                app:layout_constraintTop_toBottomOf="@+id/brFila1"
-                android:layout_marginTop="@dimen/vd_espacio_m">
+                app:layout_constraintWidth_percent="0.48">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -379,6 +351,22 @@
                         android:text="@string/accion_solicitar_valoracion" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <!-- El Flow acomoda las tarjetas de 2 en 2 y se brinca las que están ocultas -->
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/flBrackets"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="cvBracketsMetalicos,cvBracketsCeramicos,cvBracketsZafiro,cvBracketsAutoligables"
+                app:flow_horizontalBias="0"
+                app:flow_horizontalStyle="spread_inside"
+                app:flow_maxElementsWrap="2"
+                app:flow_verticalAlign="top"
+                app:flow_verticalGap="@dimen/vd_espacio_m"
+                app:flow_wrapMode="chain"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
