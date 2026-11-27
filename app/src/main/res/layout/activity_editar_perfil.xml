@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- HIS-02 · Editar datos de contacto -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vd_fondo"
+    android:fitsSystemWindows="true">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/tbEditarPerfil"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:logo="@drawable/logo_encabezado"
+        app:logoDescription="@string/cd_logo"
+        app:title="@string/editar_perfil_titulo" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/svEditarPerfil"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnGuardarCambios"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbEditarPerfil">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/vd_margen_pantalla"
+            android:paddingTop="@dimen/vd_espacio_l"
+            android:paddingEnd="@dimen/vd_margen_pantalla"
+            android:paddingBottom="@dimen/vd_espacio_l">
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/campos_obligatorios" />
+
+            <!-- ===== Teléfono ===== -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etTelefono"
+                android:text="@string/etiqueta_telefono" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilTelefono"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_telefono_editar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etTelefono"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="phone"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ===== Correo ===== -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etCorreo"
+                android:text="@string/etiqueta_correo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_correo_editar">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCorreo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="254" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- ===== Domicilio actual ===== -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/editar_perfil_domicilio_actual" />
+
+            <TextView
+                android:id="@+id/tvDomicilioActual"
+                style="@style/VitalDent.Texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- ===== Domicilio nuevo ===== -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/vd_espacio_l"
+                android:text="@string/editar_perfil_cambiar_domicilio" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/editar_perfil_ayuda_domicilio" />
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etCodigoPostal"
+                android:text="@string/etiqueta_codigo_postal" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCodigoPostal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_codigo_postal">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCodigoPostal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="postalCode"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="5" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Estos dos se llenan solos con el CP -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etMunicipio"
+                android:text="@string/etiqueta_municipio" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilMunicipio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_se_llena_solo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMunicipio"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:importantForAutofill="no"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etEstado"
+                android:text="@string/etiqueta_estado" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilEstado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_se_llena_solo">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etEstado"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:importantForAutofill="no"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Lista de colonias del CP -->
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etColonia"
+                android:text="@string/etiqueta_colonia" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilColonia"
+                style="@style/VitalDent.Campo.Desplegable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_colonia">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/etColonia"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:completionThreshold="1"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapWords" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                style="@style/VitalDent.Texto.Etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:labelFor="@+id/etCalle"
+                android:text="@string/etiqueta_calle_numero" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:placeholderText="@string/placeholder_calle_numero">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="streetAddress"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPostalAddress|textCapWords"
+                    android:maxLength="100" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelar"
+        style="@style/VitalDent.Boton.Peligro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_margen_pantalla"
+        android:layout_marginEnd="@dimen/vd_espacio_s"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnGuardarCambios"
+        app:layout_constraintHorizontal_chainStyle="spread"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGuardarCambios"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/vd_espacio_s"
+        android:layout_marginEnd="@dimen/vd_margen_pantalla"
+        android:layout_marginBottom="@dimen/vd_espacio_l"
+        android:text="@string/accion_guardar_cambios"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

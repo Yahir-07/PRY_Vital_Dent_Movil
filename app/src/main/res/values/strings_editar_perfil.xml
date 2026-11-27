@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos de la pantalla Editar datos de contacto (HIS-02) -->
+<resources>
+    <string name="editar_perfil_titulo">Editar datos de contacto</string>
+    <string name="editar_perfil_domicilio_actual">Domicilio actual</string>
+    <string name="editar_perfil_cambiar_domicilio">Cambiar domicilio (opcional)</string>
+    <string name="editar_perfil_ayuda_domicilio">Si no quieres cambiar tu domicilio, deja estos campos vacíos.</string>
+    <string name="etiqueta_municipio">Municipio o alcaldía</string>
+    <string name="etiqueta_colonia">Colonia</string>
+    <string name="etiqueta_calle_numero">Calle y número</string>
+    <string name="placeholder_colonia">Elige tu colonia</string>
+    <string name="placeholder_calle_numero">Av. Juárez #123</string>
+    <string name="placeholder_telefono_editar">5512345678</string>
+    <string name="placeholder_correo_editar">tucorreo@ejemplo.com</string>
+    <string name="placeholder_se_llena_solo">Se llena con tu código postal</string>
+</resources>

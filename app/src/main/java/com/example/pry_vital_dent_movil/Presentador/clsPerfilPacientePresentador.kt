@@ -2,6 +2,7 @@ package com.example.pry_vital_dent_movil.Presentador
 
 import android.graphics.Bitmap
 import android.net.Uri
+import com.example.pry_vital_dent_movil.Modelo.DatosPerfil
 import com.example.pry_vital_dent_movil.Modelo.clsCamaraModelo
 import com.example.pry_vital_dent_movil.Modelo.clsPerfilPacienteModelo
 import com.example.pry_vital_dent_movil.Vista.clsPerfilPacienteVista
@@ -12,17 +13,38 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private val camara = clsCamaraModelo(vista)
     private var subiendoFoto = false
 
+    // Se guardan para mandarlos a Editar
+    private var datosActuales: DatosPerfil? = null
+
     fun CargarPerfil() {
-        modelo.ObtenerDatosPerfil { datos, mensaje, huellaActiva ->
-            if (datos != null) {
-                vista.MostrarInformacion(datos.telefono, datos.correo, datos.domicilio, huellaActiva)
-            } else {
-                vista.MostrarMensaje(mensaje)
-            }
-        }
+        RecargarDatos()
         camara.ObtenerFoto { foto ->
             if (foto != null) vista.MostrarFoto(foto)
         }
+    }
+
+    // También se llama al regresar de Editar
+    fun RecargarDatos() {
+        modelo.ObtenerDatosPerfil { datos, mensaje, huellaActiva ->
+            if (datos != null) {
+                datosActuales = datos
+                vista.MostrarInformacion(datos.telefono, datos.correo, datos.domicilio, huellaActiva)
+                vista.OcultarAviso()
+            } else {
+                vista.MostrarAvisoError(mensaje)
+            }
+        }
+    }
+
+    // ---------- Editar datos de contacto (HIS-02) ----------
+
+    fun ClickEditarContacto() {
+        val datos = datosActuales
+        if (datos == null) {
+            vista.MostrarMensaje("Espera a que se carguen tus datos")
+            return
+        }
+        vista.IrAEditarContacto(datos.telefono, datos.correo, datos.domicilio)
     }
 
     // ---------- Cámara: foto de perfil (ACC-08) ----------
@@ -72,8 +94,12 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private fun GuardarFoto(foto: Bitmap) {
         camara.GuardarFoto(foto) { exito, mensaje ->
             TerminarSubida()
-            if (exito) vista.MostrarFoto(foto)
-            vista.MostrarMensaje(if (exito) "Foto de perfil actualizada" else mensaje)
+            if (exito) {
+                vista.MostrarFoto(foto)
+                vista.MostrarConfirmacion("Foto de perfil actualizada")
+            } else {
+                vista.MostrarMensaje(mensaje)
+            }
         }
     }
 
@@ -108,7 +134,7 @@ class clsPerfilPacientePresentador(private val vista: clsPerfilPacienteVista) {
     private fun GuardarEstadoHuella(activada: Boolean) {
         modelo.ActualizarEstadoHuella(activada) { exito ->
             if (exito) {
-                vista.MostrarMensaje(if (activada) "Huella para pagos activada" else "Huella para pagos desactivada")
+                vista.MostrarConfirmacion(if (activada) "Huella para pagos activada" else "Huella para pagos desactivada")
             }
         }
     }

@@ -7,6 +7,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.view.View
 import android.widget.ImageView.ScaleType
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -58,6 +59,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
     // Cámara (ACC-08)
     private lateinit var ivFotoPerfil: ShapeableImageView
     private lateinit var btnTomarFoto: MaterialButton
+    private lateinit var tvAviso: TextView
     private var uriFoto: Uri? = null
     private var tieneFoto = false
 
@@ -104,6 +106,7 @@ class clsPerfilPacienteVista : AppCompatActivity() {
         tvCerrarSesion = findViewById(R.id.tvCerrarSesion)
         ivFotoPerfil = findViewById(R.id.ivFotoPerfil)
         btnTomarFoto = findViewById(R.id.btnTomarFoto)
+        tvAviso = findViewById(R.id.tvAviso)
 
         // Si Android cerró la pantalla mientras la cámara estaba abierta, se recupera el archivo
         uriFoto = savedInstanceState?.getString("uriFoto")?.let { Uri.parse(it) }
@@ -118,6 +121,10 @@ class clsPerfilPacienteVista : AppCompatActivity() {
                 tvHuellaPagosEstado.text = if (isChecked) "Activada" else "Desactivada"
                 presentador.CambiarEstadoHuella(isChecked)
             }
+        }
+
+        btnEditarContacto.setOnClickListener {
+            presentador.ClickEditarContacto()
         }
 
         tvCambiarContrasena.setOnClickListener {
@@ -184,6 +191,50 @@ class clsPerfilPacienteVista : AppCompatActivity() {
 
     fun MostrarMensaje(mensaje: String) {
         Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    }
+
+    // Confirmación de una sola vez, se cierra con Aceptar
+    fun MostrarConfirmacion(mensaje: String) {
+        MaterialAlertDialogBuilder(this)
+            .setMessage(mensaje)
+            .setPositiveButton(R.string.accion_aceptar, null)
+            .show()
+    }
+
+    // ---------- Aviso de abajo ----------
+
+    fun MostrarAviso(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_info, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    // El mismo aviso pero en rojo, para cuando algo falla al cargar
+    fun MostrarAvisoError(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso_error)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_error, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    fun OcultarAviso() {
+        tvAviso.visibility = View.GONE
+    }
+
+    // Le paso los datos actuales a Editar
+    fun IrAEditarContacto(telefono: String, correo: String, domicilio: String) {
+        val intent = Intent(this, clsEditarPerfilVista::class.java)
+        intent.putExtra("telefono", telefono)
+        intent.putExtra("correo", correo)
+        intent.putExtra("domicilio", domicilio)
+        startActivity(intent)
+    }
+
+    // Al volver de otra pantalla se recargan los datos
+    override fun onRestart() {
+        super.onRestart()
+        presentador.RecargarDatos()
     }
 
     fun IrACambiarContrasena() {

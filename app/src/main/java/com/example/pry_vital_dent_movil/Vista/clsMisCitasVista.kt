@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pry_vital_dent_movil.Adaptador.MisCitasAdaptador
@@ -23,6 +22,7 @@ class clsMisCitasVista : AppCompatActivity() {
     private lateinit var tlCitas: TabLayout
     private lateinit var rvCitas: RecyclerView
     private lateinit var btnAgendarNuevaCita: MaterialButton
+    private lateinit var tvAviso: TextView
     private lateinit var MisCitasAdaptador: MisCitasAdaptador
 
 
@@ -35,6 +35,7 @@ class clsMisCitasVista : AppCompatActivity() {
         tlCitas = findViewById(R.id.tlCitas)
         rvCitas = findViewById(R.id.rvCitas)
         btnAgendarNuevaCita = findViewById(R.id.btnAgendarNuevaCita)
+        tvAviso = findViewById(R.id.tvAviso)
 
         // 1. PRIMERO inicializamos el adaptador y lo configuramos en el RecyclerView
         MisCitasAdaptador = MisCitasAdaptador(emptyList()) { citaSeleccionada ->
@@ -69,8 +70,25 @@ class clsMisCitasVista : AppCompatActivity() {
         MisCitasAdaptador.actualizarLista(lista)
     }
 
-    fun MostrarMensaje(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    // ---------- Aviso de abajo ----------
+
+    fun MostrarAviso(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_info, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    // El mismo aviso pero en rojo, para cuando algo falla al cargar
+    fun MostrarAvisoError(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso_error)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_error, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    fun OcultarAviso() {
+        tvAviso.visibility = View.GONE
     }
 
     fun MostrarAvisoSinConexion(mostrar: Boolean) {

@@ -4,12 +4,9 @@ import android.content.Context
 
 class clsTipoBracketsModelo(private val contexto: Context) {
 
-    fun RegistrarSolicitudValoracion(tipoBracket: String, alTerminar: (Boolean, String) -> Unit) {
-        if (tipoBracket.isNotEmpty()) {
-            // Aquí puedes enviar la solicitud de valoración a tu backend PHP mediante Retrofit
-            alTerminar(true, "Solicitud de valoración para $tipoBracket enviada con éxito")
-        } else {
-            alTerminar(false, "No se pudo procesar la solicitud")
-        }
+    // La valoración se pide agendando una cita normal (agendar_cita.php),
+    // aquí solo armamos el motivo. Ej. "Valoración de Brackets Metálicos"
+    fun ArmarMotivoValoracion(tipoBracket: String): String {
+        return "Valoración de $tipoBracket"
     }
 }

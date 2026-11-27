@@ -2,8 +2,8 @@ package com.example.pry_vital_dent_movil.Vista
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +26,7 @@ class clsPagosVista : AppCompatActivity() {
     private lateinit var btnPagarAhora: MaterialButton
     private lateinit var tlPagos: TabLayout
     private lateinit var rvPagos: RecyclerView
+    private lateinit var tvAviso: TextView
     private lateinit var pagoAdaptador: PagoAdaptador
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +40,7 @@ class clsPagosVista : AppCompatActivity() {
         btnPagarAhora = findViewById(R.id.btnPagarAhora)
         tlPagos = findViewById(R.id.tlPagos)
         rvPagos = findViewById(R.id.rvPagos)
+        tvAviso = findViewById(R.id.tvAviso)
 
         // 1. PRIMERO inicializamos el adaptador y lo asignamos al RecyclerView
         pagoAdaptador = PagoAdaptador(emptyList()) { pagoSeleccionado ->
@@ -76,8 +78,25 @@ class clsPagosVista : AppCompatActivity() {
         pagoAdaptador.actualizarLista(lista)
     }
 
-    fun MostrarMensaje(mensaje: String) {
-        Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+    // ---------- Aviso de abajo ----------
+
+    fun MostrarAviso(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_info, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    // El mismo aviso pero en rojo, para cuando algo falla al cargar
+    fun MostrarAvisoError(mensaje: String) {
+        tvAviso.text = mensaje
+        tvAviso.setBackgroundResource(R.drawable.bg_aviso_error)
+        tvAviso.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_punto_error, 0, 0, 0)
+        tvAviso.visibility = View.VISIBLE
+    }
+
+    fun OcultarAviso() {
+        tvAviso.visibility = View.GONE
     }
 
     fun IrARealizarPago() {

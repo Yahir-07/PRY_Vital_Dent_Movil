@@ -112,7 +112,7 @@ object RetrofitClient {
             override fun onFailure(call: Call<RespuestaApi<T>>, t: Throwable) {
                 alTerminar(
                     false,
-                    "No se pudo conectar con el servidor. Revisa tu conexión y que XAMPP esté encendido.",
+                    "No se pudo conectar con el servidor.",
                     null
                 )
             }

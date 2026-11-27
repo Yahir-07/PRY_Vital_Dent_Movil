@@ -60,13 +60,11 @@ class clsLoginVista : AppCompatActivity() {
             presentador.ClickIrCrearCuenta()
         }
 
-        // Si ya activó la huella, se le pide al abrir (post: espera a que se dibuje la pantalla)
         if (savedInstanceState == null) {
             btnIngresarHuella.post { presentador.AlIniciar() }
         }
     }
 
-    // Métodos que ordenan los cambios visuales
     fun MostrarError(mensaje: String) {
         tvErrorCredenciales.text = mensaje
         tvErrorCredenciales.visibility = View.VISIBLE
@@ -82,6 +80,7 @@ class clsLoginVista : AppCompatActivity() {
 
     fun IrAlPanelPrincipal() {
         val intent = Intent(this, clsInicioVista::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }
@@ -91,7 +90,6 @@ class clsLoginVista : AppCompatActivity() {
         startActivity(intent)
     }
 
-    // ---------- Huella o rostro ----------
 
     fun BiometriaDisponible(): Boolean = biometria.EstaDisponible()
 

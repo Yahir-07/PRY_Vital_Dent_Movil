@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.example.pry_vital_dent_movil.R
 import com.example.pry_vital_dent_movil.Adaptador.HoraAdaptador
 import com.example.pry_vital_dent_movil.Modelo.DataHora
@@ -24,6 +24,9 @@ class clsAgendarCitaVista : AppCompatActivity() {
     companion object {
         // Opcional: id del doctor cuando se llega desde su perfil
         const val EXTRA_ID_DOCTOR = "ID_DOCTOR"
+
+        // Opcional: motivo ya escrito cuando se llega desde "Tipos de brackets"
+        const val EXTRA_MOTIVO = "MOTIVO"
     }
 
     private lateinit var presentador: clsAgendarCitaPresentador
@@ -31,7 +34,7 @@ class clsAgendarCitaVista : AppCompatActivity() {
     private lateinit var calCita: CalendarView
     private lateinit var tvHoraDisponible: TextView
     private lateinit var rvHoras: RecyclerView
-    private lateinit var etMotivo: TextInputEditText
+    private lateinit var etMotivo: MaterialAutoCompleteTextView
     private lateinit var btnConfirmarCita: Button
     private lateinit var horaAdaptador: HoraAdaptador
 
@@ -61,6 +64,10 @@ class clsAgendarCitaVista : AppCompatActivity() {
         // 2. HASTA DESPUÉS inicializamos el presentador y cargamos las fechas/horas
         presentador = clsAgendarCitaPresentador(this)
         presentador.AsignarDoctor(intent.getStringExtra(EXTRA_ID_DOCTOR) ?: "")
+
+        // Si venimos de "Tipos de brackets" el motivo ya viene escrito, si no queda vacío
+        val motivoRecibido = intent.getStringExtra(EXTRA_MOTIVO) ?: ""
+        etMotivo.setText(motivoRecibido, false) // false = que no se abra la lista sola
 
         // Obtener la fecha actual por defecto al abrir
         val fechaActual = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(Date(calCita.date))

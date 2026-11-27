@@ -56,4 +56,7 @@
     <dimen name="vd_texto_pequeno">13sp</dimen>
     <dimen name="vd_texto_micro">12sp</dimen>
     <dimen name="vd_texto_avatar">22sp</dimen>
+
+    <!-- Alto del texto desplazable en la burbuja del aviso de privacidad -->
+    <dimen name="vd_alto_aviso_privacidad">280dp</dimen>
 </resources>

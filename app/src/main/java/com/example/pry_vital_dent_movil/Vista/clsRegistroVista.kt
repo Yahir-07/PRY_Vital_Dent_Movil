@@ -36,6 +36,7 @@ class clsRegistroVista : AppCompatActivity() {
         etContrasena = findViewById(R.id.etContrasena)
         etConfirmarContrasena = findViewById(R.id.etConfirmarContrasena)
         cbAvisoPrivacidad = findViewById(R.id.cbAvisoPrivacidad)
+        cbAvisoPrivacidad.conectarAvisoPrivacidad(this) // abre la burbuja del aviso de privacidad
         btnCrearCuenta = findViewById(R.id.btnCrearCuenta)
         btnIrIniciarSesion = findViewById(R.id.btnIrIniciarSesion)
 
@@ -90,7 +91,7 @@ class clsRegistroVista : AppCompatActivity() {
     }
 
     fun IrAlLogin() {
-        val intent = Intent(this, clsLoginVista::class.java) // Pantalla 03 (Iniciar sesión)
+        val intent = Intent(this, clsLoginVista::class.java)
         startActivity(intent)
         finish()
     }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Burbuja del aviso de privacidad (mismo contenido que la página web "Aviso de privacidad") -->
+<resources>
+    <string name="privacidad_titulo">Aviso de privacidad</string>
+    <string name="privacidad_actualizacion">Última actualización: noviembre de 2026</string>
+    <string name="privacidad_resumen">Antes de continuar, lee cómo cuidamos tus datos personales y de salud.</string>
+    <string name="privacidad_casilla">He leído y acepto el aviso de privacidad, incluido el uso de mis datos de salud para mi atención.</string>
+    <string name="privacidad_aceptar">Aceptar</string>
+    <string name="privacidad_cerrar">Cerrar aviso de privacidad</string>
+
+    <string name="privacidad_1_titulo">1. Responsable</string>
+    <string name="privacidad_1_texto">Vital Dent, con domicilio en Av. Juárez 45, Centro, Huejutla, Hidalgo (tel. 789 896 1020), es responsable del tratamiento de tus datos personales.</string>
+
+    <string name="privacidad_2_titulo">2. Datos que recabamos</string>
+    <string name="privacidad_2_texto">Identificación y contacto: nombre, fecha de nacimiento, teléfono, correo, domicilio, contacto de emergencia y foto de perfil.</string>
+
+    <string name="privacidad_3_titulo">3. Datos de salud (sensibles)</string>
+    <string name="privacidad_3_texto">Antecedentes médicos y dentales, cuestionario inicial, odontograma, notas clínicas y tratamientos. Solo los tratamos con tu consentimiento expreso.</string>
+
+    <string name="privacidad_4_titulo">4. Finalidades</string>
+    <string name="privacidad_4_texto">Primarias: crear tu expediente, agendar citas, dar seguimiento a tu tratamiento y emitir recibos. Secundarias: recordatorios y encuestas de satisfacción, a las que puedes negarte.</string>
+
+    <string name="privacidad_5_titulo">5. Transferencias</string>
+    <string name="privacidad_5_texto">No vendemos tus datos. Solo se comparten cuando la ley lo exige o con tu consentimiento.</string>
+
+    <string name="privacidad_6_titulo">6. Servicios externos</string>
+    <string name="privacidad_6_texto">Firebase envía las notificaciones de citas y pagos. Los pagos se hacen en Mercado Pago: Vital Dent no recibe ni guarda los datos de tu tarjeta. El botón Cómo llegar abre Google Maps.</string>
+
+    <string name="privacidad_7_titulo">7. Derechos ARCO</string>
+    <string name="privacidad_7_texto">Puedes solicitar acceso, rectificación, cancelación u oposición en recepción o por teléfono. Respondemos en un máximo de 20 días hábiles.</string>
+
+    <string name="privacidad_8_titulo">8. Seguridad</string>
+    <string name="privacidad_8_texto">Contraseñas cifradas, acceso por roles y resguardo del expediente clínico conforme a la NOM-004-SSA3-2012.</string>
+
+    <string name="privacidad_9_titulo">9. Cambios al aviso</string>
+    <string name="privacidad_9_texto">Publicaremos cualquier cambio en la app y en el sitio web con su fecha de actualización.</string>
+</resources>
